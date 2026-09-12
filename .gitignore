@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .DS_Store
 node_modules/
+
+# screenshots written by dev/uitest.py for eyeballing
+dev/review/
