@@ -826,15 +826,22 @@ function relLuminance(hex){
   const f=c=>{c/=255; return c<=0.03928?c/12.92:Math.pow((c+0.055)/1.055,2.4);};
   return 0.2126*f(r)+0.7152*f(g)+0.0722*f(b);
 }
+const contrastRatio=(a,b)=>{const x=relLuminance(a),y=relLuminance(b);return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05);};
+
+/* the only two inks available for type drawn on top of a palette color */
+const INK_LIGHT='#ffffff', INK_DARK='#141414';
+/* Take whichever ink clears WCAG with more room. Comparing through contrastRatio()
+ * keeps each ink's real luminance in the maths: scoring the dark ink against a
+ * hardcoded 0.05 (pure black) overstated it by 1.14x and made the picker choose the
+ * weaker ink for backgrounds with luminance in [0.179,0.195) — 4.02:1 where white
+ * would have given 4.58:1. */
 function pickText(hex){
-  const L=relLuminance(hex);
-  return (1.05/(L+0.05)) >= ((L+0.05)/0.05) ? '#ffffff' : '#141414';
+  return contrastRatio(INK_LIGHT,hex)>=contrastRatio(INK_DARK,hex) ? INK_LIGHT : INK_DARK;
 }
 const onColor = pickText;
-const hoverBg = hex => pickText(hex)==='#141414' ? 'rgba(0,0,0,.12)' : 'rgba(255,255,255,.22)';
+const hoverBg = hex => pickText(hex)===INK_DARK ? 'rgba(0,0,0,.12)' : 'rgba(255,255,255,.22)';
 /* halo behind on-strip type: light glow under dark ink, dark glow under light ink */
-const textShadowFor = on => on==='#141414' ? 'rgba(255,255,255,.6)' : 'rgba(0,0,0,.45)';
-const contrastRatio=(a,b)=>{const x=relLuminance(a),y=relLuminance(b);return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05);};
+const textShadowFor = on => on===INK_DARK ? 'rgba(255,255,255,.6)' : 'rgba(0,0,0,.45)';
 const validHex = s => /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.test(s.trim());
 const normHex = s => {
   s=s.trim().replace('#','').toLowerCase();
