@@ -1606,6 +1606,11 @@ function wireEditPanel(){
   $('shadeGrid').addEventListener('click',e=>{
     const b=e.target.closest('[data-shade]');
     if(!b) return;
+    /* editLive() re-renders this grid, which detaches e.target. Left to bubble, the
+     * click would reach the strip handler with a target whose closest('.edit-panel')
+     * is null, so its "ignore clicks inside the panel" guard would miss and it would
+     * commit + close the editor. The panel handles its own clicks. */
+    e.stopPropagation();
     syncEditUI(b.dataset.shade); editLive(b.dataset.shade);
   });
 }
