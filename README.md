@@ -36,23 +36,51 @@ Share links, PNG export, and saved palettes all work the same once hosted.
 
 ## Tests
 
+Four tools, each covering what the others cannot:
+
 ```sh
-node dev/audit.js     # contrast + accessibility + heuristic audit
-node dev/harness.js   # 64 functional smoke tests
-python3 dev/uitest.py # 88 real-browser checks (Playwright + Chromium)
+node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
+node dev/domtest.js   #  98 interaction steps      — real DOM (jsdom), golden snapshot
+node dev/audit.js     #  74 contrast / a11y / heuristic checks
+python3 dev/uitest.py #  88 real-browser checks    — layout and pixels (Playwright)
 ```
 
-Browser tests need Playwright (`pip install playwright` + `playwright install chromium`) and Chromium's system libraries on Linux.
+`harness.js` and `audit.js` need nothing but node. The other two skip cleanly — a
+`SKIP` line and exit 0 — when their optional dependency is missing, so the suite is
+always runnable:
+
+| tool | optional dependency | if absent |
+| --- | --- | --- |
+| `domtest.js` | `npm install jsdom` | the whole file skips |
+| `uitest.py` | `pip install playwright && playwright install chromium` | the whole file skips |
+| `uitest.py` | `pip install pillow` | only the one pixel-sampling check skips |
+
+### The golden snapshot
+
+`domtest.js` loads `index.html` into a real DOM, clicks through a scripted session and
+compares every step against `dev/domtest.golden.json`. `Math.random` and `Date.now` are
+pinned, so a diff is always a real difference and never noise. After an *intended*
+behaviour change, regenerate it and read the diff before committing:
+
+```sh
+node dev/domtest.js --update
+```
 
 ## Project layout
 
 ```
-index.html            # the entire app (HTML + CSS + JS, self-contained)
+index.html               # the entire app (HTML + CSS + JS, self-contained)
 dev/
-  audit.js            # static/computed accessibility audit
-  harness.js, tests.js# fake-DOM functional smoke tests
-  uitest.py           # Playwright click-through + screenshots
+  appenv.js              # shared loader: runs index.html's script against a stub DOM
+  harness.js, tests.js   # functional smoke tests, using appenv
+  domtest.js             # scripted real-DOM session (jsdom)
+  domtest.golden.json    # the snapshot domtest.js compares against
+  audit.js               # static/computed accessibility audit, using appenv
+  uitest.py              # Playwright click-through; screenshots go to dev/review/
 ```
+
+`appenv.js` is what lets `harness.js` and `audit.js` test the app's real `genHex`,
+`pickText` and friends instead of a copy that can silently drift from it.
 
 ## Credits
 
