@@ -270,8 +270,15 @@ async function runSession() {
       title: d.title,
       strips: d.querySelectorAll('.strip').length,
       hexes,
-      /* the per-strip custom properties: --on/--hover/--sh, i.e. the ink decision */
-      inks: [...d.querySelectorAll('.strip')].map((e) => e.getAttribute('style')).join(' | '),
+      /* The ink decision per strip. Storing the whole style attribute made the golden
+       * ~880 bytes a step and drowned real diffs, so this keeps the part a human needs
+       * (which --on won) plus a short hash of the rest: any change to --hover or --sh
+       * still shows up, without spelling it out 98 times. */
+      inks: [...d.querySelectorAll('.strip')].map((e) => {
+        const st = e.getAttribute('style') || '';
+        const on = (st.match(/--on:([^;]+)/) || [, '?'])[1];
+        return on + ':' + short(st).slice(0, 6);
+      }).join(','),
       clones: d.querySelectorAll('.swap-clone').length,
       overlays: d.querySelectorAll('.overlay.open').length,
       menus: d.querySelectorAll('.menu.open').length,
