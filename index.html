@@ -10,10 +10,10 @@
   :root{
     --bg:#FFFFFF; --ink:#111418; --muted:#5F6672;
     --line:#E9EAEE; --pill:#F1F3F5; --pill-hover:#E6E8EC;
-    --accent:rgba(17,20,24,.88); --accent-hover:rgba(17,20,24,.97); --accent-ink:#FFFFFF; --accent-dark:#111418;
-    --pop:#0066FF; --pop-ink:#FFFFFF;
+    --accent:rgba(17,20,24,.88); --accent-hover:rgba(17,20,24,.97); --accent-ink:#FFFFFF;
+    --pop:#0066FF;
     --chrome:rgba(255,255,255,.66); --chrome-2:rgba(255,255,255,.68); --chrome-hover:rgba(255,255,255,.92);
-    --surface:rgba(255,255,255,.8); --input-bg:#FFFFFF; --tab-on:#FFFFFF;
+    --surface:rgba(255,255,255,.8); --input-bg:#FFFFFF;
     --toast-bg:rgba(17,20,24,.72); --toast-fg:#FFFFFF; --toast-sh:0 12px 32px rgba(0,0,0,.28);
     --bw:1px; --bc:rgba(255,255,255,.8); --input-bc:#D8DBE0; --strip-bc:transparent;
     --sh-btn:0 2px 14px rgba(17,20,24,.12), inset 0 1px 0 rgba(255,255,255,.85);
@@ -22,7 +22,7 @@
     --sh-pop:0 2px 10px rgba(17,20,24,.08);
     --sh-menu:0 16px 44px rgba(17,20,24,.16), inset 0 1px 0 rgba(255,255,255,.6);
     --sh-dialog:0 24px 70px rgba(17,20,24,.22), inset 0 1px 0 rgba(255,255,255,.6);
-    --lift-hover:none; --lift-active:scale(.97); --tilt:0deg;
+    --lift-hover:none; --lift-active:scale(.97);
     --r-strip:0px; --r-dialog:22px; --r-card:16px; --r-menu:18px;
     --drop-hover:#F6F7F9;
     --focus-sh:0 0 0 3px rgba(17,20,24,.14); --focus-ring:#111418;
@@ -76,7 +76,7 @@
     font-family:var(--font-display);font-size:10.5px;font-weight:700;color:var(--muted);
     background:var(--pill);border:1px solid transparent;border-radius:99px;
     height:22px;padding:0 10px;display:inline-flex;align-items:center;
-    cursor:pointer;font-size:10.5px;
+    cursor:pointer;
     letter-spacing:.8px;text-transform:uppercase;white-space:nowrap;
   }
 
@@ -554,8 +554,7 @@
 
 <main id="strips" aria-label="Color palette"></main>
 
-
-<!-- export modal -->
+<!-- remix dock -->
 <nav id="dock" aria-label="Remix tools">
   <button data-dock="sortHue" title="Sort by hue" aria-label="Sort by hue"></button>
   <button data-dock="sortLight" title="Sort by lightness" aria-label="Sort by lightness"></button>
@@ -564,6 +563,8 @@
   <span class="dock-sep" aria-hidden="true"></span>
   <button data-dock="lockToggle" title="Lock all" aria-label="Lock all"></button>
 </nav>
+
+<!-- export modal -->
 <div class="overlay" id="exportOverlay">
   <div class="dialog" role="dialog" aria-modal="true" aria-label="Export palette">
     <div class="dialog-head">
@@ -753,7 +754,6 @@ const MIN_COLORS = 2;
 const ICONS = {
   lock:'<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>',
   unlock:'<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path>',
-  copy:'<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>',
   sliders:'<line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line>',
   x:'<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>',
   plus:'<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>',
@@ -782,10 +782,10 @@ const store = (() => {
   const mem = {};
   let ok = true;
   try { localStorage.setItem('__t','1'); localStorage.removeItem('__t'); }
-  catch(e){ ok = false; }
+  catch{ ok = false; }
   return {
-    get(k){ try { return ok ? localStorage.getItem(k) : (mem[k] ?? null); } catch(e){ return mem[k] ?? null; } },
-    set(k,v){ try { ok ? localStorage.setItem(k,v) : mem[k]=v; } catch(e){ mem[k]=v; } }
+    get(k){ try { return ok ? localStorage.getItem(k) : (mem[k] ?? null); } catch{ return mem[k] ?? null; } },
+    set(k,v){ try { ok ? localStorage.setItem(k,v) : mem[k]=v; } catch{ mem[k]=v; } }
   };
 })();
 
@@ -832,6 +832,8 @@ function pickText(hex){
 }
 const onColor = pickText;
 const hoverBg = hex => pickText(hex)==='#141414' ? 'rgba(0,0,0,.12)' : 'rgba(255,255,255,.22)';
+/* halo behind on-strip type: light glow under dark ink, dark glow under light ink */
+const textShadowFor = on => on==='#141414' ? 'rgba(255,255,255,.6)' : 'rgba(0,0,0,.45)';
 const contrastRatio=(a,b)=>{const x=relLuminance(a),y=relLuminance(b);return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05);};
 const validHex = s => /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.test(s.trim());
 const normHex = s => {
@@ -1209,16 +1211,16 @@ function redo(){
   toast('Redone');
 }
 function moveStrip(i,j){
-  const main=document.querySelector('main#strips');
-  const strips=main?[...main.querySelectorAll('.strip')]:[];
+  /* FLIP: measure the strips, swap the data, then animate clones across the gap */
+  const strips=[...stripsEl.querySelectorAll('.strip')];
   const before=strips.map(el=>{ const r=el.getBoundingClientRect(); return {x:r.left,y:r.top,w:r.width,h:r.height}; });
   pushHistory();
   const tmp=colors[i]; colors[i]=colors[j]; colors[j]=tmp;
   render();
-  if(!main||!before[i]||!before[j]||!strips[i]||!strips[j]) return;
+  if(!before[i]||!before[j]||!strips[i]||!strips[j]) return;
   if(globalThis.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const m=main.getBoundingClientRect();
-  const els=[...main.querySelectorAll('.strip')];
+  const m=stripsEl.getBoundingClientRect();
+  const els=[...stripsEl.querySelectorAll('.strip')];
   const inners=[els[i].querySelector('.strip-inner'),els[j].querySelector('.strip-inner')];
   inners.forEach(el=>{ if(el) el.style.cssText='opacity:0!important;animation:none'; });
   const clones=[];
@@ -1231,10 +1233,10 @@ function moveStrip(i,j){
     const b=before[from], t=before[to];
     const cs=c.style;
     cs.left=`${b.x-m.left}px`; cs.top=`${b.y-m.top}px`; cs.width=`${b.w}px`; cs.height=`${b.h}px`; cs.zIndex=z; cs.margin='0';
-    main.appendChild(c);
+    stripsEl.appendChild(c);
     clones.push([c,t.x-b.x,t.y-b.y]);
   });
-  void main.offsetWidth;
+  void stripsEl.offsetWidth;
   let done=false;
   const clean=()=>{ if(done) return; done=true;
     clones.forEach(([c])=>c.remove());
@@ -1247,7 +1249,7 @@ function moveStrip(i,j){
   });
   setTimeout(clean,400);
 }
-try{ saved=JSON.parse(store.get('opencolors-saved')||'[]'); }catch(e){ saved=[]; }
+try{ saved=JSON.parse(store.get('opencolors-saved')||'[]'); }catch{ saved=[]; }
 function persistSaved(){ store.set('opencolors-saved', JSON.stringify(saved)); }
 
 /* ---------- dom ---------- */
@@ -1314,11 +1316,11 @@ function toast(msg, dot, ms){
 }
 async function copyText(text, msg){
   try{ await navigator.clipboard.writeText(text); }
-  catch(e){
+  catch{
     const ta=document.createElement('textarea');
     ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
     document.body.appendChild(ta); ta.select();
-    try{document.execCommand('copy');}catch(_){}
+    try{document.execCommand('copy');}catch{}
     ta.remove();
   }
   toast(msg||('Copied '+text));
@@ -1333,7 +1335,7 @@ function render(){
     const on=onColor(c.hex), hov=hoverBg(c.hex);
     html+=`
     <section class="strip" id="strip-${i}" data-index="${i}" role="group" aria-label="Color ${i+1} of ${n}"
-      style="background-color:#${c.hex};--on:${on};--hover:${hov};--sh:${on==="#141414"?"rgba(255,255,255,.6)":"rgba(0,0,0,.45)"}">
+      style="background-color:#${c.hex};--on:${on};--hover:${hov};--sh:${textShadowFor(on)}">
       <div class="strip-inner">
         <div class="txt" style="display:flex;flex-direction:column;align-items:center;gap:6px">
           <button class="hex" data-action="copy" data-index="${i}" aria-label="Copy #${c.hex.toUpperCase()}">#${c.hex.toUpperCase()}</button>
@@ -1362,10 +1364,11 @@ function render(){
 function refreshStrip(i){
   const c=colors[i], el=$('strip-'+i);
   if(!c||!el){ render(); return; }
+  const on=onColor(c.hex);
   el.style.backgroundColor='#'+c.hex;
-  el.style.setProperty('--on',onColor(c.hex));
+  el.style.setProperty('--on',on);
   el.style.setProperty('--hover',hoverBg(c.hex));
-  el.style.setProperty('--sh',onColor(c.hex)==='#141414'?'rgba(255,255,255,.6)':'rgba(0,0,0,.45)');
+  el.style.setProperty('--sh',textShadowFor(on));
   const hexBtn=el.querySelector('.hex');
   if(hexBtn){ hexBtn.textContent='#'+c.hex.toUpperCase(); hexBtn.setAttribute('aria-label','Copy #'+c.hex.toUpperCase()); }
   const nm=el.querySelector('.cname');
@@ -1421,7 +1424,9 @@ stripsEl.addEventListener('click',e=>{
 
 $('generateBtn').onclick=generate;
 $('undoBtn').onclick=undo;
-$('nameDice').onclick=()=>{ paletteName=randName(); $('paletteNameLabel').textContent=paletteName; };
+/* rename the palette and keep the header chip in sync */
+function setName(nm){ paletteName=nm; $('paletteNameLabel').textContent=nm; }
+$('nameDice').onclick=()=>setName(randName());
 function updateUndo(){ $('undoBtn').disabled=!undoStack.length; }
 
 /* keyboard */
@@ -1434,9 +1439,13 @@ function refocusStrip(i,sel){
   const el=document.querySelector('.strip[data-index="'+i+'"] '+(sel==='hex'?'.hex':'[data-action="'+sel+'"]'));
   if(el&&el.focus) el.focus({preventScroll:true});
 }
+/* flip a strip's lock, then put focus back on its lock button (render rebuilds the DOM) */
+function toggleLock(i){ colors[i].locked=!colors[i].locked; render(); refocusStrip(i,'lock'); }
 document.addEventListener('keydown',e=>{
   const tag=(document.activeElement&&document.activeElement.tagName)||'';
   const typing=/INPUT|TEXTAREA|SELECT/.test(tag);
+  /* a bare shortcut key: not typing into a field, no modifier held */
+  const plain=()=>!typing&&!e.ctrlKey&&!e.metaKey&&!e.altKey;
   if(editIndex>=0){
     if(e.key==='Escape'){ e.preventDefault(); closeMenus(); inlineCancel(); }
     else if(e.key==='Enter'&&document.activeElement&&document.activeElement.id==='hexInput'){ e.preventDefault(); inlineDone(); }
@@ -1448,20 +1457,20 @@ document.addEventListener('keydown',e=>{
     e.preventDefault(); redo();
   }else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!e.shiftKey&&!typing){
     e.preventDefault(); undo();
-  }else if((e.key==='l'||e.key==='L')&&!typing&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!anyModalOpen()){
+  }else if((e.key==='l'||e.key==='L')&&plain()&&!anyModalOpen()){
     const i=stripIndexFromFocus();
-    if(i>=0){ e.preventDefault(); colors[i].locked=!colors[i].locked; render(); refocusStrip(i,'lock'); }
-  }else if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&!typing&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!anyModalOpen()){
+    if(i>=0){ e.preventDefault(); toggleLock(i); }
+  }else if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&plain()&&!anyModalOpen()){
     const i=stripIndexFromFocus();
     const j=e.key==='ArrowLeft'?i-1:i+1;
     if(i>=0&&j>=0&&j<colors.length){ e.preventDefault(); moveStrip(i,j); refocusStrip(j,'hex'); }
-  }else if(e.key==='?'&&!typing&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&(!anyModalOpen()||$('keysOverlay').classList.contains('open'))){
+  }else if(e.key==='?'&&plain()&&(!anyModalOpen()||$('keysOverlay').classList.contains('open'))){
     e.preventDefault();
     $('keysOverlay').classList.contains('open')?closeModal('keysOverlay'):openModal('keysOverlay');
-  }else if(e.key>='1'&&e.key<='9'&&!typing&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!anyModalOpen()){
+  }else if(e.key>='1'&&e.key<='9'&&plain()&&!anyModalOpen()){
     const ni=+e.key-1;
-    if(ni<colors.length){ e.preventDefault(); colors[ni].locked=!colors[ni].locked; render(); refocusStrip(ni,'lock'); }
-  }else if((e.key==='c'||e.key==='C')&&!typing&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!anyModalOpen()){
+    if(ni<colors.length){ e.preventDefault(); toggleLock(ni); }
+  }else if((e.key==='c'||e.key==='C')&&plain()&&!anyModalOpen()){
     const ci=stripIndexFromFocus();
     if(ci>=0){ e.preventDefault(); copyText('#'+colors[ci].hex.toUpperCase(),'Copied #'+colors[ci].hex.toUpperCase()); }
   }else if(e.key==='Escape'){
@@ -1487,7 +1496,7 @@ function syncHash(){
   try{
     const h='#'+colors.map(c=>c.hex).join('-');
     window.history.replaceState(null,'',h);
-  }catch(e){}
+  }catch{}
 }
 function loadFromHash(){
   const m=(location.hash||'').replace('#','');
@@ -1500,9 +1509,7 @@ function loadFromHash(){
 
 /* ---------- modals ---------- */
 function openModal(id){ $(id).classList.add('open'); }
-function closeModal(id){
-  $(id).classList.remove('open');
-}
+function closeModal(id){ $(id).classList.remove('open'); }
 document.querySelectorAll('.overlay').forEach(o=>{
   o.addEventListener('click',e=>{ if(e.target===o) closeModal(o.id); });
 });
@@ -1519,16 +1526,20 @@ function openEdit(i){
   const hi=$('hexInput');
   if(hi&&(!globalThis.matchMedia||matchMedia('(hover:hover)').matches)){ hi.focus({preventScroll:true}); hi.select(); }
 }
-function inlineDone(){
-  if(editIndex<0) return;
-  const i=editIndex, changed=colors[i].hex!==editBackup;
-  editIndex=-1; editBackup=null;
+/* remove the inline editor and restore the strip it was attached to */
+function teardownEditPanel(i){
   const panel=document.querySelector('.edit-panel'), x=document.querySelector('.ep-x');
   if(panel) panel.remove();
   if(x) x.remove();
   const stripEl=document.querySelector('#strip-'+i);
   if(stripEl) stripEl.classList.remove('editing');
   refreshStrip(i); syncHash();
+}
+function inlineDone(){
+  if(editIndex<0) return;
+  const i=editIndex, changed=colors[i].hex!==editBackup;
+  editIndex=-1; editBackup=null;
+  teardownEditPanel(i);
   if(changed) toast('Color updated');
 }
 function inlineCancel(){
@@ -1537,12 +1548,7 @@ function inlineCancel(){
   colors[i].hex=editBackup;
   if(undoStack.length===editStackLen){ undoStack.pop(); updateUndo(); }
   editIndex=-1; editBackup=null;
-  const panel=document.querySelector('.edit-panel'), x=document.querySelector('.ep-x');
-  if(panel) panel.remove();
-  if(x) x.remove();
-  const stripEl=document.querySelector('#strip-'+i);
-  if(stripEl) stripEl.classList.remove('editing');
-  refreshStrip(i); syncHash();
+  teardownEditPanel(i);
 }
 function editPanelHTML(){
   return `
@@ -1725,9 +1731,9 @@ $('copyCssBtn').onclick=()=>copyText($('expCss').textContent,'CSS copied');
 $('copyHexBtn').onclick=()=>copyText($('expHex').value,'Hex list copied');
 $('expName').addEventListener('input',e=>{
   const v=e.target.value.trim().slice(0,40);
-  if(v){ paletteName=v; $('paletteNameLabel').textContent=paletteName; }
+  if(v) setName(v);
 });
-$('expDice').onclick=()=>{ paletteName=randName(); $('expName').value=paletteName; $('paletteNameLabel').textContent=paletteName; };
+$('expDice').onclick=()=>{ setName(randName()); $('expName').value=paletteName; };
 $('pngBtn').onclick=()=>{
   try{
     const hexes=colors.map(c=>c.hex), n=hexes.length;
@@ -1754,7 +1760,7 @@ $('pngBtn').onclick=()=>{
         else save(cv.toDataURL('image/png'));
       },'image/png');
     }else save(cv.toDataURL('image/png'));
-  }catch(err){ toast('PNG download failed in this browser'); }
+  }catch{ toast('PNG download failed in this browser'); }
 };
 function buildTailwind(){
   const s=slug(paletteName);
@@ -1780,6 +1786,25 @@ $('copyGradient').onclick=()=>copyText(buildGradient(),'Gradient CSS copied');
 
 /* ---------- contrast ---------- */
 let fgIdx=0, bgIdx=1;
+function renderContrastPicks(){
+  const mk=(el,sel,fn)=>{ $(el).innerHTML=colors.map((c,i)=>
+    `<button class="pick ${i===sel?'sel':''}" data-i="${i}" style="background:#${c.hex}" title="#${c.hex.toUpperCase()}"></button>`).join('');
+    $(el).querySelectorAll('.pick').forEach(b=>b.onclick=()=>{fn(+b.dataset.i);renderContrastPicks();updateContrast();});
+  };
+  mk('fgPicks',fgIdx,i=>fgIdx=i);
+  mk('bgPicks',bgIdx,i=>bgIdx=i);
+}
+function updateContrast(){
+  const fg='#'+colors[fgIdx].hex, bg='#'+colors[bgIdx].hex;
+  const r=contrastRatio(fg,bg);
+  $('ratioBig').textContent=r.toFixed(2)+' : 1';
+  $('badgeAA').className='badge'+(r>=4.5?' pass':'');
+  $('badgeAALarge').className='badge'+(r>=3?' pass':'');
+  $('badgeAAA').className='badge'+(r>=7?' pass':'');
+  const pv=$('contrastPreview');
+  pv.style.background=bg; pv.style.color=fg;
+}
+
 /* ---------- remix menu ---------- */
 const sortDir={sortHue:1,sortLight:-1}; /* each tap flips; light defaults to lightest-first */
 function moreAction(k){
@@ -1979,25 +2004,6 @@ function renderShades(){
     const hex=hslToHex(c.h,c.s,l);
     return `<button type="button" class="shade" data-shade="${hex}" style="background:#${hex}" title="#${hex.toUpperCase()}"></button>`;
   }).join('');
-}
-
-function renderContrastPicks(){
-  const mk=(el,sel,fn)=>{ $(el).innerHTML=colors.map((c,i)=>
-    `<button class="pick ${i===sel?'sel':''}" data-i="${i}" style="background:#${c.hex}" title="#${c.hex.toUpperCase()}"></button>`).join('');
-    $(el).querySelectorAll('.pick').forEach(b=>b.onclick=()=>{fn(+b.dataset.i);renderContrastPicks();updateContrast();});
-  };
-  mk('fgPicks',fgIdx,i=>fgIdx=i);
-  mk('bgPicks',bgIdx,i=>bgIdx=i);
-}
-function updateContrast(){
-  const fg='#'+colors[fgIdx].hex, bg='#'+colors[bgIdx].hex;
-  const r=contrastRatio(fg,bg);
-  $('ratioBig').textContent=r.toFixed(2)+' : 1';
-  $('badgeAA').className='badge'+(r>=4.5?' pass':'');
-  $('badgeAALarge').className='badge'+(r>=3?' pass':'');
-  $('badgeAAA').className='badge'+(r>=7?' pass':'');
-  const pv=$('contrastPreview');
-  pv.style.background=bg; pv.style.color=fg;
 }
 
 /* ---------- init ---------- */
