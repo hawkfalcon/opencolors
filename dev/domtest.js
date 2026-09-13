@@ -14,7 +14,8 @@
  * a browser. This one loads index.html into an actual DOM and clicks it, which is what
  * catches a refactor that is logically identical but structurally not -- a handler
  * bound to the wrong element, a class renamed in JS but not CSS, an animation clone
- * left behind.
+ * left behind, an icon key deleted from the map (which renders a blank <svg> rather
+ * than throwing, so nothing else would flag it).
  *
  * Math.random and Date.now are pinned, so a run is reproducible and a diff is always a
  * real difference. The golden holds a hash of the whole <body> per step (minus the
@@ -256,6 +257,7 @@ async function runSession() {
   };
 
   const steps = [];
+  const blankIcons = new Set();
   for (const [name, act] of SESSION) {
     c.step = name;
     try {
@@ -263,6 +265,25 @@ async function runSession() {
     } catch (e) {
       throw new Error(`step "${name}" failed: ${e.message}`);
     }
+    /* Every icon the app draws is `ICONS[name] || ''`, so a key that is missing or
+     * misnamed renders an empty <svg> instead of throwing -- nothing else here would
+     * notice, and the button just looks blank. Reported once per location rather than
+     * once per step, since a broken icon persists for the rest of the session. */
+    for (const svg of d.querySelectorAll('svg')) {
+      if (svg.firstElementChild) continue;
+      const host = svg.closest('[id],[data-dock],[data-action],button,a') || svg.parentElement;
+      const where = !host ? '?'
+        : host.id ? '#' + host.id
+          : host.dataset && host.dataset.dock ? `[data-dock="${host.dataset.dock}"]`
+            : host.dataset && host.dataset.action ? `[data-action="${host.dataset.action}"]`
+              : host.className ? '.' + String(host.className).trim().split(/\s+/).join('.')
+                : host.tagName.toLowerCase();
+      if (!blankIcons.has(where)) {
+        blankIcons.add(where);
+        errors.push(`step "${name}": empty <svg> — unresolved icon key in ${where}`);
+      }
+    }
+
     const hexes = [...d.querySelectorAll('.strip .hex')].map((e) => e.textContent).join(',');
     steps.push({
       name,
@@ -339,6 +360,14 @@ function diffReport(got, want) {
 (async () => {
   const got = await runSession();
   console.log(`ran ${got.steps.length} interaction steps against a real DOM`);
+
+  /* A runtime error is a failure on its own terms, not a behaviour change to record:
+   * refusing it here stops --update from baking a broken run into the golden. */
+  if (got.errors.length) {
+    console.log(`FAIL ${got.errors.length} runtime error(s):`);
+    got.errors.slice(0, 10).forEach((e) => console.log('  - ' + e));
+    process.exit(1);
+  }
 
   if (UPDATE) {
     fs.writeFileSync(GOLDEN, JSON.stringify(got, null, 1) + '\n');
