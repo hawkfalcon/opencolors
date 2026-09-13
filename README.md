@@ -17,11 +17,12 @@ A free-forever palette maker in a **single HTML file**: no accounts, no paywall,
 
 ## Quick start
 
-Just open `index.html` in a browser. Or serve it:
+Just open `index.html` in a browser — it is the whole app, so there is nothing to build.
+If you would rather serve it:
 
 ```sh
-cd opencolors && python3 -m http.server 8000
-# → http://localhost:8000
+cd opencolors && npx serve .
+# → http://localhost:3000
 ```
 
 ## Deploy to GitHub Pages
@@ -36,24 +37,21 @@ Share links, PNG export, and saved palettes all work the same once hosted.
 
 ## Tests
 
-Four tools, each covering what the others cannot:
+Three node tools, each covering what the others cannot:
 
 ```sh
 node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
 node dev/domtest.js   #  98 interaction steps      — real DOM (jsdom), golden snapshot
 node dev/audit.js     #  74 contrast / a11y / heuristic checks
-python3 dev/uitest.py #  88 real-browser checks    — layout and pixels (Playwright)
 ```
 
-`harness.js` and `audit.js` need nothing but node. The other two skip cleanly — a
-`SKIP` line and exit 0 — when their optional dependency is missing, so the suite is
-always runnable:
+`harness.js` and `audit.js` need nothing but node. `domtest.js` needs jsdom
+(`npm install jsdom`) and skips cleanly without it — a `SKIP` line and exit 0 — so the
+suite is always runnable.
 
-| tool | optional dependency | if absent |
-| --- | --- | --- |
-| `domtest.js` | `npm install jsdom` | the whole file skips |
-| `uitest.py` | `pip install playwright && playwright install chromium` | the whole file skips |
-| `uitest.py` | `pip install pillow` | only the one pixel-sampling check skips |
+Nothing here drives a real browser. jsdom does no layout, so geometry, responsive
+breakpoints, painted pixels, downloads, file upload and touch are untested; the header
+of `dev/domtest.js` states that boundary precisely.
 
 ### The golden snapshot
 
@@ -76,7 +74,6 @@ dev/
   domtest.js             # scripted real-DOM session (jsdom)
   domtest.golden.json    # the snapshot domtest.js compares against
   audit.js               # static/computed accessibility audit, using appenv
-  uitest.py              # Playwright click-through; screenshots go to dev/review/
 ```
 
 `appenv.js` is what lets `harness.js` and `audit.js` test the app's real `genHex`,

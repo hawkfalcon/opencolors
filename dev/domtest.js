@@ -8,10 +8,9 @@
  *
  * Needs jsdom: npm install jsdom        (prints SKIP and exits 0 when absent)
  *
- * This sits between the other two node tools. dev/tests.js calls app functions
- * directly against a stub DOM, so it checks logic but never a real selector, a real
- * event bubble or a real focus ring; dev/uitest.py checks layout and pixels but needs
- * a browser. This one loads index.html into an actual DOM and clicks it, which is what
+ * This sits alongside dev/tests.js, which calls app functions directly against a stub
+ * DOM: that checks logic, but never a real selector, a real event bubble or a real
+ * focus ring. This one loads index.html into an actual DOM and clicks it, which is what
  * catches a refactor that is logically identical but structurally not -- a handler
  * bound to the wrong element, a class renamed in JS but not CSS, an animation clone
  * left behind, an icon key deleted from the map (which renders a blank <svg> rather
@@ -28,6 +27,10 @@
  * -- are covered only by the static checks in dev/audit.js. That gap was found by
  * mutation-testing this file, and is deliberate: faking an unreachable click would
  * test the test, not the app.
+ *
+ * jsdom also does no layout, so nothing in this repo now checks geometry, responsive
+ * breakpoints, painted pixels, downloads, real file upload or touch -- every element
+ * has a zero-size box here. Assertions about position, overlap or width need a browser.
  */
 const crypto = require('crypto');
 const fs = require('fs');
