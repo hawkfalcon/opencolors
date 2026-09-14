@@ -64,7 +64,7 @@
   }
   .logo{display:flex;align-items:center;gap:9px;margin-right:16px;user-select:none;flex-shrink:0}
   .header-name{display:flex;align-items:center;gap:7px;margin-right:auto;min-width:0}
-  #paletteNameInput{font-family:var(--font-display);font-weight:700;font-size:13.5px;letter-spacing:.2px;color:var(--ink);background:transparent;border:1px solid transparent;border-radius:12px;padding:4px 8px;width:190px;max-width:100%;min-width:48px;flex-shrink:1;outline:none;transition:background .15s,border-color .15s,box-shadow .15s}
+  #paletteNameInput{font-family:var(--font-display);font-weight:700;font-size:13.5px;letter-spacing:.2px;color:var(--ink);background:transparent;border:1px solid transparent;border-radius:12px;padding:4px 8px;width:190px;max-width:100%;min-width:48px;flex-shrink:1;text-overflow:ellipsis;outline:none;transition:background .15s,border-color .15s,box-shadow .15s}
   #paletteNameInput:hover{background:var(--input-bg);border-color:var(--input-bc)}
   #paletteNameInput:focus{background:var(--input-bg);border-color:var(--input-bc);box-shadow:var(--focus-sh)}
 
@@ -74,12 +74,11 @@
   }
 
   .logo-badge{
-    font-family:var(--font-display);font-size:10.5px;font-weight:700;color:var(--muted);
+    font-family:var(--font-display);font-size:9.5px;font-weight:700;color:var(--muted);
     background:var(--pill);border:1px solid transparent;border-radius:99px;
-    height:22px;padding:0 10px;display:inline-flex;align-items:center;
+    height:19px;padding:0 9px;display:inline-flex;align-items:center;
     cursor:pointer;
-    letter-spacing:.8px;text-transform:uppercase;white-space:nowrap;
-    transform:translateY(1px);
+    letter-spacing:.7px;text-transform:uppercase;white-space:nowrap;
     transition:background .15s;
   }
   .logo-badge:hover{background:var(--pill-hover)}
