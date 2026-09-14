@@ -67,10 +67,6 @@
   #paletteNameInput{font-family:var(--font-display);font-weight:700;font-size:13.5px;letter-spacing:.2px;color:var(--ink);background:transparent;border:1px solid transparent;border-radius:12px;padding:4px 8px;width:190px;max-width:100%;min-width:48px;flex-shrink:1;outline:none;transition:background .15s,border-color .15s,box-shadow .15s}
   #paletteNameInput:hover{background:var(--input-bg);border-color:var(--input-bc)}
   #paletteNameInput:focus{background:var(--input-bg);border-color:var(--input-bc);box-shadow:var(--focus-sh)}
-  #nameDice{width:28px;height:28px;border-radius:50%;border:var(--bw) solid transparent;cursor:pointer;flex-shrink:0;background:transparent;color:var(--ink);opacity:0;display:flex;align-items:center;justify-content:center;transition:opacity .15s,background .15s,border-color .15s,box-shadow .12s;box-shadow:none}
-  .header-name:hover #nameDice,.header-name:focus-within #nameDice{opacity:1;background:var(--surface);border-color:var(--bc);box-shadow:var(--sh-btn)}
-  #nameDice:hover{background:var(--pill-hover)}
-  @media (hover:none){#nameDice{opacity:1;background:var(--surface);border-color:var(--bc);box-shadow:var(--sh-btn)}}
 
   .logo-name{font-family:var(--font-display);font-size:23px;font-weight:800;letter-spacing:.2px;color:var(--ink)}
   @supports ((-webkit-background-clip:text) or (background-clip:text)){
@@ -453,14 +449,13 @@
   /* ---------- misc ---------- */
   .chip-row{display:flex;gap:8px;flex-wrap:wrap}
   .btn.small{padding:8px 14px;font-size:12.5px}
-  .name-row{display:flex;gap:8px;align-items:center}
+  .name-row{display:flex;gap:8px;align-items:stretch}
   .name-row input{
-    flex:1;min-width:0;font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.2px;padding:10px 13px;
-    border:var(--bw) solid var(--input-bc);border-radius:12px;color:var(--ink);background:transparent;transition:background .15s,border-color .15s,box-shadow .15s;
+    flex:1;min-width:0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;
+    padding:11px 12px;border:var(--bw) solid var(--input-bc);border-radius:12px;background:var(--input-bg);color:var(--ink);
   }
-  .name-row input:hover{background:var(--input-bg)}
-  .name-row input:focus{outline:none;background:var(--input-bg);box-shadow:var(--focus-sh)}
-  #expDice{width:34px;height:34px;padding:0;border-radius:50%;border:var(--bw) solid var(--bc);cursor:pointer;flex-shrink:0;background:var(--surface);color:var(--ink);display:flex;align-items:center;justify-content:center;transition:background .15s,box-shadow .12s;box-shadow:var(--sh-btn)}
+  .name-row input:focus{outline:none;box-shadow:var(--focus-sh)}
+  #expDice{width:40px;padding:0;border-radius:12px;border:var(--bw) solid var(--bc);cursor:pointer;flex-shrink:0;background:var(--surface);color:var(--ink);display:flex;align-items:center;justify-content:center;transition:background .15s,box-shadow .12s;box-shadow:var(--sh-btn)}
   #expDice:hover{background:var(--pill-hover)}
 
   /* ---------- about ---------- */
@@ -534,7 +529,7 @@
   </div>
   <button class="btn icon-only" id="toolsToggle" title="Show or hide tools" aria-expanded="true"></button>
 
-  <div class="header-name"><input id="paletteNameInput" type="text" maxlength="40" spellcheck="false" autocomplete="off" aria-label="Palette name" value="Untitled"><button id="nameDice" title="New random name"></button></div>
+  <div class="header-name"><input id="paletteNameInput" type="text" maxlength="40" spellcheck="false" autocomplete="off" aria-label="Palette name" value="Untitled"></div>
   <div class="toolbar">
    <div class="toolset">
     <div class="menu-anchor">
@@ -1317,9 +1312,8 @@ $('exportBtn').innerHTML  = icon('download',18)+'<span class="lbl">Export</span>
 $('generateBtn').innerHTML= icon('refresh',18)+'<span class="lbl">Generate<kbd class="key">Space</kbd></span>';
 [['sortHue','droplet'],['sortLight','sun'],['reverse','repeat'],['shuffle','shuffle'],['lockToggle','lock']].forEach(([k,ic])=>{ const b=document.querySelector('#dock [data-dock="'+k+'"]'); if(b) b.innerHTML=icon(ic,18); });
 $('undoBtn').innerHTML    = icon('undo',18);
-$('nameDice').innerHTML   = icon('refresh',14);
 $('expDice').innerHTML    = icon('refresh',14);
-[['themeBtn','Generation theme'],['newBtn','Create palette'],['checkBtn','Accessibility checks'],['undoBtn','Undo'],['exportBtn','Export palette'],['generateBtn','Generate palette'],['nameDice','New random name'],['expDice','Random name'],['toolsToggle','Show or hide toolbar']].forEach(([id,label])=>$(id).setAttribute('aria-label',label));
+[['themeBtn','Generation theme'],['newBtn','Create palette'],['checkBtn','Accessibility checks'],['undoBtn','Undo'],['exportBtn','Export palette'],['generateBtn','Generate palette'],['expDice','Random name'],['toolsToggle','Show or hide toolbar']].forEach(([id,label])=>$(id).setAttribute('aria-label',label));
 /* collapsible toolbar (mobile) */
 $('toolsToggle').innerHTML=icon('chevU',16);
 function setToolsCollapsed(c){
@@ -1482,7 +1476,6 @@ $('generateBtn').onclick=generate;
 $('undoBtn').onclick=undo;
 /* rename the palette and keep the header chip in sync */
 function setName(nm){ paletteName=nm; const ni=$('paletteNameInput'); if(ni&&document.activeElement!==ni) ni.value=nm; document.title=`${paletteName} · opencolors`; fitNameInput(); }
-$('nameDice').onclick=()=>setName(randName());
 /* auto-size the name field to its content so long names aren't cut off */
 const nameSizer=document.createElement('span');
 nameSizer.setAttribute('aria-hidden','true');
