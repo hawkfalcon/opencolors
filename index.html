@@ -11,7 +11,6 @@
     --bg:#FFFFFF; --ink:#111418; --muted:#5F6672;
     --line:#E9EAEE; --pill:#F1F3F5; --pill-hover:#E6E8EC;
     --accent:rgba(17,20,24,.88); --accent-hover:rgba(17,20,24,.97); --accent-ink:#FFFFFF;
-    --pop:#0066FF;
     --chrome:rgba(255,255,255,.66); --chrome-2:rgba(255,255,255,.68); --chrome-hover:rgba(255,255,255,.92);
     --surface:rgba(255,255,255,.8); --input-bg:#FFFFFF;
     --toast-bg:rgba(17,20,24,.72); --toast-fg:#FFFFFF; --toast-sh:0 12px 32px rgba(0,0,0,.28);
@@ -46,6 +45,9 @@
   }
   button{font-family:inherit;touch-action:manipulation}
   :focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
+  /* on-strip controls sit on a colored strip, so key their focus ring to the
+     strip's contrast ink (--on) instead of the near-black default */
+  .strip :focus-visible{outline-color:var(--on,#fff)}
 
   /* ---------- header ---------- */
   header{
@@ -62,10 +64,13 @@
   }
   .logo{display:flex;align-items:center;gap:10px;margin-right:6px;user-select:none;flex-shrink:0}
   .header-name{display:flex;align-items:center;gap:7px;margin-right:auto;min-width:0}
-  #paletteNameLabel{font-family:var(--font-display);font-weight:700;font-size:13.5px;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
-  #nameDice{width:28px;height:28px;border-radius:50%;border:var(--bw) solid var(--bc);cursor:pointer;flex-shrink:0;background:rgba(17,20,24,.06);color:var(--ink);display:flex;align-items:center;justify-content:center;transition:background .15s}
-  #nameDice:hover{background:rgba(17,20,24,.12)}
-  @media (max-width:1150px){.header-name{display:none}}
+  #paletteNameInput{font-family:var(--font-display);font-weight:700;font-size:13.5px;letter-spacing:.2px;color:var(--ink);background:transparent;border:1px solid transparent;border-radius:12px;padding:4px 8px;width:190px;max-width:100%;min-width:48px;flex-shrink:1;outline:none;transition:background .15s,border-color .15s,box-shadow .15s}
+  #paletteNameInput:hover{background:var(--input-bg);border-color:var(--input-bc)}
+  #paletteNameInput:focus{background:var(--input-bg);border-color:var(--input-bc);box-shadow:var(--focus-sh)}
+  #nameDice{width:28px;height:28px;border-radius:50%;border:var(--bw) solid transparent;cursor:pointer;flex-shrink:0;background:transparent;color:var(--ink);opacity:0;display:flex;align-items:center;justify-content:center;transition:opacity .15s,background .15s,border-color .15s,box-shadow .12s;box-shadow:none}
+  .header-name:hover #nameDice,.header-name:focus-within #nameDice{opacity:1;background:var(--surface);border-color:var(--bc);box-shadow:var(--sh-btn)}
+  #nameDice:hover{background:var(--pill-hover)}
+  @media (hover:none){#nameDice{opacity:1;background:var(--surface);border-color:var(--bc);box-shadow:var(--sh-btn)}}
 
   .logo-name{font-family:var(--font-display);font-size:23px;font-weight:800;letter-spacing:.2px;color:var(--ink)}
   @supports ((-webkit-background-clip:text) or (background-clip:text)){
@@ -78,7 +83,9 @@
     height:22px;padding:0 10px;display:inline-flex;align-items:center;
     cursor:pointer;
     letter-spacing:.8px;text-transform:uppercase;white-space:nowrap;
+    transition:background .15s;
   }
+  .logo-badge:hover{background:var(--pill-hover)}
 
   .toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .btn{
@@ -130,7 +137,7 @@
     flex:1;min-width:0;position:relative;container-type:inline-size;
     display:flex;align-items:center;justify-content:center;
     transition:background-color .35s ease,flex-grow .3s ease;
-    padding:20px 8px 84px;
+    padding:52px 8px;
     border:var(--bw) solid var(--strip-bc);border-radius:var(--r-strip);
   }
   .strip-inner{
@@ -164,7 +171,7 @@
   /* gap swap: frost circle like the adder, riding lower in the seam */
   .swapper{width:0;position:relative;z-index:5}
   .swapper button{
-    position:absolute;left:50%;top:68%;transform:translate(-50%,-50%) scale(.5);
+    position:absolute;left:50%;top:72%;transform:translate(-50%,-50%) scale(.5);
     width:36px;height:36px;border-radius:50%;cursor:pointer;
     background:var(--chrome);color:var(--ink);border:var(--bw) solid var(--bc);
     -webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);
@@ -172,12 +179,14 @@
     display:flex;align-items:center;justify-content:center;
     opacity:0;transition:opacity .15s,transform .15s,box-shadow .15s,background .15s;
   }
-  .swapper:hover button,.swapper button:focus-visible{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  /* .peek is toggled by JS (see stripPeek) — :hover inside :has() is unreliable in WebKit */
+  @media (hover:hover){.swapper.peek button{opacity:.6;transform:translate(-50%,-50%) scale(.85)}}
   .adder:hover+.swapper button{opacity:.6;transform:translate(-50%,-50%) scale(.85)}
+  .swapper:hover button,.swapper button:focus-visible{opacity:1;transform:translate(-50%,-50%) scale(1)}
   @media (hover:hover){.swapper button:hover{background:var(--surface);color:var(--ink);box-shadow:0 10px 30px rgba(17,20,24,.28), inset 0 1px 0 #fff;transform:translate(-50%,-50%) scale(1.12)}}
   @media (hover:none){.swapper button{opacity:1;transform:translate(-50%,-50%) scale(.85)}}
   /* at max colors there's no adder, so the seam around the swapper swaps */
-  main.full .swapper::before{content:"";position:absolute;top:calc(68% - 25px);height:50px;left:-20px;right:-20px;cursor:pointer}
+  main.full .swapper::before{content:"";position:absolute;top:calc(72% - 25px);height:50px;left:-20px;right:-20px;cursor:pointer}
 
   .hex{
     background:none;border:0;cursor:pointer;color:var(--on,#fff);
@@ -211,7 +220,7 @@
     content:"";position:absolute;top:0;bottom:0;left:-20px;right:-20px;cursor:pointer;
   }
   .adder button{
-    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.5);
+    position:absolute;left:50%;top:var(--hex-center,50%);transform:translate(-50%,-50%) scale(.5);
     width:36px;height:36px;border-radius:50%;cursor:pointer;
     background:var(--chrome);color:var(--ink);border:var(--bw) solid var(--bc);
     -webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);
@@ -219,13 +228,11 @@
     display:flex;align-items:center;justify-content:center;
     opacity:0;transition:opacity .15s,transform .15s,box-shadow .15s,background .15s;
   }
+  @media (hover:hover){.adder.peek button{opacity:.55;transform:translate(-50%,-50%) scale(.8)}}
   .adder:hover button,.adder button:focus-visible{opacity:1;transform:translate(-50%,-50%) scale(1)}
-  @media (hover:hover){
-    .strip:hover+.adder:not(:hover) button,.adder:not(:hover):has(+.strip:hover) button,
-    .strip:focus-within+.adder:not(:hover) button,.adder:not(:hover):has(+.strip:focus-within) button{opacity:.55;transform:translate(-50%,-50%) scale(.8)}
-  }
   @media (hover:hover){.adder button:hover{background:var(--surface);color:var(--ink);box-shadow:0 10px 30px rgba(17,20,24,.28), inset 0 1px 0 #fff;transform:translate(-50%,-50%) scale(1.12)}}
   @media (hover:none){.adder button{opacity:1;transform:translate(-50%,-50%) scale(.85)}}
+  .adder button:active,.swapper button:active{transform:translate(-50%,-50%) scale(.9)}
 
   /* sliding color clones for strip reorder (cover final state, no white flash) */
   .swap-clone{position:absolute;box-sizing:border-box;border:var(--bw) solid var(--strip-bc);border-radius:var(--r-strip);pointer-events:none}
@@ -234,6 +241,9 @@
   /* ---------- inline color editor ---------- */
   .strip.editing{flex-grow:2.6}
   .strip.editing .strip-inner{display:none}
+  /* edit mode: seam add/swap buttons rest while a color is being edited */
+  main.editing .adder,main.editing .swapper{pointer-events:none}
+  main.editing .adder button,main.editing .swapper button{opacity:0 !important}
   .edit-panel{width:100%;max-height:100%;overflow:auto;overscroll-behavior:contain;padding:46px 26px 18px;animation:panelIn .32s ease}
   @keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   .edit-panel .field{margin-bottom:12px}
@@ -241,17 +251,16 @@
   .edit-panel .field label output{color:var(--on,#fff)}
   .edit-panel .hex-row input[type=text]{
     background:rgba(128,128,128,.22);background:color-mix(in srgb,var(--on,#fff) 16%,transparent);
-    border-color:rgba(128,128,128,.45);border-color:color-mix(in srgb,var(--on,#fff) 32%,transparent);
+    border-color:rgba(128,128,128,.45);border-color:color-mix(in srgb,var(--on,#fff) 30%,transparent);
     color:var(--on,#fff);
   }
-  .shade-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
-  .shade-row .shade{flex:1 0 36px;height:46px}
-  .ep-done{
-    width:100%;justify-content:center;margin-top:10px;
-    background:rgba(17,20,24,.8);color:#fff;border:1px solid rgba(255,255,255,.32);border-radius:99px;
-    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  .edit-panel .hex-row input[type=color],
+  .edit-panel .shade{
+    border-color:color-mix(in srgb,var(--on,#fff) 30%,transparent);
   }
-  .ep-done:hover{background:rgba(17,20,24,.92)}
+  .shade-row{display:flex;gap:6px;overflow-x:auto;padding:4px 0}
+  .shade-row .shade{flex:1 0 36px;height:46px}
+  .ep-done{width:100%;justify-content:center;margin-top:10px}
   .ep-x{
     position:absolute;top:12px;right:12px;z-index:7;
     width:32px;height:32px;border-radius:50%;cursor:pointer;
@@ -259,6 +268,7 @@
     background:rgba(128,128,128,.25);background:color-mix(in srgb,var(--on,#fff) 16%,transparent);
     border:1px solid rgba(128,128,128,.4);border:1px solid color-mix(in srgb,var(--on,#fff) 30%,transparent);
     color:var(--on,#fff);
+    box-shadow:0 2px 8px rgba(17,20,24,.28), inset 0 1px 0 rgba(255,255,255,.7);
     -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   }
 
@@ -301,16 +311,22 @@
   .hex-row input[type=text]:focus{outline:none;box-shadow:var(--focus-sh)}
   .hex-row input[type=color]{
     width:52px;height:48px;border:var(--bw) solid var(--input-bc);border-radius:12px;cursor:pointer;
-    background:#fff;padding:3px;
+    background:transparent;padding:0;
   }
+  .hex-row input[type=color]::-webkit-color-swatch-wrapper{padding:0}
+  .hex-row input[type=color]::-webkit-color-swatch{border:none;border-radius:11px}
+  .hex-row input[type=color]::-moz-color-swatch{border:none;border-radius:11px}
   input[type=range]{width:100%;height:26px;-webkit-appearance:none;background:transparent;cursor:pointer}
-  input[type=range]::-webkit-slider-runnable-track{height:12px;border-radius:99px;background:var(--track,#ddd)}
+  input[type=range]::-webkit-slider-runnable-track{height:12px;border-radius:99px;background:var(--track,#ddd);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--on,#fff) 26%,transparent)}
   input[type=range]::-webkit-slider-thumb{
-    -webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;
-    border:2px solid rgba(0,0,0,.25);margin-top:-6px;box-shadow:0 1px 5px rgba(0,0,0,.3);
+    -webkit-appearance:none;width:24px;height:24px;border-radius:50%;
+    background:var(--chrome);border:1px solid var(--bc);
+    -webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);
+    box-shadow:0 2px 8px rgba(17,20,24,.28), inset 0 1px 0 rgba(255,255,255,.9);
+    margin-top:-6px;
   }
-  input[type=range]::-moz-range-track{height:12px;border-radius:99px;background:var(--track,#ddd)}
-  input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid rgba(0,0,0,.25)}
+  input[type=range]::-moz-range-track{height:12px;border-radius:99px;background:var(--track,#ddd);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--on,#fff) 26%,transparent)}
+  input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--chrome);border:1px solid var(--bc);box-shadow:0 2px 8px rgba(17,20,24,.28), inset 0 1px 0 rgba(255,255,255,.9)}
   #hueSlider{--track:linear-gradient(90deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)}
 
   /* saved drawer */
@@ -334,8 +350,8 @@
   .saved-meta strong{font-size:13.5px}
   .saved-meta small{color:var(--muted);font-size:12px;display:block}
   .del-btn{
-    width:30px;height:30px;border-radius:9px;cursor:pointer;flex-shrink:0;
-    background:var(--surface);color:var(--ink);border:var(--bw) solid var(--bc);
+    width:30px;height:30px;border-radius:50%;cursor:pointer;flex-shrink:0;
+    background:var(--surface);color:var(--ink);border:var(--bw) solid var(--bc);box-shadow:var(--sh-btn);
     display:flex;align-items:center;justify-content:center;
   }
   .del-btn:hover{background:#fee2e2;color:#dc2626}
@@ -357,20 +373,20 @@
   .exp-row{display:flex;gap:8px}
   .exp-row input{
     flex:1;min-width:0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;
-    padding:11px 12px;border:var(--bw) solid var(--input-bc);border-radius:11px;background:var(--input-bg);color:var(--ink);
+    padding:11px 12px;border:var(--bw) solid var(--input-bc);border-radius:12px;background:var(--input-bg);color:var(--ink);
   }
   .exp-row input:focus{outline:none;box-shadow:var(--focus-sh)}
   pre.code{
     font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.7;
-    background:#1C1917;color:#FFE9B8;border:var(--bw) solid var(--bc);border-radius:11px;padding:14px;overflow-x:auto;
+    background:#1C1917;color:#FFE9B8;border:var(--bw) solid var(--bc);border-radius:12px;padding:14px;overflow-x:auto;
   }
-  .swatches{display:flex;height:56px;border-radius:11px;overflow:hidden;margin-bottom:16px;border:var(--bw) solid var(--bc)}
+  .swatches{display:flex;height:56px;border-radius:12px;overflow:hidden;margin-bottom:16px;border:var(--bw) solid var(--bc)}
   .swatches div{flex:1}
 
   /* contrast */
   .pick-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
   .pick{
-    width:40px;height:40px;border-radius:11px;cursor:pointer;border:3px solid transparent;
+    width:40px;height:40px;border-radius:12px;cursor:pointer;border:3px solid transparent;
     transition:transform .1s;
   }
   .pick:hover{transform:scale(1.08)}
@@ -410,7 +426,7 @@
   /* ---------- palette name chip ---------- */
 
   /* ---------- tabs / shades ---------- */
-  .shade{height:54px;border-radius:10px;border:1px solid rgba(0,0,0,.08);cursor:pointer;transition:transform .1s;padding:0}
+  .shade{height:54px;border-radius:12px;border:1px solid var(--line);cursor:pointer;transition:transform .1s;padding:0}
   @media (hover:hover){.shade:hover{transform:scale(1.06)}}
 
   /* ---------- image / mood / vision ---------- */
@@ -420,7 +436,7 @@
     font-size:14px;
   }
   .drop strong{color:var(--ink)}
-  .drop:hover,.drop.over{border-color:var(--pop);background:var(--drop-hover)}
+  .drop:hover,.drop.over{border-color:var(--ink);background:var(--drop-hover)}
   .img-preview{width:100%;max-height:200px;object-fit:cover;border-radius:12px;display:block}
   .word-row{display:flex;gap:8px}
   .word-row input{
@@ -436,17 +452,16 @@
 
   /* ---------- misc ---------- */
   .chip-row{display:flex;gap:8px;flex-wrap:wrap}
-  .dialog .btn,#savedPanel .btn{background:var(--pill)}
-  .dialog .btn:hover,#savedPanel .btn:hover{background:var(--pill-hover)}
-  .dialog .btn.primary,#savedPanel .btn.primary{background:var(--accent);color:var(--accent-ink)}
-  .dialog .btn.primary:hover,#savedPanel .btn.primary:hover{background:var(--accent-hover)}
   .btn.small{padding:8px 14px;font-size:12.5px}
-  .name-row{display:flex;gap:8px}
+  .name-row{display:flex;gap:8px;align-items:center}
   .name-row input{
-    flex:1;min-width:0;font-size:14px;font-weight:700;padding:11px 13px;
-    border:var(--bw) solid var(--input-bc);border-radius:11px;font-family:inherit;color:var(--ink);background:transparent;
+    flex:1;min-width:0;font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.2px;padding:10px 13px;
+    border:var(--bw) solid var(--input-bc);border-radius:12px;color:var(--ink);background:transparent;transition:background .15s,border-color .15s,box-shadow .15s;
   }
-  .name-row input:focus{outline:none;box-shadow:var(--focus-sh)}
+  .name-row input:hover{background:var(--input-bg)}
+  .name-row input:focus{outline:none;background:var(--input-bg);box-shadow:var(--focus-sh)}
+  #expDice{width:34px;height:34px;padding:0;border-radius:50%;border:var(--bw) solid var(--bc);cursor:pointer;flex-shrink:0;background:var(--surface);color:var(--ink);display:flex;align-items:center;justify-content:center;transition:background .15s,box-shadow .12s;box-shadow:var(--sh-btn)}
+  #expDice:hover{background:var(--pill-hover)}
 
   /* ---------- about ---------- */
   .about-points p{font-size:14px;line-height:1.55;margin-bottom:10px;background:var(--pill);border:var(--bw) solid var(--bc);border-radius:12px;padding:10px 13px}
@@ -519,7 +534,7 @@
   </div>
   <button class="btn icon-only" id="toolsToggle" title="Show or hide tools" aria-expanded="true"></button>
 
-  <div class="header-name" title="Palette name"><span id="paletteNameLabel">Untitled</span><button id="nameDice" title="New random name"></button></div>
+  <div class="header-name"><input id="paletteNameInput" type="text" maxlength="40" spellcheck="false" autocomplete="off" aria-label="Palette name" value="Untitled"><button id="nameDice" title="New random name"></button></div>
   <div class="toolbar">
    <div class="toolset">
     <div class="menu-anchor">
@@ -573,7 +588,7 @@
     </div>
     <div class="exp-block">
       <label>Palette name</label>
-      <div class="name-row"><input id="expName" maxlength="40" spellcheck="false" autocomplete="off"><button class="btn icon-only" id="expDice" title="Random name"></button></div>
+      <div class="name-row"><input id="expName" maxlength="40" spellcheck="false" autocomplete="off"><button id="expDice" title="Random name"></button></div>
     </div>
     <div class="swatches" id="expSwatches"></div>
     <div class="exp-block">
@@ -767,7 +782,9 @@ const ICONS = {
   image:'<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline>',
   sparkles:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>',
   eye:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>',
-  swap:'<polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path>',
+  /* minimize-2 (Feather) rotated 45° to sit level as a horizontal swap */
+  swap:'<g transform="translate(12 12) rotate(45) scale(0.87) translate(-12 -12)"><path d="M4 14h6v6"></path><path d="M20 10h-6V4"></path><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line></g>',
+  repeat:'<polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path>',
   shuffle:'<polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line>',
   droplet:'<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
   sun:'<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>',
@@ -1263,15 +1280,45 @@ function persistSaved(){ store.set('opencolors-saved', JSON.stringify(saved)); }
 const $=id=>document.getElementById(id);
 const stripsEl=$('strips');
 
+/* Seam button peek: reveal the add/swap buttons flanking a hovered strip via a
+   JS-toggled class, because :hover inside :has() is not re-evaluated reliably
+   by WebKit (buttons would either never show or get stuck visible). */
+function stripPeek(i){
+  stripsEl.querySelectorAll('.adder.peek,.swapper.peek').forEach(el=>el.classList.remove('peek'));
+  if(i<0 || editIndex>=0) return; /* seam buttons rest while a color is being edited */
+  const sel=[];
+  if(i>0) sel.push('.adder[data-index="'+i+'"]','.swapper[data-index="'+i+'"]');
+  if(i<colors.length-1) sel.push('.adder[data-index="'+(i+1)+'"]','.swapper[data-index="'+(i+1)+'"]');
+  sel.forEach(s=>{ const el=stripsEl.querySelector(s); if(el) el.classList.add('peek'); });
+}
+/* Align the + button to the hex value's vertical center. The hex sits a few px
+   below the strip's midline (the lock/edit buttons above it are taller than the
+   remove button below), and that offset shifts with window height — so measure
+   the hex live rather than hardcoding a % that can't be exact. */
+function alignSeamButtons(){
+  const strip=stripsEl.querySelector('.strip');
+  const inner=strip&&strip.querySelector('.strip-inner');
+  const hex=inner&&inner.querySelector('.hex');
+  if(!strip||!inner||!hex){ stripsEl.style.setProperty('--hex-center','50%'); return; }
+  const center=inner.offsetTop+hex.offsetTop+hex.offsetHeight/2;
+  stripsEl.style.setProperty('--hex-center',(center/strip.offsetHeight*100).toFixed(2)+'%');
+}
+window.addEventListener('resize',alignSeamButtons);
+stripsEl.addEventListener('mouseover',e=>{
+  const s=e.target&&e.target.closest?e.target.closest('.strip'):null;
+  stripPeek(s?+s.dataset.index:-1);
+});
+stripsEl.addEventListener('mouseleave',()=>stripPeek(-1));
+
 /* header buttons */
-$('newBtn').innerHTML     = icon('zap',17)+'<span class="lbl">Create</span>';
-$('checkBtn').innerHTML   = icon('contrast',17)+'<span class="lbl">Check</span>';
-$('exportBtn').innerHTML  = icon('download',17)+'<span class="lbl">Export</span>';
-$('generateBtn').innerHTML= icon('refresh',17)+'<span class="lbl">Generate<kbd class="key">Space</kbd></span>';
-[['sortHue','droplet'],['sortLight','sun'],['reverse','swap'],['shuffle','shuffle'],['lockToggle','lock']].forEach(([k,ic])=>{ const b=document.querySelector('#dock [data-dock="'+k+'"]'); if(b) b.innerHTML=icon(ic,18); });
-$('undoBtn').innerHTML    = icon('undo',17);
-$('nameDice').innerHTML   = icon('refresh',13);
-$('expDice').innerHTML    = icon('refresh',16);
+$('newBtn').innerHTML     = icon('zap',18)+'<span class="lbl">Create</span>';
+$('checkBtn').innerHTML   = icon('contrast',18)+'<span class="lbl">Check</span>';
+$('exportBtn').innerHTML  = icon('download',18)+'<span class="lbl">Export</span>';
+$('generateBtn').innerHTML= icon('refresh',18)+'<span class="lbl">Generate<kbd class="key">Space</kbd></span>';
+[['sortHue','droplet'],['sortLight','sun'],['reverse','repeat'],['shuffle','shuffle'],['lockToggle','lock']].forEach(([k,ic])=>{ const b=document.querySelector('#dock [data-dock="'+k+'"]'); if(b) b.innerHTML=icon(ic,18); });
+$('undoBtn').innerHTML    = icon('undo',18);
+$('nameDice').innerHTML   = icon('refresh',14);
+$('expDice').innerHTML    = icon('refresh',14);
 [['themeBtn','Generation theme'],['newBtn','Create palette'],['checkBtn','Accessibility checks'],['undoBtn','Undo'],['exportBtn','Export palette'],['generateBtn','Generate palette'],['nameDice','New random name'],['expDice','Random name'],['toolsToggle','Show or hide toolbar']].forEach(([id,label])=>$(id).setAttribute('aria-label',label));
 /* collapsible toolbar (mobile) */
 $('toolsToggle').innerHTML=icon('chevU',16);
@@ -1360,12 +1407,14 @@ function render(){
   });
   stripsEl.innerHTML=html;
   stripsEl.classList.toggle('many', n>8); stripsEl.classList.toggle('full', n>=MAX_COLORS);
+  alignSeamButtons();
   document.title=`${paletteName} · opencolors`;
-  $('paletteNameLabel').textContent=paletteName;
+  const ni=$('paletteNameInput'); if(ni&&document.activeElement!==ni) ni.value=paletteName;
+  fitNameInput();
   $('generateBtn').disabled=!colors.some(c=>!c.locked);
   const lt=document.querySelector('#dock [data-dock="lockToggle"]');
   if(lt){ const allL=colors.every(c=>c.locked); lt.innerHTML=icon(allL?'unlock':'lock',18); const ll=allL?'Unlock all':'Lock all'; lt.title=ll; lt.setAttribute('aria-label',ll); }
-  if(editIndex>=0){ editIndex=-1; editBackup=null; } // full renders exit edit mode
+  if(editIndex>=0){ editIndex=-1; editBackup=null; stripsEl.classList.remove('editing'); } // full renders exit edit mode
   syncHash();
 }
 function refreshStrip(i){
@@ -1432,8 +1481,22 @@ stripsEl.addEventListener('click',e=>{
 $('generateBtn').onclick=generate;
 $('undoBtn').onclick=undo;
 /* rename the palette and keep the header chip in sync */
-function setName(nm){ paletteName=nm; $('paletteNameLabel').textContent=nm; }
+function setName(nm){ paletteName=nm; const ni=$('paletteNameInput'); if(ni&&document.activeElement!==ni) ni.value=nm; document.title=`${paletteName} · opencolors`; fitNameInput(); }
 $('nameDice').onclick=()=>setName(randName());
+/* auto-size the name field to its content so long names aren't cut off */
+const nameSizer=document.createElement('span');
+nameSizer.setAttribute('aria-hidden','true');
+nameSizer.style.cssText='position:absolute;visibility:hidden;white-space:pre;pointer-events:none;font-family:var(--font-display);font-weight:700;font-size:13.5px;letter-spacing:.2px;';
+document.body.appendChild(nameSizer);
+function fitNameInput(){
+  const ni=$('paletteNameInput');
+  nameSizer.textContent=ni.value||'';
+  if(!nameSizer.getBoundingClientRect) return;
+  ni.style.width=Math.max(48,Math.min(260,Math.ceil(nameSizer.getBoundingClientRect().width)+20))+'px';
+}
+$('paletteNameInput').addEventListener('input',e=>{ const v=e.target.value.trim().slice(0,40); if(v) setName(v); else fitNameInput(); });
+$('paletteNameInput').addEventListener('blur',()=>{ $('paletteNameInput').value=paletteName; fitNameInput(); });
+$('paletteNameInput').addEventListener('keydown',e=>{ if(e.key==='Enter') e.target.blur(); });
 function updateUndo(){ $('undoBtn').disabled=!undoStack.length; }
 
 /* keyboard */
@@ -1529,6 +1592,8 @@ function openEdit(i){
   pushHistory(); editStackLen=undoStack.length;
   const stripEl=document.querySelector('#strip-'+i);
   if(stripEl){ stripEl.classList.add('editing'); stripEl.insertAdjacentHTML('beforeend',editPanelHTML()); }
+  stripsEl.classList.add('editing');
+  stripsEl.querySelectorAll('.adder.peek,.swapper.peek').forEach(el=>el.classList.remove('peek'));
   syncEditUI(colors[i].hex); renderShades(); wireEditPanel();
   const hi=$('hexInput');
   if(hi&&(!globalThis.matchMedia||matchMedia('(hover:hover)').matches)){ hi.focus({preventScroll:true}); hi.select(); }
@@ -1540,6 +1605,7 @@ function teardownEditPanel(i){
   if(x) x.remove();
   const stripEl=document.querySelector('#strip-'+i);
   if(stripEl) stripEl.classList.remove('editing');
+  stripsEl.classList.remove('editing');
   refreshStrip(i); syncHash();
 }
 function inlineDone(){
@@ -1572,19 +1638,22 @@ function editPanelHTML(){
       <div class="field"><label>Lightness <output id="lVal"></output></label>
         <input type="range" id="lightSlider" min="0" max="100" value="0" aria-label="Lightness"></div>
       <div class="field"><label>Shades</label><div class="shade-row" id="shadeGrid"></div></div>
-      <button class="btn ep-done" data-pact="done">Done</button>
+      <button class="btn primary ep-done" data-pact="done">Done</button>
     </div>
-    <button class="ep-x" data-pact="cancel" aria-label="Cancel editing" title="Cancel (Esc)">${icon('x',15)}</button>`;
+    <button class="ep-x" data-pact="cancel" aria-label="Cancel editing" title="Cancel (Esc)">${icon('x',16)}</button>`;
 }
-function syncEditUI(hex){
-  hex=normHex(hex);
+function syncEditFields(h,s,l,hex){
   $('hexInput').value='#'+hex.toUpperCase();
   $('nativePicker').value='#'+hex;
-  const {h,s,l}=hexToHsl(hex);
   $('hueSlider').value=h; $('satSlider').value=s; $('lightSlider').value=l;
   $('hVal').textContent=h+'\u00B0'; $('sVal').textContent=s+'%'; $('lVal').textContent=l+'%';
   $('satSlider').style.setProperty('--track',`linear-gradient(90deg, hsl(${h},0%,${l}%), hsl(${h},100%,${l}%))`);
   $('lightSlider').style.setProperty('--track',`linear-gradient(90deg, #000, hsl(${h},${s}%,50%), #fff)`);
+}
+function syncEditUI(hex){
+  hex=normHex(hex);
+  const {h,s,l}=hexToHsl(hex);
+  syncEditFields(h,s,l,hex);
 }
 function editLive(hex){
   if(editIndex<0||!validHex(hex)) return;
@@ -1595,8 +1664,11 @@ function editLive(hex){
 function wireEditPanel(){
   ['hueSlider','satSlider','lightSlider'].forEach(id=>{
     $(id).addEventListener('input',()=>{
-      const hex=hslToHex(+$('hueSlider').value,+$('satSlider').value,+$('lightSlider').value);
-      syncEditUI(hex); editLive(hex);
+      const h=+$('hueSlider').value, s=+$('satSlider').value, l=+$('lightSlider').value;
+      const hex=hslToHex(h,s,l);
+      /* keep hue/saturation from the sliders (not hexToHsl), so dragging lightness
+         to 0 or 100 doesn't wipe them to grey */
+      syncEditFields(h,s,l,hex); editLive(hex);
     });
   });
   $('hexInput').addEventListener('input',e=>{
@@ -1618,7 +1690,7 @@ function wireEditPanel(){
 /* ---------- saved ---------- */
 function renderSavedBadge(){
   const n=saved.length;
-  $('savedBtn').innerHTML=icon('bookmark',17)+'<span class="lbl">Saved</span>'+(n?`<span class="count">${n}</span>`:'');
+  $('savedBtn').innerHTML=icon('bookmark',18)+'<span class="lbl">Saved</span>'+(n?`<span class="count">${n}</span>`:'');
 }
 function renderSavedList(){
   const list=$('savedList');
@@ -1631,7 +1703,7 @@ function renderSavedList(){
       <div class="saved-bars">${p.colors.map(h=>`<div style="background:#${h}"></div>`).join('')}</div>
       <div class="saved-meta">
         <div><strong>${p.name}</strong><small>${p.colors.length} colors · ${new Date(p.ts).toLocaleDateString()}</small></div>
-        <button class="del-btn" data-del="${p.id}" title="Delete">${icon('x',15)}</button>
+        <button class="del-btn" data-del="${p.id}" title="Delete">${icon('x',16)}</button>
       </div>
     </div>`).join('');
 }
@@ -1702,7 +1774,7 @@ const GEN_THEMES=[
   {id:'mono',name:'Mono',dot:'linear-gradient(135deg,#111,#888,#fff)'}
 ];
 let genTheme='random';
-function renderThemeBtn(){ $('themeBtn').innerHTML=icon('aperture',17)+'<span class="lbl">Theme: '+GEN_THEMES.find(t=>t.id===genTheme).name+'</span>'; }
+function renderThemeBtn(){ $('themeBtn').innerHTML=icon('aperture',18)+'<span class="lbl">Theme: '+GEN_THEMES.find(t=>t.id===genTheme).name+'</span>'; }
 $('themeMenu').innerHTML=GEN_THEMES.map(t=>
   `<button data-gt="${t.id}"><span class="tdot" style="background:${t.dot}"></span><span>${t.name}</span><span class="tick"></span></button>`
 ).join('');
