@@ -257,16 +257,6 @@
   .shade-row{display:flex;gap:6px;overflow-x:auto;padding:4px 0}
   .shade-row .shade{flex:1 0 36px;height:46px}
   .ep-done{width:100%;justify-content:center;margin-top:10px}
-  .ep-x{
-    position:absolute;top:12px;right:12px;z-index:7;
-    width:32px;height:32px;border-radius:50%;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    background:rgba(128,128,128,.25);background:color-mix(in srgb,var(--on,#fff) 16%,transparent);
-    border:1px solid rgba(128,128,128,.4);border:1px solid color-mix(in srgb,var(--on,#fff) 30%,transparent);
-    color:var(--on,#fff);
-    box-shadow:0 2px 8px rgba(17,20,24,.28), inset 0 1px 0 rgba(255,255,255,.7);
-    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-  }
 
   /* ---------- modal ---------- */
   .overlay{
@@ -484,10 +474,7 @@
   @keyframes toastin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
   .toast .dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--toast-fg)}
-  .toolset{display:contents}
   .btn .key{font-family:inherit;font-size:10.5px;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:2px 7px;margin-left:7px;vertical-align:1px;white-space:nowrap}
-  #toolsToggle{display:none}
-  #toolsToggle svg{transition:transform .2s}
   .about-points kbd{background:rgba(17,20,24,.08);border-radius:5px;padding:1px 7px;font-family:inherit;font-size:12.5px;white-space:nowrap}
   .keys-table{display:flex;flex-direction:column;margin-top:2px}
   .keys-table .krow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 2px;border-bottom:1px solid rgba(17,20,24,.08)}
@@ -502,21 +489,27 @@
     .strip{padding:14px 16px;min-height:0}
     .strip-inner{flex-direction:row;width:100%;gap:10px;animation:none}
     .actions{flex-direction:row;margin:0;order:2;margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
-    .actions button{width:34px;height:34px}
+    /* no hover on phones to reveal controls with, so everything stays visible —
+       keyed off width (not hover:none) so touch-laptops and narrow windows agree */
+    .actions button{width:40px;height:40px;opacity:.95}
     .txt{text-align:left}
     .adder{width:auto;height:0}
-    .adder::before{left:0;right:0;top:-18px;bottom:-18px}
+    .adder::before{left:0;right:0;top:-20px;bottom:-20px}
+    .adder button{width:40px;height:40px;opacity:1;transform:translate(-50%,-50%) scale(1)}
+    main.many .actions button{width:40px;height:40px}
     .swapper{width:auto;height:0}
-    .swapper button{left:66%;top:50%}
+    .swapper button{left:66%;top:50%;width:40px;height:40px;opacity:1;transform:translate(-50%,-50%) scale(1)}
+    /* strips stack vertically on phones, so the swap glyph points up/down */
+    .swapper button svg{transform:rotate(90deg)}
     .hex{font-size:19px;padding:6px 8px}
     .btn .lbl{display:none}
     .btn{padding:9px 11px}
     .btn.primary .lbl{display:inline}
     .btn .key{display:none}
+    /* editing strip grows to fit the whole editor — no nested scroll trap */
+    .strip.editing{flex:none}
+    .edit-panel{max-height:none;overflow:visible}
     .logo-badge{display:none}
-    #toolsToggle{display:inline-flex;margin-left:auto}
-    header.tools-collapsed .toolset{display:none}
-    header.tools-collapsed #toolsToggle svg{transform:rotate(180deg)}
   }
 </style>
 </head>
@@ -527,11 +520,8 @@
     <div class="logo-name">opencolors</div>
     <button class="logo-badge" id="freePill" title="Why free?">free forever</button>
   </div>
-  <button class="btn icon-only" id="toolsToggle" title="Show or hide tools" aria-expanded="true"></button>
-
   <div class="header-name"><input id="paletteNameInput" type="text" maxlength="40" spellcheck="false" autocomplete="off" aria-label="Palette name" value="Untitled"></div>
   <div class="toolbar">
-   <div class="toolset">
     <div class="menu-anchor">
       <button class="btn" id="themeBtn" title="Generation theme"></button>
       <div class="menu" id="themeMenu"></div>
@@ -557,7 +547,6 @@
 
     <button class="btn icon-only" id="undoBtn" title="Undo (Ctrl+Z)"></button>
     <button class="btn" id="exportBtn" title="Copy or download this palette"></button>
-   </div>
     <button class="btn primary" id="generateBtn" title="Generate (Spacebar)"></button>
   </div>
 </header>
@@ -1313,16 +1302,7 @@ $('generateBtn').innerHTML= icon('refresh',18)+'<span class="lbl">Generate<kbd c
 [['sortHue','droplet'],['sortLight','sun'],['reverse','repeat'],['shuffle','shuffle'],['lockToggle','lock']].forEach(([k,ic])=>{ const b=document.querySelector('#dock [data-dock="'+k+'"]'); if(b) b.innerHTML=icon(ic,18); });
 $('undoBtn').innerHTML    = icon('undo',18);
 $('expDice').innerHTML    = icon('refresh',14);
-[['themeBtn','Generation theme'],['newBtn','Create palette'],['checkBtn','Accessibility checks'],['undoBtn','Undo'],['exportBtn','Export palette'],['generateBtn','Generate palette'],['expDice','Random name'],['toolsToggle','Show or hide toolbar']].forEach(([id,label])=>$(id).setAttribute('aria-label',label));
-/* collapsible toolbar (mobile) */
-$('toolsToggle').innerHTML=icon('chevU',16);
-function setToolsCollapsed(c){
-  $('topbar').classList.toggle('tools-collapsed',c);
-  $('toolsToggle').setAttribute('aria-expanded',String(!c));
-  store.set('ocToolsCollapsed',c?'1':'0');
-}
-setToolsCollapsed(store.get('ocToolsCollapsed')==='1');
-$('toolsToggle').addEventListener('click',()=>setToolsCollapsed(!$('topbar').classList.contains('tools-collapsed')));
+[['themeBtn','Generation theme'],['newBtn','Create palette'],['checkBtn','Accessibility checks'],['undoBtn','Undo'],['exportBtn','Export palette'],['generateBtn','Generate palette'],['expDice','Random name']].forEach(([id,label])=>$(id).setAttribute('aria-label',label));
 const MENU_ICONS={image:'image',mood:'sparkles',explore:'grid',random:'refresh',contrast:'sun',vision:'eye'};
 document.querySelectorAll('#newMenu [data-new],#checkMenu [data-check]').forEach(b=>{
   const k=b.dataset.new||b.dataset.check||b.dataset.more;
@@ -1449,7 +1429,7 @@ function anyModalOpen(){ return !!document.querySelector('.overlay.open'); }
 
 stripsEl.addEventListener('click',e=>{
   const pact=e.target.closest('[data-pact]');
-  if(pact){ if(pact.dataset.pact==='done') inlineDone(); else inlineCancel(); return; }
+  if(pact){ inlineDone(); return; } // Done is the only panel exit; Esc still cancels
   if(e.target.closest('.edit-panel')) return;
   if(editIndex>=0) inlineDone();
   const btn=e.target.closest('[data-action]');
@@ -1584,21 +1564,36 @@ function openEdit(i){
   editIndex=i; editBackup=colors[i].hex;
   pushHistory(); editStackLen=undoStack.length;
   const stripEl=document.querySelector('#strip-'+i);
+  const startH=stripEl?stripEl.offsetHeight:0;
   if(stripEl){ stripEl.classList.add('editing'); stripEl.insertAdjacentHTML('beforeend',editPanelHTML()); }
   stripsEl.classList.add('editing');
   stripsEl.querySelectorAll('.adder.peek,.swapper.peek').forEach(el=>el.classList.remove('peek'));
   syncEditUI(colors[i].hex); renderShades(); wireEditPanel();
+  if(stripEl) animateHeight(stripEl,startH,stripEl.offsetHeight,320);
   const hi=$('hexInput');
   if(hi&&(!globalThis.matchMedia||matchMedia('(hover:hover)').matches)){ hi.focus({preventScroll:true}); hi.select(); }
 }
+/* smooth height glide for editor open/close. Unlike transforms, an animated
+   height participates in layout, so sibling strips slide along. Where WAAPI is
+   missing (jsdom) or motion is reduced, the DOM updates just apply instantly. */
+function animateHeight(el,from,to,ms){
+  if(!el.animate||from===to) return;
+  if(globalThis.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  el.style.overflow='hidden'; // clip the panel while its box grows/shrinks
+  const anim=el.animate([{height:from+'px'},{height:to+'px'}],{duration:ms,easing:'cubic-bezier(.32,.72,0,1)'});
+  const clean=()=>el.style.removeProperty('overflow');
+  anim.onfinish=clean; anim.oncancel=clean;
+}
 /* remove the inline editor and restore the strip it was attached to */
 function teardownEditPanel(i){
-  const panel=document.querySelector('.edit-panel'), x=document.querySelector('.ep-x');
-  if(panel) panel.remove();
-  if(x) x.remove();
   const stripEl=document.querySelector('#strip-'+i);
+  const startH=stripEl?stripEl.offsetHeight:0;
+  const panel=document.querySelector('.edit-panel');
+  if(panel) panel.style.display='none'; // hide first so the row height can be measured…
   if(stripEl) stripEl.classList.remove('editing');
   stripsEl.classList.remove('editing');
+  if(stripEl) animateHeight(stripEl,startH,stripEl.offsetHeight,260); // …then glide shut
+  if(panel) panel.remove();
   refreshStrip(i); syncHash();
 }
 function inlineDone(){
@@ -1632,8 +1627,7 @@ function editPanelHTML(){
         <input type="range" id="lightSlider" min="0" max="100" value="0" aria-label="Lightness"></div>
       <div class="field"><label>Shades</label><div class="shade-row" id="shadeGrid"></div></div>
       <button class="btn primary ep-done" data-pact="done">Done</button>
-    </div>
-    <button class="ep-x" data-pact="cancel" aria-label="Cancel editing" title="Cancel (Esc)">${icon('x',16)}</button>`;
+    </div>`;
 }
 function syncEditFields(h,s,l,hex){
   $('hexInput').value='#'+hex.toUpperCase();
