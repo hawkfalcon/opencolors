@@ -144,7 +144,7 @@ const SESSION = [
   ['edit-open-second', async (c) => c.click(c.q('.strip[data-index="1"] [data-action="edit"]'))],
   ['edit-escape-cancels', async (c) => c.key('Escape')],
   ['edit-open-third', async (c) => c.click(c.q('.strip[data-index="1"] [data-action="edit"]'))],
-  ['edit-cancel-button', async (c) => c.click(c.q('[data-pact="cancel"]'))],
+  ['edit-commit-on-strip-click', async (c) => c.click(c.q('.strip[data-index="2"] .hex'))],
   ['undo-after-edit', async (c) => c.key('z', { ctrlKey: true })],
 
   /* dropdown menus */
@@ -208,10 +208,12 @@ const SESSION = [
   ['shortcuts-toggle-open', async (c) => c.key('?')],
   ['shortcuts-escape', async (c) => c.key('Escape')],
 
-  /* header chrome */
-  ['name-dice', async (c) => c.click(c.d.getElementById('nameDice'))],
-  ['toolbar-collapse', async (c) => c.click(c.d.getElementById('toolsToggle'))],
-  ['toolbar-expand', async (c) => c.click(c.d.getElementById('toolsToggle'))],
+  /* header chrome: the palette name is an editable input now (the old
+   * #nameDice button is gone; rerolling lives in the export modal) */
+  ['header-rename', async (c) => {
+    const n = c.d.getElementById('paletteNameInput');
+    n.value = 'Header Typed Name'; n.dispatchEvent(new c.w.Event('input', { bubbles: true }));
+  }],
 ];
 
 /* ---------- runner ---------- */
@@ -297,7 +299,7 @@ async function runSession() {
       /* The ink decision per strip. Storing the whole style attribute made the golden
        * ~880 bytes a step and drowned real diffs, so this keeps the part a human needs
        * (which --on won) plus a short hash of the rest: any change to --hover or --sh
-       * still shows up, without spelling it out 98 times. */
+       * still shows up, without spelling it out 96 times. */
       inks: [...d.querySelectorAll('.strip')].map((e) => {
         const st = e.getAttribute('style') || '';
         const on = (st.match(/--on:([^;]+)/) || [, '?'])[1];
@@ -308,7 +310,7 @@ async function runSession() {
       menus: d.querySelectorAll('.menu.open').length,
       undoDisabled: d.getElementById('undoBtn').disabled,
       generateDisabled: d.getElementById('generateBtn').disabled,
-      paletteName: d.getElementById('paletteNameLabel').textContent,
+      paletteName: d.getElementById('paletteNameInput').value,
       chrome: [
         d.getElementById('savedBtn').innerHTML,
         d.getElementById('themeBtn').innerHTML,
