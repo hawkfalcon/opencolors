@@ -110,21 +110,22 @@
   /* ---------- remix dock ---------- */
   #dock{
     position:fixed;bottom:calc(16px + env(safe-area-inset-bottom, 0px));left:50%;transform:translateX(-50%);
-    display:flex;align-items:center;gap:2px;padding:6px;
+    display:flex;align-items:center;gap:4px;padding:6px 10px;
     border:var(--bw) solid var(--bc);border-radius:99px;
     background:var(--chrome);-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);
     box-shadow:0 12px 40px rgba(17,20,24,.16), inset 0 1px 0 rgba(255,255,255,.75);
     z-index:60;
   }
   #dock button{
-    width:38px;height:38px;border-radius:99px;border:0;background:transparent;color:var(--ink);
-    display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+    flex:0 0 auto;min-width:56px;border-radius:14px;border:0;background:transparent;color:var(--ink);
+    display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 10px;cursor:pointer;
     transition:background .15s,transform .12s;
   }
   #dock button:hover{background:var(--chrome-hover)}
   #dock button:active{transform:scale(.92)}
-  #dock button .lbl{display:none}
-  .dock-sep{width:1px;height:22px;background:var(--bc);margin:0 4px}
+  #dock button .lbl{display:inline;font-size:10px}
+  /* divider uses dark ink, not var(--bc): white-on-white was invisible */
+  .dock-sep{width:1px;align-self:stretch;background:rgba(17,20,24,.14);background:color-mix(in srgb,var(--ink) 16%,transparent);margin:0 4px}
   .menu button .tdot{flex:0 0 auto;width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
   .menu button .tick{margin-left:auto;font-weight:800;color:var(--muted);min-width:16px;text-align:right}
 
@@ -519,12 +520,9 @@
     .toolset #themeBtn .theme-name{display:none}
     /* 16px text inputs: iOS Safari auto-zooms anything smaller on focus */
     #paletteNameInput,.word-row input,.exp-row input{font-size:16px}
-    /* labeled bottom bar: icon-over-label remix tools */
-    #dock{gap:4px;padding:6px 10px;max-width:calc(100vw - 24px);overflow-x:auto;scrollbar-width:none}
+    /* narrow phones scroll the labeled bar instead of squeezing it */
+    #dock{max-width:calc(100vw - 24px);overflow-x:auto;scrollbar-width:none}
     #dock::-webkit-scrollbar{display:none}
-    #dock button{flex:0 0 auto;width:auto;height:auto;min-width:56px;flex-direction:column;gap:3px;padding:8px 10px;border-radius:14px}
-    #dock button .lbl{display:inline;font-size:10px}
-    #dock .dock-sep{align-self:stretch;height:auto}
     .btn .lbl{display:none}
     .btn{padding:9px 11px}
     .btn.primary .lbl{display:inline}
