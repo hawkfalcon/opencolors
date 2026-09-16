@@ -174,6 +174,8 @@ t('editing stretches column', /\.strip\.editing\{flex-grow:2\.6\}/.test(html));
 t('inline edit keeps + cancels', /function inlineDone/.test(html) && /function inlineCancel/.test(html));
 t('no duplicative copy button', !/title="Copy hex"/.test(html));
 t('mobile tabs show labels', /max-width:720px[\s\S]*?\.toolset \.btn \.lbl\{[^}]*display:inline/.test(css));
+t('theme tab says Theme on mobile', /theme-word/.test(html) && /#themeBtn \.theme-name\{[^}]*display:none/.test(css));
+t('dock buttons labeled on mobile', /'lockToggle','lock','Lock'/.test(html) && /#dock button \.lbl\{display:none\}/.test(css) && /#dock button \.lbl\{display:inline/.test(css));
 t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
 t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
 t('widening animates', /flex-grow \.3s ease/.test(html));
