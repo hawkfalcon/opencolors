@@ -488,7 +488,9 @@
 
   /* responsive: stack vertically */
   @media (max-width:720px){
-    header{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0}
+    header{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0;justify-content:center}
+    .logo{margin-right:0}
+    .header-name{margin-right:0}
     main#strips{flex-direction:column;overflow-y:auto;padding-bottom:92px}
     .strip{padding:14px 16px;min-height:0}
     .strip-inner{flex-direction:row;width:100%;gap:10px;animation:none}
@@ -1503,7 +1505,9 @@ function fitNameInput(){
   const ni=$('paletteNameInput');
   nameSizer.textContent=ni.value||'';
   if(!nameSizer.getBoundingClientRect) return;
-  ni.style.width=Math.max(48,Math.min(260,Math.ceil(nameSizer.getBoundingClientRect().width)+20))+'px';
+  nameSizer.style.fontSize=getComputedStyle(ni).fontSize; /* 13.5 desktop / 16 mobile */
+  const cap=(globalThis.matchMedia&&matchMedia('(max-width:720px)').matches)?140:260;
+  ni.style.width=Math.max(48,Math.min(cap,Math.ceil(nameSizer.getBoundingClientRect().width)+20))+'px';
 }
 $('paletteNameInput').addEventListener('input',e=>{ const v=e.target.value.trim().slice(0,40); if(v) setName(v); else fitNameInput(); });
 $('paletteNameInput').addEventListener('blur',()=>{ $('paletteNameInput').value=paletteName; fitNameInput(); });
