@@ -123,6 +123,9 @@
   #dock button:hover{background:var(--chrome-hover)}
   #dock button:active{transform:scale(.92)}
   #dock button .lbl{display:inline;font-size:10px}
+  #dock button.primary{background:var(--accent);color:var(--accent-ink)}
+  #dock button.primary:hover{background:var(--accent-hover)}
+  #generateBtn .key{display:none}
   /* divider uses dark ink, not var(--bc): white-on-white was invisible */
   .dock-sep{width:1px;align-self:stretch;background:rgba(17,20,24,.14);background:color-mix(in srgb,var(--ink) 16%,transparent);margin:0 4px}
   .menu button .tdot{flex:0 0 auto;width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
@@ -516,7 +519,6 @@
     .toolset .btn .lbl{display:inline;font-size:10px}
     .toolset .btn .count{position:absolute;top:5px;right:8px;min-width:18px;height:18px;font-size:10px}
     .toolset::before,.toolset::after{content:'';margin:auto}
-    #generateBtn{width:100%;justify-content:center;padding:12px 14px}
     .menu{max-height:70vh;overflow:auto}
     /* 16px text inputs: iOS Safari auto-zooms anything smaller on focus */
     #paletteNameInput,.word-row input,.exp-row input{font-size:16px}
@@ -571,14 +573,14 @@
     <button class="btn" id="undoBtn" title="Undo (Ctrl+Z)"></button>
     <button class="btn" id="exportBtn" title="Copy or download this palette"></button>
    </div>
-    <button class="btn primary" id="generateBtn" title="Generate (Spacebar)"></button>
   </div>
 </header>
 
 <main id="strips" aria-label="Color palette"></main>
 
 <!-- remix dock -->
-<nav id="dock" aria-label="Remix tools">
+<nav id="dock" aria-label="Palette actions">
+  <button class="btn primary" id="generateBtn" title="Generate (Spacebar)"></button>
   <button data-dock="sortHue" title="Sort by hue" aria-label="Sort by hue"></button>
   <button data-dock="sortLight" title="Sort by lightness" aria-label="Sort by lightness"></button>
   <button data-dock="reverse" title="Reverse order" aria-label="Reverse order"></button>
