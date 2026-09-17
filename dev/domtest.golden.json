@@ -2,7 +2,7 @@
  "steps": [
   {
    "name": "load",
-   "body": "016cb47a0502",
+   "body": "24c9784f32fa",
    "title": "Hidden Harbor · opencolors",
    "strips": 5,
    "hexes": "#FF6B4A,#FFC93C,#2EC4B6,#3B82F6,#7C5CF6",
@@ -13,11 +13,11 @@
    "undoDisabled": true,
    "generateDisabled": false,
    "paletteName": "Hidden Harbor",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "generate-button",
-   "body": "f926a9b5412a",
+   "body": "e212ac140b15",
    "title": "Velvet Ember · opencolors",
    "strips": 5,
    "hexes": "#CA287B,#2DA97A,#55B3ED,#83273A,#DCF08F",
@@ -28,11 +28,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Ember",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "generate-spacebar",
-   "body": "f926a9b5412a",
+   "body": "e212ac140b15",
    "title": "Velvet Ember · opencolors",
    "strips": 5,
    "hexes": "#CA287B,#2DA97A,#55B3ED,#83273A,#DCF08F",
@@ -43,11 +43,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Ember",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "theme-pastel",
-   "body": "0919440a27a4",
+   "body": "da3c9bd1679f",
    "title": "Velvet Ember · opencolors",
    "strips": 5,
    "hexes": "#CA287B,#2DA97A,#55B3ED,#83273A,#DCF08F",
@@ -58,11 +58,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Ember",
-   "chrome": "e5d63e76d10f,854a655bdf17,7965c6035352"
+   "chrome": "e5d63e76d10f,2ba909c5b258,7965c6035352"
   },
   {
    "name": "generate-pastel",
-   "body": "560f63f1e297",
+   "body": "ca259f927fe0",
    "title": "Midnight Mirage · opencolors",
    "strips": 5,
    "hexes": "#F3F1C0,#AFEDAC,#B2E8C9,#EACBBC,#EAB5B2",
@@ -73,11 +73,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Midnight Mirage",
-   "chrome": "e5d63e76d10f,854a655bdf17,7965c6035352"
+   "chrome": "e5d63e76d10f,2ba909c5b258,7965c6035352"
   },
   {
    "name": "theme-vivid",
-   "body": "ca60dc641dc2",
+   "body": "9ce38e2a572d",
    "title": "Midnight Mirage · opencolors",
    "strips": 5,
    "hexes": "#F3F1C0,#AFEDAC,#B2E8C9,#EACBBC,#EAB5B2",
@@ -88,11 +88,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Midnight Mirage",
-   "chrome": "e5d63e76d10f,a60edff6e446,7965c6035352"
+   "chrome": "e5d63e76d10f,82702ddb9fb0,7965c6035352"
   },
   {
    "name": "generate-vivid",
-   "body": "c22ca918144d",
+   "body": "a434bba1061c",
    "title": "Bold Ember · opencolors",
    "strips": 5,
    "hexes": "#E86A13,#AA25FB,#15F711,#732AF9,#8FEA16",
@@ -103,11 +103,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Bold Ember",
-   "chrome": "e5d63e76d10f,a60edff6e446,7965c6035352"
+   "chrome": "e5d63e76d10f,82702ddb9fb0,7965c6035352"
   },
   {
    "name": "theme-warm",
-   "body": "09b43e8ac6d8",
+   "body": "32a8d95a2f8f",
    "title": "Bold Ember · opencolors",
    "strips": 5,
    "hexes": "#E86A13,#AA25FB,#15F711,#732AF9,#8FEA16",
@@ -118,11 +118,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Bold Ember",
-   "chrome": "e5d63e76d10f,25c84864357f,7965c6035352"
+   "chrome": "e5d63e76d10f,9cfaaf51ffd9,7965c6035352"
   },
   {
    "name": "generate-warm",
-   "body": "49361cc89494",
+   "body": "cb1a7d178152",
    "title": "Copper Garden · opencolors",
    "strips": 5,
    "hexes": "#D65B2B,#CA4634,#EA2B76,#C73B35,#EB244D",
@@ -133,11 +133,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Garden",
-   "chrome": "e5d63e76d10f,25c84864357f,7965c6035352"
+   "chrome": "e5d63e76d10f,9cfaaf51ffd9,7965c6035352"
   },
   {
    "name": "theme-cool",
-   "body": "cd6dddb84406",
+   "body": "160347fb85bf",
    "title": "Copper Garden · opencolors",
    "strips": 5,
    "hexes": "#D65B2B,#CA4634,#EA2B76,#C73B35,#EB244D",
@@ -148,11 +148,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Garden",
-   "chrome": "e5d63e76d10f,fd419490ce24,7965c6035352"
+   "chrome": "e5d63e76d10f,27ec1fbd6536,7965c6035352"
   },
   {
    "name": "generate-cool",
-   "body": "67723344f133",
+   "body": "5272cebeafb2",
    "title": "Solar Tide · opencolors",
    "strips": 5,
    "hexes": "#2240AE,#6086DD,#419EB4,#2DC0A3,#3393A0",
@@ -163,11 +163,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Solar Tide",
-   "chrome": "e5d63e76d10f,fd419490ce24,7965c6035352"
+   "chrome": "e5d63e76d10f,27ec1fbd6536,7965c6035352"
   },
   {
    "name": "theme-light",
-   "body": "09f99bd14561",
+   "body": "305a60319425",
    "title": "Solar Tide · opencolors",
    "strips": 5,
    "hexes": "#2240AE,#6086DD,#419EB4,#2DC0A3,#3393A0",
@@ -178,11 +178,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Solar Tide",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "generate-light",
-   "body": "a85b6cb37256",
+   "body": "315e94ff6a39",
    "title": "Copper Comet · opencolors",
    "strips": 5,
    "hexes": "#F2DACC,#E5C1D8,#DFB7A3,#E5BEC2,#DEBAA3",
@@ -193,11 +193,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Comet",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "theme-dark",
-   "body": "aed1f29382de",
+   "body": "c08ecf8168ea",
    "title": "Copper Comet · opencolors",
    "strips": 5,
    "hexes": "#F2DACC,#E5C1D8,#DFB7A3,#E5BEC2,#DEBAA3",
@@ -208,11 +208,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Comet",
-   "chrome": "e5d63e76d10f,ae1081c88dc3,7965c6035352"
+   "chrome": "e5d63e76d10f,9da054efe2df,7965c6035352"
   },
   {
    "name": "generate-dark",
-   "body": "bac02e0ca01d",
+   "body": "366f067a762f",
    "title": "Lunar Meadow · opencolors",
    "strips": 5,
    "hexes": "#2A163E,#242055,#665330,#306C5B,#26391B",
@@ -223,11 +223,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Lunar Meadow",
-   "chrome": "e5d63e76d10f,ae1081c88dc3,7965c6035352"
+   "chrome": "e5d63e76d10f,9da054efe2df,7965c6035352"
   },
   {
    "name": "theme-mono",
-   "body": "4461ba7b2a52",
+   "body": "338e68b7f465",
    "title": "Lunar Meadow · opencolors",
    "strips": 5,
    "hexes": "#2A163E,#242055,#665330,#306C5B,#26391B",
@@ -238,11 +238,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Lunar Meadow",
-   "chrome": "e5d63e76d10f,92e54d0f4bfa,7965c6035352"
+   "chrome": "e5d63e76d10f,4af9399a5a45,7965c6035352"
   },
   {
    "name": "generate-mono",
-   "body": "100cc378307b",
+   "body": "df1e20b7f1fe",
    "title": "Rapid Desert · opencolors",
    "strips": 5,
    "hexes": "#B145BE,#562159,#4A234C,#95469D,#A315B7",
@@ -253,11 +253,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Rapid Desert",
-   "chrome": "e5d63e76d10f,92e54d0f4bfa,7965c6035352"
+   "chrome": "e5d63e76d10f,4af9399a5a45,7965c6035352"
   },
   {
    "name": "theme-random",
-   "body": "c3cef61fc3e2",
+   "body": "f0859b4b79f1",
    "title": "Rapid Desert · opencolors",
    "strips": 5,
    "hexes": "#B145BE,#562159,#4A234C,#95469D,#A315B7",
@@ -268,11 +268,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Rapid Desert",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "generate-random",
-   "body": "268f23371240",
+   "body": "accfe908ba68",
    "title": "Wild Grove · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#D896C2,#46D557,#6EBACB,#7B57D7",
@@ -283,11 +283,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Wild Grove",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "lock-by-click",
-   "body": "7948c2639fbb",
+   "body": "d2fded3b7f96",
    "title": "Wild Grove · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#D896C2,#46D557,#6EBACB,#7B57D7",
@@ -298,11 +298,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Wild Grove",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "lock-by-L-key",
-   "body": "5ce8c88a37e6",
+   "body": "f4215de7a80b",
    "title": "Wild Grove · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#D896C2,#46D557,#6EBACB,#7B57D7",
@@ -313,11 +313,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Wild Grove",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "lock-by-number-key",
-   "body": "7948c2639fbb",
+   "body": "d2fded3b7f96",
    "title": "Wild Grove · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#D896C2,#46D557,#6EBACB,#7B57D7",
@@ -328,11 +328,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Wild Grove",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "copy-focused-color",
-   "body": "7948c2639fbb",
+   "body": "d2fded3b7f96",
    "title": "Wild Grove · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#D896C2,#46D557,#6EBACB,#7B57D7",
@@ -343,11 +343,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Wild Grove",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "generate-with-locks-held",
-   "body": "ecad7f912fc5",
+   "body": "0e67453849d0",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#8651C2,#3896AA,#1EA3AC,#7BE0CC",
@@ -358,11 +358,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "arrow-right-immediate",
-   "body": "23a1664ab8fb",
+   "body": "479f4b439a9b",
    "title": "Velvet Bloom · opencolors",
    "strips": 7,
    "hexes": "#D05EDC,#3896AA,#8651C2,#1EA3AC,#7BE0CC,#8651C2,#3896AA",
@@ -373,11 +373,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "arrow-right-settled",
-   "body": "816ae4ce1dc3",
+   "body": "a8d11e40ad50",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#3896AA,#8651C2,#1EA3AC,#7BE0CC",
@@ -388,11 +388,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "swapper-button",
-   "body": "78335e6f5dd7",
+   "body": "ad30f8ebf4ca",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#1EA3AC,#7BE0CC",
@@ -403,11 +403,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "dock-sort-hue",
-   "body": "026b60b79fbc",
+   "body": "5d0ee4f256c1",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#7BE0CC,#D05EDC,#1EA3AC,#3896AA,#8651C2",
@@ -418,11 +418,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "dock-sort-light",
-   "body": "afc546aa0a96",
+   "body": "ec06d5aab435",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#7BE0CC,#D05EDC,#8651C2,#3896AA,#1EA3AC",
@@ -433,11 +433,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "dock-reverse",
-   "body": "d0cddf9f2f32",
+   "body": "0f3f18e1339e",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#1EA3AC,#D05EDC,#3896AA,#8651C2,#7BE0CC",
@@ -448,11 +448,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "dock-shuffle",
-   "body": "d706127ab98f",
+   "body": "447dbff6df48",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -463,11 +463,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "dock-lock-all",
-   "body": "a55ab4f93092",
+   "body": "6764c38a62b0",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -478,11 +478,11 @@
    "undoDisabled": false,
    "generateDisabled": true,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,20b96c081fd5"
+   "chrome": "e5d63e76d10f,2d6213869320,20b96c081fd5"
   },
   {
    "name": "dock-unlock-all",
-   "body": "3121e595062e",
+   "body": "4c8fd5f652d5",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -493,11 +493,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "dock-sort-hue-again",
-   "body": "dfeb2819d5a0",
+   "body": "a0f41d8bf870",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#8651C2,#3896AA,#1EA3AC,#7BE0CC",
@@ -508,11 +508,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "undo-ctrl-z",
-   "body": "3121e595062e",
+   "body": "4c8fd5f652d5",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -523,11 +523,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "redo-ctrl-shift-z",
-   "body": "dfeb2819d5a0",
+   "body": "a0f41d8bf870",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#8651C2,#3896AA,#1EA3AC,#7BE0CC",
@@ -538,11 +538,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "redo-ctrl-y",
-   "body": "dfeb2819d5a0",
+   "body": "a0f41d8bf870",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#8651C2,#3896AA,#1EA3AC,#7BE0CC",
@@ -553,11 +553,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "undo-button",
-   "body": "3121e595062e",
+   "body": "4c8fd5f652d5",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -568,11 +568,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "add-in-gap",
-   "body": "29260a54df63",
+   "body": "608f06f0be1a",
    "title": "Velvet Bloom · opencolors",
    "strips": 6,
    "hexes": "#3896AA,#D05EDC,#9954C9,#8651C2,#7BE0CC,#1EA3AC",
@@ -583,11 +583,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "remove-strip",
-   "body": "3121e595062e",
+   "body": "4c8fd5f652d5",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -598,11 +598,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "grow-to-6",
-   "body": "beda91f0bcf1",
+   "body": "648c71f7802e",
    "title": "Velvet Bloom · opencolors",
    "strips": 6,
    "hexes": "#3896AA,#4939C6,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -613,11 +613,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "grow-to-7",
-   "body": "7e4718bf6768",
+   "body": "0b581d65dfba",
    "title": "Velvet Bloom · opencolors",
    "strips": 7,
    "hexes": "#3896AA,#3767BB,#4939C6,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -628,11 +628,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "grow-to-8",
-   "body": "748d179e2503",
+   "body": "5849b33adf9d",
    "title": "Velvet Bloom · opencolors",
    "strips": 8,
    "hexes": "#3896AA,#348FBA,#3767BB,#4939C6,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -643,11 +643,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "grow-to-9-maximum",
-   "body": "3cc2bac74ebc",
+   "body": "7ce7641d8ceb",
    "title": "Velvet Bloom · opencolors",
    "strips": 9,
    "hexes": "#3896AA,#35A8BA,#348FBA,#3767BB,#4939C6,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -658,11 +658,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "shrink-back-to-5",
-   "body": "4a3d2be634cb",
+   "body": "5006f9e09268",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -673,11 +673,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "edit-open",
-   "body": "14fc368d7000",
+   "body": "c3781586c03d",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -688,11 +688,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "edit-type-hex",
-   "body": "fce0ecb0027f",
+   "body": "c33e8ec951f3",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#123456,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -703,11 +703,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "edit-hue-slider",
-   "body": "f8b1e3289623",
+   "body": "464d0d889cb8",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#123354,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -718,11 +718,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "edit-pick-shade",
-   "body": "5461e6f9aa7d",
+   "body": "cb495e8f4c52",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -733,11 +733,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "edit-done",
-   "body": "fd57e90a2032",
+   "body": "55f9aab6f7d0",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -748,11 +748,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "edit-open-second",
-   "body": "5ed4f007802e",
+   "body": "55c142eb3ab7",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -763,11 +763,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "edit-escape-cancels",
-   "body": "fd57e90a2032",
+   "body": "55f9aab6f7d0",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -778,11 +778,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "edit-open-third",
-   "body": "5ed4f007802e",
+   "body": "55c142eb3ab7",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -793,11 +793,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "edit-commit-on-strip-click",
-   "body": "fd57e90a2032",
+   "body": "55f9aab6f7d0",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -808,11 +808,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "undo-after-edit",
-   "body": "db8e80f2c607",
+   "body": "a4c5eb7464a8",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -823,11 +823,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "theme-menu-open",
-   "body": "6848c880d2fb",
+   "body": "feb89974975b",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -838,11 +838,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "theme-menu-inner-click",
-   "body": "6848c880d2fb",
+   "body": "feb89974975b",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -853,11 +853,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "theme-menu-escape",
-   "body": "db8e80f2c607",
+   "body": "a4c5eb7464a8",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -868,11 +868,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "new-menu-open",
-   "body": "f753580dd3e9",
+   "body": "db6b5157cae5",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -883,11 +883,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "new-menu-escape",
-   "body": "1ca949a93ab6",
+   "body": "5e9980d24b80",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -898,11 +898,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "check-menu-open",
-   "body": "f99e76106b44",
+   "body": "7d5e3b941d1e",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -913,11 +913,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "check-menu-escape",
-   "body": "666715c31063",
+   "body": "a16c6b519c71",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -928,11 +928,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,2e541d3d5107,7965c6035352"
+   "chrome": "e5d63e76d10f,2d6213869320,7965c6035352"
   },
   {
    "name": "theme-pick-vivid",
-   "body": "837893e97faa",
+   "body": "89e93a64cb8c",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -943,11 +943,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,a60edff6e446,7965c6035352"
+   "chrome": "e5d63e76d10f,82702ddb9fb0,7965c6035352"
   },
   {
    "name": "theme-pick-mono",
-   "body": "faa843b4e720",
+   "body": "bc65e42609b2",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -958,11 +958,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,92e54d0f4bfa,7965c6035352"
+   "chrome": "e5d63e76d10f,4af9399a5a45,7965c6035352"
   },
   {
    "name": "explore-modal-open",
-   "body": "67c51e01c303",
+   "body": "4d323ef353a7",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -973,11 +973,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Velvet Bloom",
-   "chrome": "e5d63e76d10f,92e54d0f4bfa,7965c6035352"
+   "chrome": "e5d63e76d10f,4af9399a5a45,7965c6035352"
   },
   {
    "name": "preset-loaded",
-   "body": "ccbd25b0b8ea",
+   "body": "d60c058627eb",
    "title": "Misty Comet · opencolors",
    "strips": 5,
    "hexes": "#556270,#4ECDC4,#C7F464,#FF6B6B,#C44D58",
@@ -988,11 +988,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Misty Comet",
-   "chrome": "e5d63e76d10f,92e54d0f4bfa,7965c6035352"
+   "chrome": "e5d63e76d10f,4af9399a5a45,7965c6035352"
   },
   {
    "name": "mood-modal-open",
-   "body": "04bf0c43de24",
+   "body": "2125120cfdbe",
    "title": "Misty Comet · opencolors",
    "strips": 5,
    "hexes": "#556270,#4ECDC4,#C7F464,#FF6B6B,#C44D58",
@@ -1003,11 +1003,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Misty Comet",
-   "chrome": "e5d63e76d10f,92e54d0f4bfa,7965c6035352"
+   "chrome": "e5d63e76d10f,4af9399a5a45,7965c6035352"
   },
   {
    "name": "word-palette-applied",
-   "body": "bdfc73ef7716",
+   "body": "79b9033114c6",
    "title": "Ocean · opencolors",
    "strips": 5,
    "hexes": "#307BB7,#3F90D7,#1856B3,#3A97D4,#1B6BB7",
@@ -1018,11 +1018,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Ocean",
-   "chrome": "e5d63e76d10f,92e54d0f4bfa,7965c6035352"
+   "chrome": "e5d63e76d10f,4af9399a5a45,7965c6035352"
   },
   {
    "name": "surprise-me",
-   "body": "267834c1cd97",
+   "body": "cacb8330914d",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1033,11 +1033,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Calm Circuit",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "image-modal-open",
-   "body": "8a58a9a93586",
+   "body": "e89f8d533a11",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1048,11 +1048,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Calm Circuit",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "image-modal-escape",
-   "body": "267834c1cd97",
+   "body": "cacb8330914d",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1063,11 +1063,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Calm Circuit",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "contrast-modal-open",
-   "body": "959f89d889c9",
+   "body": "866b96119769",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1078,11 +1078,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Calm Circuit",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "contrast-pick-bg",
-   "body": "fd3ddd3e4e97",
+   "body": "a328cbd2d0d0",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1093,11 +1093,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Calm Circuit",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "contrast-pick-fg",
-   "body": "6a0f918da6de",
+   "body": "ff32f97018f9",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1108,11 +1108,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Calm Circuit",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "contrast-escape",
-   "body": "a9075ad7873a",
+   "body": "d8c06039d10d",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1123,11 +1123,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Calm Circuit",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "vision-modal-open",
-   "body": "6b733a5daf06",
+   "body": "62cc700f4e27",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1138,11 +1138,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Calm Circuit",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "vision-escape",
-   "body": "7d612988582d",
+   "body": "8218f5409323",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1153,11 +1153,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Calm Circuit",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "export-modal-open",
-   "body": "5204be0e3aed",
+   "body": "4c75ce639f20",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1168,11 +1168,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Calm Circuit",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "export-rename",
-   "body": "55e25e2eb4f0",
+   "body": "561fe74cee7a",
    "title": "Renamed Palette · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1183,11 +1183,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Renamed Palette",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "export-reroll-name",
-   "body": "1396dc8672b4",
+   "body": "ba894ab62bdb",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1198,11 +1198,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "export-copy-buttons",
-   "body": "1396dc8672b4",
+   "body": "ba894ab62bdb",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1213,11 +1213,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "export-download-png",
-   "body": "1396dc8672b4",
+   "body": "ba894ab62bdb",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1228,11 +1228,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "export-escape",
-   "body": "2b5b84ba2988",
+   "body": "edab7f6c2c8f",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1243,11 +1243,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "save-current",
-   "body": "a32120149044",
+   "body": "c8f44a928891",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1258,11 +1258,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "4b89463b721f,1699c21c9cb1,7965c6035352"
+   "chrome": "4b89463b721f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "save-duplicate-rejected",
-   "body": "a32120149044",
+   "body": "c8f44a928891",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1273,11 +1273,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "4b89463b721f,1699c21c9cb1,7965c6035352"
+   "chrome": "4b89463b721f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "saved-drawer-open",
-   "body": "5b38cfc1436f",
+   "body": "44e0fa5391e1",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1288,11 +1288,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "4b89463b721f,1699c21c9cb1,7965c6035352"
+   "chrome": "4b89463b721f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "saved-load",
-   "body": "a32120149044",
+   "body": "c8f44a928891",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1303,11 +1303,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "4b89463b721f,1699c21c9cb1,7965c6035352"
+   "chrome": "4b89463b721f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "saved-reopen-after-load",
-   "body": "5b38cfc1436f",
+   "body": "44e0fa5391e1",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1318,11 +1318,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "4b89463b721f,1699c21c9cb1,7965c6035352"
+   "chrome": "4b89463b721f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "saved-delete",
-   "body": "d27800aa9153",
+   "body": "d104790001e4",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1333,11 +1333,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "saved-escape",
-   "body": "984a3330454f",
+   "body": "79498a2e5c96",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1348,11 +1348,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "about-open",
-   "body": "09bae409372f",
+   "body": "db2f35d8eea2",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1363,11 +1363,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "about-to-shortcuts",
-   "body": "563f86021abc",
+   "body": "0f07c4d67f77",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1378,11 +1378,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "shortcuts-toggle-shut",
-   "body": "984a3330454f",
+   "body": "79498a2e5c96",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1393,11 +1393,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "shortcuts-toggle-open",
-   "body": "563f86021abc",
+   "body": "0f07c4d67f77",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1408,11 +1408,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "shortcuts-escape",
-   "body": "984a3330454f",
+   "body": "79498a2e5c96",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1423,11 +1423,11 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Copper Meadow",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   },
   {
    "name": "header-rename",
-   "body": "4721554a038a",
+   "body": "fa1d60d6ec1a",
    "title": "Header Typed Name · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1438,7 +1438,7 @@
    "undoDisabled": false,
    "generateDisabled": false,
    "paletteName": "Header Typed Name",
-   "chrome": "e5d63e76d10f,1699c21c9cb1,7965c6035352"
+   "chrome": "e5d63e76d10f,d7d3951dcf09,7965c6035352"
   }
  ],
  "panels": {

@@ -126,6 +126,7 @@
   /* divider uses dark ink, not var(--bc): white-on-white was invisible */
   .dock-sep{width:1px;align-self:stretch;background:rgba(17,20,24,.14);background:color-mix(in srgb,var(--ink) 16%,transparent);margin:0 4px}
   .menu button .tdot{flex:0 0 auto;width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
+  #themeBtn .theme-dot{display:inline-flex;border-radius:50%;overflow:hidden;flex-shrink:0}
   .menu button .tick{margin-left:auto;font-weight:800;color:var(--muted);min-width:16px;text-align:right}
 
   /* ---------- strips ---------- */
@@ -517,7 +518,6 @@
     .toolset::before,.toolset::after{content:'';margin:auto}
     #generateBtn{width:100%;justify-content:center;padding:12px 14px}
     .menu{max-height:70vh;overflow:auto}
-    .toolset #themeBtn .theme-name{display:none}
     /* 16px text inputs: iOS Safari auto-zooms anything smaller on focus */
     #paletteNameInput,.word-row input,.exp-row input{font-size:16px}
     /* narrow phones scroll the labeled bar instead of squeezing it */
@@ -1801,7 +1801,7 @@ const GEN_THEMES=[
   {id:'mono',name:'Mono',dot:'linear-gradient(135deg,#111,#888,#fff)'}
 ];
 let genTheme='random';
-function renderThemeBtn(){ $('themeBtn').innerHTML=icon('aperture',18)+'<span class="lbl theme-word">Theme</span><span class="lbl theme-name">: '+GEN_THEMES.find(t=>t.id===genTheme).name+'</span>'; }
+function renderThemeBtn(){ const t=GEN_THEMES.find(t=>t.id===genTheme); const b=$('themeBtn'); b.innerHTML='<span class="theme-dot" style="background:'+t.dot+'">'+icon('aperture',18)+'</span><span class="lbl">Theme</span>'; b.title='Generation theme: '+t.name; b.setAttribute('aria-label','Generation theme: '+t.name); }
 $('themeMenu').innerHTML=GEN_THEMES.map(t=>
   `<button data-gt="${t.id}"><span class="tdot" style="background:${t.dot}"></span><span>${t.name}</span><span class="tick"></span></button>`
 ).join('');
