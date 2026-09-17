@@ -100,7 +100,6 @@
   .btn:disabled{opacity:.45;cursor:default;transform:none;box-shadow:none}
   .btn.primary{background:var(--accent);color:var(--accent-ink)}
   .btn.primary:hover{background:var(--accent-hover)}
-  .btn.icon-only{padding:9px}
   .btn .count{
     background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:800;
     min-width:20px;height:20px;border-radius:99px;
@@ -478,7 +477,6 @@
   .toast .dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--toast-fg)}
   .btn .key{font-family:inherit;font-size:10.5px;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:2px 7px;margin-left:7px;vertical-align:1px;white-space:nowrap}
   .toolset{display:contents}
-  .btn.icon-only .lbl{display:none}
   .about-points kbd{background:rgba(17,20,24,.08);border-radius:5px;padding:1px 7px;font-family:inherit;font-size:12.5px;white-space:nowrap}
   .keys-table{display:flex;flex-direction:column;margin-top:2px}
   .keys-table .krow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 2px;border-bottom:1px solid rgba(17,20,24,.08)}
@@ -570,7 +568,7 @@
     </div>
     <button class="btn" id="savedBtn" title="Your saved palettes"></button>
 
-    <button class="btn icon-only" id="undoBtn" title="Undo (Ctrl+Z)"></button>
+    <button class="btn" id="undoBtn" title="Undo (Ctrl+Z)"></button>
     <button class="btn" id="exportBtn" title="Copy or download this palette"></button>
    </div>
     <button class="btn primary" id="generateBtn" title="Generate (Spacebar)"></button>

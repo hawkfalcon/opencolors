@@ -2,7 +2,7 @@
  "steps": [
   {
    "name": "load",
-   "body": "9548918f7704",
+   "body": "016cb47a0502",
    "title": "Hidden Harbor · opencolors",
    "strips": 5,
    "hexes": "#FF6B4A,#FFC93C,#2EC4B6,#3B82F6,#7C5CF6",
@@ -17,7 +17,7 @@
   },
   {
    "name": "generate-button",
-   "body": "fca7342b2e3f",
+   "body": "f926a9b5412a",
    "title": "Velvet Ember · opencolors",
    "strips": 5,
    "hexes": "#CA287B,#2DA97A,#55B3ED,#83273A,#DCF08F",
@@ -32,7 +32,7 @@
   },
   {
    "name": "generate-spacebar",
-   "body": "fca7342b2e3f",
+   "body": "f926a9b5412a",
    "title": "Velvet Ember · opencolors",
    "strips": 5,
    "hexes": "#CA287B,#2DA97A,#55B3ED,#83273A,#DCF08F",
@@ -47,7 +47,7 @@
   },
   {
    "name": "theme-pastel",
-   "body": "adf3384a4e54",
+   "body": "0919440a27a4",
    "title": "Velvet Ember · opencolors",
    "strips": 5,
    "hexes": "#CA287B,#2DA97A,#55B3ED,#83273A,#DCF08F",
@@ -62,7 +62,7 @@
   },
   {
    "name": "generate-pastel",
-   "body": "7ef4a88d30a5",
+   "body": "560f63f1e297",
    "title": "Midnight Mirage · opencolors",
    "strips": 5,
    "hexes": "#F3F1C0,#AFEDAC,#B2E8C9,#EACBBC,#EAB5B2",
@@ -77,7 +77,7 @@
   },
   {
    "name": "theme-vivid",
-   "body": "0fded59be37c",
+   "body": "ca60dc641dc2",
    "title": "Midnight Mirage · opencolors",
    "strips": 5,
    "hexes": "#F3F1C0,#AFEDAC,#B2E8C9,#EACBBC,#EAB5B2",
@@ -92,7 +92,7 @@
   },
   {
    "name": "generate-vivid",
-   "body": "8a85ef53c9e0",
+   "body": "c22ca918144d",
    "title": "Bold Ember · opencolors",
    "strips": 5,
    "hexes": "#E86A13,#AA25FB,#15F711,#732AF9,#8FEA16",
@@ -107,7 +107,7 @@
   },
   {
    "name": "theme-warm",
-   "body": "a2b04097b8bc",
+   "body": "09b43e8ac6d8",
    "title": "Bold Ember · opencolors",
    "strips": 5,
    "hexes": "#E86A13,#AA25FB,#15F711,#732AF9,#8FEA16",
@@ -122,7 +122,7 @@
   },
   {
    "name": "generate-warm",
-   "body": "57b53b246598",
+   "body": "49361cc89494",
    "title": "Copper Garden · opencolors",
    "strips": 5,
    "hexes": "#D65B2B,#CA4634,#EA2B76,#C73B35,#EB244D",
@@ -137,7 +137,7 @@
   },
   {
    "name": "theme-cool",
-   "body": "fedaa1022792",
+   "body": "cd6dddb84406",
    "title": "Copper Garden · opencolors",
    "strips": 5,
    "hexes": "#D65B2B,#CA4634,#EA2B76,#C73B35,#EB244D",
@@ -152,7 +152,7 @@
   },
   {
    "name": "generate-cool",
-   "body": "7f1d27defecb",
+   "body": "67723344f133",
    "title": "Solar Tide · opencolors",
    "strips": 5,
    "hexes": "#2240AE,#6086DD,#419EB4,#2DC0A3,#3393A0",
@@ -167,7 +167,7 @@
   },
   {
    "name": "theme-light",
-   "body": "3b15bb434921",
+   "body": "09f99bd14561",
    "title": "Solar Tide · opencolors",
    "strips": 5,
    "hexes": "#2240AE,#6086DD,#419EB4,#2DC0A3,#3393A0",
@@ -182,7 +182,7 @@
   },
   {
    "name": "generate-light",
-   "body": "0d03430d05e5",
+   "body": "a85b6cb37256",
    "title": "Copper Comet · opencolors",
    "strips": 5,
    "hexes": "#F2DACC,#E5C1D8,#DFB7A3,#E5BEC2,#DEBAA3",
@@ -197,7 +197,7 @@
   },
   {
    "name": "theme-dark",
-   "body": "6d0a45973e7c",
+   "body": "aed1f29382de",
    "title": "Copper Comet · opencolors",
    "strips": 5,
    "hexes": "#F2DACC,#E5C1D8,#DFB7A3,#E5BEC2,#DEBAA3",
@@ -212,7 +212,7 @@
   },
   {
    "name": "generate-dark",
-   "body": "591374750fba",
+   "body": "bac02e0ca01d",
    "title": "Lunar Meadow · opencolors",
    "strips": 5,
    "hexes": "#2A163E,#242055,#665330,#306C5B,#26391B",
@@ -227,7 +227,7 @@
   },
   {
    "name": "theme-mono",
-   "body": "f15fea2723b8",
+   "body": "4461ba7b2a52",
    "title": "Lunar Meadow · opencolors",
    "strips": 5,
    "hexes": "#2A163E,#242055,#665330,#306C5B,#26391B",
@@ -242,7 +242,7 @@
   },
   {
    "name": "generate-mono",
-   "body": "7f15a2bfc2b1",
+   "body": "100cc378307b",
    "title": "Rapid Desert · opencolors",
    "strips": 5,
    "hexes": "#B145BE,#562159,#4A234C,#95469D,#A315B7",
@@ -257,7 +257,7 @@
   },
   {
    "name": "theme-random",
-   "body": "7d1c061b3f03",
+   "body": "c3cef61fc3e2",
    "title": "Rapid Desert · opencolors",
    "strips": 5,
    "hexes": "#B145BE,#562159,#4A234C,#95469D,#A315B7",
@@ -272,7 +272,7 @@
   },
   {
    "name": "generate-random",
-   "body": "301da12680ab",
+   "body": "268f23371240",
    "title": "Wild Grove · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#D896C2,#46D557,#6EBACB,#7B57D7",
@@ -287,7 +287,7 @@
   },
   {
    "name": "lock-by-click",
-   "body": "983420136619",
+   "body": "7948c2639fbb",
    "title": "Wild Grove · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#D896C2,#46D557,#6EBACB,#7B57D7",
@@ -302,7 +302,7 @@
   },
   {
    "name": "lock-by-L-key",
-   "body": "bef9a30af095",
+   "body": "5ce8c88a37e6",
    "title": "Wild Grove · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#D896C2,#46D557,#6EBACB,#7B57D7",
@@ -317,7 +317,7 @@
   },
   {
    "name": "lock-by-number-key",
-   "body": "983420136619",
+   "body": "7948c2639fbb",
    "title": "Wild Grove · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#D896C2,#46D557,#6EBACB,#7B57D7",
@@ -332,7 +332,7 @@
   },
   {
    "name": "copy-focused-color",
-   "body": "9b1ec4dcddd5",
+   "body": "7948c2639fbb",
    "title": "Wild Grove · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#D896C2,#46D557,#6EBACB,#7B57D7",
@@ -347,7 +347,7 @@
   },
   {
    "name": "generate-with-locks-held",
-   "body": "cfd919c0c8ee",
+   "body": "ecad7f912fc5",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#8651C2,#3896AA,#1EA3AC,#7BE0CC",
@@ -362,7 +362,7 @@
   },
   {
    "name": "arrow-right-immediate",
-   "body": "b248221303fa",
+   "body": "23a1664ab8fb",
    "title": "Velvet Bloom · opencolors",
    "strips": 7,
    "hexes": "#D05EDC,#3896AA,#8651C2,#1EA3AC,#7BE0CC,#8651C2,#3896AA",
@@ -377,7 +377,7 @@
   },
   {
    "name": "arrow-right-settled",
-   "body": "fcf30d655753",
+   "body": "816ae4ce1dc3",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#3896AA,#8651C2,#1EA3AC,#7BE0CC",
@@ -392,7 +392,7 @@
   },
   {
    "name": "swapper-button",
-   "body": "f913053e101f",
+   "body": "78335e6f5dd7",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#1EA3AC,#7BE0CC",
@@ -407,7 +407,7 @@
   },
   {
    "name": "dock-sort-hue",
-   "body": "f169920e6a59",
+   "body": "026b60b79fbc",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#7BE0CC,#D05EDC,#1EA3AC,#3896AA,#8651C2",
@@ -422,7 +422,7 @@
   },
   {
    "name": "dock-sort-light",
-   "body": "7923a93517a8",
+   "body": "afc546aa0a96",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#7BE0CC,#D05EDC,#8651C2,#3896AA,#1EA3AC",
@@ -437,7 +437,7 @@
   },
   {
    "name": "dock-reverse",
-   "body": "a54c98d2b1e1",
+   "body": "d0cddf9f2f32",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#1EA3AC,#D05EDC,#3896AA,#8651C2,#7BE0CC",
@@ -452,7 +452,7 @@
   },
   {
    "name": "dock-shuffle",
-   "body": "6d8728b44d97",
+   "body": "d706127ab98f",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -467,7 +467,7 @@
   },
   {
    "name": "dock-lock-all",
-   "body": "442179b82c26",
+   "body": "a55ab4f93092",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -482,7 +482,7 @@
   },
   {
    "name": "dock-unlock-all",
-   "body": "6cc881282c20",
+   "body": "3121e595062e",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -497,7 +497,7 @@
   },
   {
    "name": "dock-sort-hue-again",
-   "body": "915608eb5a8d",
+   "body": "dfeb2819d5a0",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#8651C2,#3896AA,#1EA3AC,#7BE0CC",
@@ -512,7 +512,7 @@
   },
   {
    "name": "undo-ctrl-z",
-   "body": "f72428b062c9",
+   "body": "3121e595062e",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -527,7 +527,7 @@
   },
   {
    "name": "redo-ctrl-shift-z",
-   "body": "28eb12f26f44",
+   "body": "dfeb2819d5a0",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#8651C2,#3896AA,#1EA3AC,#7BE0CC",
@@ -542,7 +542,7 @@
   },
   {
    "name": "redo-ctrl-y",
-   "body": "28eb12f26f44",
+   "body": "dfeb2819d5a0",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#D05EDC,#8651C2,#3896AA,#1EA3AC,#7BE0CC",
@@ -557,7 +557,7 @@
   },
   {
    "name": "undo-button",
-   "body": "b25200eed2f9",
+   "body": "3121e595062e",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -572,7 +572,7 @@
   },
   {
    "name": "add-in-gap",
-   "body": "e34155b580c7",
+   "body": "29260a54df63",
    "title": "Velvet Bloom · opencolors",
    "strips": 6,
    "hexes": "#3896AA,#D05EDC,#9954C9,#8651C2,#7BE0CC,#1EA3AC",
@@ -587,7 +587,7 @@
   },
   {
    "name": "remove-strip",
-   "body": "b25200eed2f9",
+   "body": "3121e595062e",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -602,7 +602,7 @@
   },
   {
    "name": "grow-to-6",
-   "body": "4f6bacaeac0e",
+   "body": "beda91f0bcf1",
    "title": "Velvet Bloom · opencolors",
    "strips": 6,
    "hexes": "#3896AA,#4939C6,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -617,7 +617,7 @@
   },
   {
    "name": "grow-to-7",
-   "body": "657cc1adb21a",
+   "body": "7e4718bf6768",
    "title": "Velvet Bloom · opencolors",
    "strips": 7,
    "hexes": "#3896AA,#3767BB,#4939C6,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -632,7 +632,7 @@
   },
   {
    "name": "grow-to-8",
-   "body": "97d144538af4",
+   "body": "748d179e2503",
    "title": "Velvet Bloom · opencolors",
    "strips": 8,
    "hexes": "#3896AA,#348FBA,#3767BB,#4939C6,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -647,7 +647,7 @@
   },
   {
    "name": "grow-to-9-maximum",
-   "body": "74465a81c3bb",
+   "body": "3cc2bac74ebc",
    "title": "Velvet Bloom · opencolors",
    "strips": 9,
    "hexes": "#3896AA,#35A8BA,#348FBA,#3767BB,#4939C6,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -662,7 +662,7 @@
   },
   {
    "name": "shrink-back-to-5",
-   "body": "5c025d19676e",
+   "body": "4a3d2be634cb",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -677,7 +677,7 @@
   },
   {
    "name": "edit-open",
-   "body": "e70afa5cff94",
+   "body": "14fc368d7000",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#3896AA,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -692,7 +692,7 @@
   },
   {
    "name": "edit-type-hex",
-   "body": "c55d43cfeb11",
+   "body": "fce0ecb0027f",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#123456,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -707,7 +707,7 @@
   },
   {
    "name": "edit-hue-slider",
-   "body": "e099769d8bc8",
+   "body": "f8b1e3289623",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#123354,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -722,7 +722,7 @@
   },
   {
    "name": "edit-pick-shade",
-   "body": "e805e3841e1d",
+   "body": "5461e6f9aa7d",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -737,7 +737,7 @@
   },
   {
    "name": "edit-done",
-   "body": "8b4d60401fcb",
+   "body": "fd57e90a2032",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -752,7 +752,7 @@
   },
   {
    "name": "edit-open-second",
-   "body": "78219129b7d6",
+   "body": "5ed4f007802e",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -767,7 +767,7 @@
   },
   {
    "name": "edit-escape-cancels",
-   "body": "8b4d60401fcb",
+   "body": "fd57e90a2032",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -782,7 +782,7 @@
   },
   {
    "name": "edit-open-third",
-   "body": "78219129b7d6",
+   "body": "5ed4f007802e",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -797,7 +797,7 @@
   },
   {
    "name": "edit-commit-on-strip-click",
-   "body": "8b441fe50200",
+   "body": "fd57e90a2032",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -812,7 +812,7 @@
   },
   {
    "name": "undo-after-edit",
-   "body": "aa0f6e3f2392",
+   "body": "db8e80f2c607",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -827,7 +827,7 @@
   },
   {
    "name": "theme-menu-open",
-   "body": "37cc2afa809a",
+   "body": "6848c880d2fb",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -842,7 +842,7 @@
   },
   {
    "name": "theme-menu-inner-click",
-   "body": "37cc2afa809a",
+   "body": "6848c880d2fb",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -857,7 +857,7 @@
   },
   {
    "name": "theme-menu-escape",
-   "body": "aa0f6e3f2392",
+   "body": "db8e80f2c607",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -872,7 +872,7 @@
   },
   {
    "name": "new-menu-open",
-   "body": "806e0617bc35",
+   "body": "f753580dd3e9",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -887,7 +887,7 @@
   },
   {
    "name": "new-menu-escape",
-   "body": "ad85dab21aa4",
+   "body": "1ca949a93ab6",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -902,7 +902,7 @@
   },
   {
    "name": "check-menu-open",
-   "body": "61ed5c545715",
+   "body": "f99e76106b44",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -917,7 +917,7 @@
   },
   {
    "name": "check-menu-escape",
-   "body": "20aa9fbbf453",
+   "body": "666715c31063",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -932,7 +932,7 @@
   },
   {
    "name": "theme-pick-vivid",
-   "body": "d2966016f0de",
+   "body": "837893e97faa",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -947,7 +947,7 @@
   },
   {
    "name": "theme-pick-mono",
-   "body": "55e956880fb9",
+   "body": "faa843b4e720",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -962,7 +962,7 @@
   },
   {
    "name": "explore-modal-open",
-   "body": "ff4883ac774e",
+   "body": "67c51e01c303",
    "title": "Velvet Bloom · opencolors",
    "strips": 5,
    "hexes": "#EEF5FB,#D05EDC,#8651C2,#7BE0CC,#1EA3AC",
@@ -977,7 +977,7 @@
   },
   {
    "name": "preset-loaded",
-   "body": "f11e0c1706fd",
+   "body": "ccbd25b0b8ea",
    "title": "Misty Comet · opencolors",
    "strips": 5,
    "hexes": "#556270,#4ECDC4,#C7F464,#FF6B6B,#C44D58",
@@ -992,7 +992,7 @@
   },
   {
    "name": "mood-modal-open",
-   "body": "5e7fea743070",
+   "body": "04bf0c43de24",
    "title": "Misty Comet · opencolors",
    "strips": 5,
    "hexes": "#556270,#4ECDC4,#C7F464,#FF6B6B,#C44D58",
@@ -1007,7 +1007,7 @@
   },
   {
    "name": "word-palette-applied",
-   "body": "2189a8b7a54a",
+   "body": "bdfc73ef7716",
    "title": "Ocean · opencolors",
    "strips": 5,
    "hexes": "#307BB7,#3F90D7,#1856B3,#3A97D4,#1B6BB7",
@@ -1022,7 +1022,7 @@
   },
   {
    "name": "surprise-me",
-   "body": "9eeb6fc42157",
+   "body": "267834c1cd97",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1037,7 +1037,7 @@
   },
   {
    "name": "image-modal-open",
-   "body": "a897dd493fe9",
+   "body": "8a58a9a93586",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1052,7 +1052,7 @@
   },
   {
    "name": "image-modal-escape",
-   "body": "9eeb6fc42157",
+   "body": "267834c1cd97",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1067,7 +1067,7 @@
   },
   {
    "name": "contrast-modal-open",
-   "body": "9555de7536a7",
+   "body": "959f89d889c9",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1082,7 +1082,7 @@
   },
   {
    "name": "contrast-pick-bg",
-   "body": "0a622594599d",
+   "body": "fd3ddd3e4e97",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1097,7 +1097,7 @@
   },
   {
    "name": "contrast-pick-fg",
-   "body": "8479fc796873",
+   "body": "6a0f918da6de",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1112,7 +1112,7 @@
   },
   {
    "name": "contrast-escape",
-   "body": "5cab299f9c01",
+   "body": "a9075ad7873a",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1127,7 +1127,7 @@
   },
   {
    "name": "vision-modal-open",
-   "body": "6839b080c5a6",
+   "body": "6b733a5daf06",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1142,7 +1142,7 @@
   },
   {
    "name": "vision-escape",
-   "body": "4b031911ff61",
+   "body": "7d612988582d",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1157,7 +1157,7 @@
   },
   {
    "name": "export-modal-open",
-   "body": "097dfa738f1c",
+   "body": "5204be0e3aed",
    "title": "Calm Circuit · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1172,7 +1172,7 @@
   },
   {
    "name": "export-rename",
-   "body": "79f6b826e748",
+   "body": "55e25e2eb4f0",
    "title": "Renamed Palette · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1187,7 +1187,7 @@
   },
   {
    "name": "export-reroll-name",
-   "body": "c15cec39b9d7",
+   "body": "1396dc8672b4",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1202,7 +1202,7 @@
   },
   {
    "name": "export-copy-buttons",
-   "body": "72ce05c883a8",
+   "body": "1396dc8672b4",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1217,7 +1217,7 @@
   },
   {
    "name": "export-download-png",
-   "body": "b74214f7b923",
+   "body": "1396dc8672b4",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1232,7 +1232,7 @@
   },
   {
    "name": "export-escape",
-   "body": "68c147e9c2a9",
+   "body": "2b5b84ba2988",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1247,7 +1247,7 @@
   },
   {
    "name": "save-current",
-   "body": "cff606e7dc5a",
+   "body": "a32120149044",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1262,7 +1262,7 @@
   },
   {
    "name": "save-duplicate-rejected",
-   "body": "f8370ce7b935",
+   "body": "a32120149044",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1277,7 +1277,7 @@
   },
   {
    "name": "saved-drawer-open",
-   "body": "6030e28602c6",
+   "body": "5b38cfc1436f",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1292,7 +1292,7 @@
   },
   {
    "name": "saved-load",
-   "body": "e4c709bfac50",
+   "body": "a32120149044",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1307,7 +1307,7 @@
   },
   {
    "name": "saved-reopen-after-load",
-   "body": "256a5c5392af",
+   "body": "5b38cfc1436f",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1322,7 +1322,7 @@
   },
   {
    "name": "saved-delete",
-   "body": "de80c3322ca8",
+   "body": "d27800aa9153",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1337,7 +1337,7 @@
   },
   {
    "name": "saved-escape",
-   "body": "d4b3a856d8c3",
+   "body": "984a3330454f",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1352,7 +1352,7 @@
   },
   {
    "name": "about-open",
-   "body": "104c36d9c218",
+   "body": "09bae409372f",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1367,7 +1367,7 @@
   },
   {
    "name": "about-to-shortcuts",
-   "body": "8e20b17c4061",
+   "body": "563f86021abc",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1382,7 +1382,7 @@
   },
   {
    "name": "shortcuts-toggle-shut",
-   "body": "d4b3a856d8c3",
+   "body": "984a3330454f",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1397,7 +1397,7 @@
   },
   {
    "name": "shortcuts-toggle-open",
-   "body": "8e20b17c4061",
+   "body": "563f86021abc",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1412,7 +1412,7 @@
   },
   {
    "name": "shortcuts-escape",
-   "body": "d4b3a856d8c3",
+   "body": "984a3330454f",
    "title": "Copper Meadow · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
@@ -1427,7 +1427,7 @@
   },
   {
    "name": "header-rename",
-   "body": "6036ee9c0382",
+   "body": "4721554a038a",
    "title": "Header Typed Name · opencolors",
    "strips": 5,
    "hexes": "#C2F0C7,#C8D9E6,#C2EABA,#C7AEE2,#F5D3F4",
