@@ -1510,7 +1510,7 @@ function fitNameInput(){
   nameSizer.textContent=ni.value||'';
   if(!nameSizer.getBoundingClientRect) return;
   nameSizer.style.fontSize=getComputedStyle(ni).fontSize; /* 13.5 desktop / 16 mobile */
-  const cap=(globalThis.matchMedia&&matchMedia('(max-width:720px)').matches)?140:260;
+  const cap=(globalThis.matchMedia&&matchMedia('(max-width:720px)').matches)?320:260; /* row-1 fits ~180; longer wraps centered */
   ni.style.width=Math.max(48,Math.min(cap,Math.ceil(nameSizer.getBoundingClientRect().width)+20))+'px';
 }
 $('paletteNameInput').addEventListener('input',e=>{ const v=e.target.value.trim().slice(0,40); if(v) setName(v); else fitNameInput(); });
