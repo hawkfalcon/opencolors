@@ -100,7 +100,7 @@
   .btn:disabled{opacity:.45;cursor:default;transform:none;box-shadow:none}
   .btn.primary{background:var(--accent);color:var(--accent-ink)}
   .btn.primary:hover{background:var(--accent-hover)}
-  .btn.icon-only{padding:9px}
+  .btn.icon-only .lbl{display:none}
   .btn .count{
     background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:800;
     min-width:20px;height:20px;border-radius:99px;
@@ -474,8 +474,8 @@
   @keyframes toastin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
   .toast .dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--toast-fg)}
-  .toolset{display:contents}
   .btn .key{font-family:inherit;font-size:10.5px;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:2px 7px;margin-left:7px;vertical-align:1px;white-space:nowrap}
+  .toolset{display:contents}
   .about-points kbd{background:rgba(17,20,24,.08);border-radius:5px;padding:1px 7px;font-family:inherit;font-size:12.5px;white-space:nowrap}
   .keys-table{display:flex;flex-direction:column;margin-top:2px}
   .keys-table .krow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 2px;border-bottom:1px solid rgba(17,20,24,.08)}
@@ -503,6 +503,15 @@
     /* strips stack vertically on phones, so the swap glyph points up/down */
     .swapper button svg{transform:rotate(90deg)}
     .hex{font-size:19px;padding:6px 8px}
+    /* labeled tab bar: scrollable icon-over-label tools, big Generate beneath */
+    .toolbar{flex:1 1 100%;flex-direction:column;align-items:stretch;flex-wrap:nowrap}
+    .toolset{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;padding-bottom:2px;scrollbar-width:none}
+    .toolset::-webkit-scrollbar{display:none}
+    .toolset .menu-anchor{flex:0 0 auto}
+    .toolset .btn{flex:0 0 auto;min-width:62px;flex-direction:column;gap:3px;padding:7px 8px;position:relative}
+    .toolset .btn .lbl{display:inline;font-size:11px}
+    .toolset .btn .count{position:absolute;top:5px;right:8px;min-width:18px;height:18px;font-size:10px}
+    .menu{max-height:70vh;overflow:auto}
     .btn .lbl{display:none}
     .btn{padding:9px 11px}
     .btn.primary .lbl{display:inline}
@@ -1304,7 +1313,7 @@ $('checkBtn').innerHTML   = icon('contrast',18)+'<span class="lbl">Check</span>'
 $('exportBtn').innerHTML  = icon('download',18)+'<span class="lbl">Export</span>';
 $('generateBtn').innerHTML= icon('refresh',18)+'<span class="lbl">Generate<kbd class="key">Space</kbd></span>';
 [['sortHue','droplet'],['sortLight','sun'],['reverse','repeat'],['shuffle','shuffle'],['lockToggle','lock']].forEach(([k,ic])=>{ const b=document.querySelector('#dock [data-dock="'+k+'"]'); if(b) b.innerHTML=icon(ic,18); });
-$('undoBtn').innerHTML    = icon('undo',18);
+$('undoBtn').innerHTML    = icon('undo',18)+'<span class="lbl">Undo</span>';
 $('expDice').innerHTML    = icon('refresh',14);
 [['themeBtn','Generation theme'],['newBtn','Create palette'],['checkBtn','Accessibility checks'],['undoBtn','Undo'],['exportBtn','Export palette'],['generateBtn','Generate palette'],['expDice','Random name']].forEach(([id,label])=>$(id).setAttribute('aria-label',label));
 const MENU_ICONS={image:'image',mood:'sparkles',explore:'grid',random:'refresh',contrast:'sun',vision:'eye'};
@@ -1317,6 +1326,20 @@ function placeMenu(btn){
   const anchor=btn.parentElement, menu=anchor.querySelector('.menu');
   if(!menu) return;
   menu.style.left=''; menu.style.right='';
+  if(globalThis.matchMedia&&matchMedia('(max-width:720px)').matches){
+    /* mobile tabs live in a scroll strip that would clip an absolutely
+       positioned menu, so pin it instead. (The header backdrop-filter
+       contains fixed positioning, making these coords header-relative -
+       and the sticky header hugs the viewport corner, so same thing.) */
+    const hb=$('topbar').getBoundingClientRect(), a=anchor.getBoundingClientRect();
+    const w=menu.getBoundingClientRect().width;
+    menu.style.position='fixed';
+    menu.style.top=(a.bottom-hb.top+8)+'px';
+    menu.style.left=(Math.max(8,Math.min(a.left,window.innerWidth-w-8))-hb.left)+'px';
+    menu.style.right='auto';
+    return;
+  }
+  menu.style.position='';
   const a=anchor.getBoundingClientRect(), r=menu.getBoundingClientRect(), w=r.width;
   let left=a.right-w;
   if(left<8) left=a.left;
