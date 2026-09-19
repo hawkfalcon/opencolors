@@ -110,19 +110,20 @@
   /* ---------- remix dock ---------- */
   #dock{
     position:fixed;bottom:calc(16px + env(safe-area-inset-bottom, 0px));left:50%;transform:translateX(-50%);
-    display:flex;align-items:center;gap:2px;padding:6px;
+    display:flex;align-items:center;gap:4px;padding:6px 10px;
     border:var(--bw) solid var(--bc);border-radius:99px;
     background:var(--chrome);-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);
     box-shadow:0 12px 40px rgba(17,20,24,.16), inset 0 1px 0 rgba(255,255,255,.75);
     z-index:60;
   }
   #dock button{
-    width:38px;height:38px;border-radius:99px;border:0;background:transparent;color:var(--ink);
-    display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+    flex:0 0 auto;min-width:56px;border-radius:14px;border:0;background:transparent;color:var(--ink);
+    display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 10px;cursor:pointer;
     transition:background .15s,transform .12s;
   }
   #dock button:hover{background:var(--chrome-hover)}
   #dock button:active{transform:scale(.92)}
+  #dock button .lbl{display:inline;font-size:10px}
   .dock-sep{width:1px;height:22px;background:var(--bc);margin:0 4px}
   .menu button .tdot{flex:0 0 auto;width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
   .menu button .tick{margin-left:auto;font-weight:800;color:var(--muted);min-width:16px;text-align:right}
@@ -486,7 +487,7 @@
   /* responsive: stack vertically */
   @media (max-width:720px){
     header{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0}
-    main#strips{flex-direction:column;overflow-y:auto;padding-bottom:76px}
+    main#strips{flex-direction:column;overflow-y:auto;padding-bottom:92px}
     .strip{padding:14px 16px;min-height:0}
     .strip-inner{flex-direction:row;width:100%;gap:10px;animation:none}
     .actions{flex-direction:row;margin:0;order:2;margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
@@ -512,6 +513,9 @@
     .toolset .btn .lbl{display:inline;font-size:11px}
     .toolset .btn .count{position:absolute;top:5px;right:8px;min-width:18px;height:18px;font-size:10px}
     .menu{max-height:70vh;overflow:auto}
+    /* narrow phones scroll the labeled bar instead of squeezing it */
+    #dock{max-width:calc(100vw - 24px);overflow-x:auto;scrollbar-width:none}
+    #dock::-webkit-scrollbar{display:none}
     .btn .lbl{display:none}
     .btn{padding:9px 11px}
     .btn.primary .lbl{display:inline}
@@ -1312,7 +1316,7 @@ $('newBtn').innerHTML     = icon('zap',18)+'<span class="lbl">Create</span>';
 $('checkBtn').innerHTML   = icon('contrast',18)+'<span class="lbl">Check</span>';
 $('exportBtn').innerHTML  = icon('download',18)+'<span class="lbl">Export</span>';
 $('generateBtn').innerHTML= icon('refresh',18)+'<span class="lbl">Generate<kbd class="key">Space</kbd></span>';
-[['sortHue','droplet'],['sortLight','sun'],['reverse','repeat'],['shuffle','shuffle'],['lockToggle','lock']].forEach(([k,ic])=>{ const b=document.querySelector('#dock [data-dock="'+k+'"]'); if(b) b.innerHTML=icon(ic,18); });
+[['sortHue','droplet','Hue'],['sortLight','sun','Light'],['reverse','repeat','Reverse'],['shuffle','shuffle','Shuffle'],['lockToggle','lock','Lock']].forEach(([k,ic,lb])=>{ const b=document.querySelector('#dock [data-dock="'+k+'"]'); if(b) b.innerHTML=icon(ic,18)+'<span class="lbl">'+lb+'</span>'; });
 $('undoBtn').innerHTML    = icon('undo',18)+'<span class="lbl">Undo</span>';
 $('expDice').innerHTML    = icon('refresh',14);
 [['themeBtn','Generation theme'],['newBtn','Create palette'],['checkBtn','Accessibility checks'],['undoBtn','Undo'],['exportBtn','Export palette'],['generateBtn','Generate palette'],['expDice','Random name']].forEach(([id,label])=>$(id).setAttribute('aria-label',label));
@@ -1414,7 +1418,7 @@ function render(){
   fitNameInput();
   $('generateBtn').disabled=!colors.some(c=>!c.locked);
   const lt=document.querySelector('#dock [data-dock="lockToggle"]');
-  if(lt){ const allL=colors.every(c=>c.locked); lt.innerHTML=icon(allL?'unlock':'lock',18); const ll=allL?'Unlock all':'Lock all'; lt.title=ll; lt.setAttribute('aria-label',ll); }
+  if(lt){ const allL=colors.every(c=>c.locked); lt.innerHTML=icon(allL?'unlock':'lock',18)+'<span class="lbl">'+(allL?'Unlock':'Lock')+'</span>'; const ll=allL?'Unlock all':'Lock all'; lt.title=ll; lt.setAttribute('aria-label',ll); }
   if(editIndex>=0){ editIndex=-1; editBackup=null; stripsEl.classList.remove('editing'); } // full renders exit edit mode
   syncHash();
 }
