@@ -126,7 +126,8 @@
   #dock button.primary{background:var(--accent);color:var(--accent-ink);border-radius:99px}
   #dock button.primary:hover{background:var(--accent-hover)}
   #generateBtn .key{display:none}
-  .dock-sep{width:1px;height:22px;background:var(--bc);margin:0 4px}
+  /* divider uses dark ink, not var(--bc): white-on-white was invisible */
+  .dock-sep{width:1px;align-self:stretch;background:rgba(17,20,24,.14);background:color-mix(in srgb,var(--ink) 16%,transparent);margin:0 4px}
   .menu button .tdot{flex:0 0 auto;width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
   #themeBtn .theme-dot{display:inline-flex;border-radius:50%;overflow:hidden;flex-shrink:0}
   .menu button .tick{margin-left:auto;font-weight:800;color:var(--muted);min-width:16px;text-align:right}
@@ -568,8 +569,6 @@
     </div>
     <button class="btn" id="savedBtn" title="Your saved palettes"></button>
 
-    <button class="btn" id="undoBtn" title="Undo (Ctrl+Z)"></button>
-    <button class="btn" id="redoBtn" title="Redo (Ctrl+Shift+Z)"></button>
     <button class="btn" id="exportBtn" title="Copy or download this palette"></button>
    </div>
   </div>
@@ -584,6 +583,9 @@
   <button data-dock="sortLight" title="Sort by lightness" aria-label="Sort by lightness"></button>
   <button data-dock="reverse" title="Reverse order" aria-label="Reverse order"></button>
   <button data-dock="shuffle" title="Shuffle order" aria-label="Shuffle order"></button>
+  <span class="dock-sep" aria-hidden="true"></span>
+  <button class="btn" id="undoBtn" title="Undo (Ctrl+Z)"></button>
+  <button class="btn" id="redoBtn" title="Redo (Ctrl+Shift+Z)"></button>
   <span class="dock-sep" aria-hidden="true"></span>
   <button data-dock="lockToggle" title="Lock all" aria-label="Lock all"></button>
 </nav>
