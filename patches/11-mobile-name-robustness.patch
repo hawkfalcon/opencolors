@@ -1,0 +1,50 @@
+diff --git a/index.html b/index.html
+index 8ec88ab..18b6543 100644
+--- a/index.html
++++ b/index.html
+@@ -487,6 +487,7 @@
+   /* responsive: stack vertically */
+   @media (max-width:720px){
+     header{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0}
++    .logo{margin-right:0}
+     main#strips{flex-direction:column;overflow-y:auto;padding-bottom:92px}
+     .strip{padding:14px 16px;min-height:0}
+     .strip-inner{flex-direction:row;width:100%;gap:10px;animation:none}
+@@ -1499,7 +1500,9 @@ function fitNameInput(){
+   const ni=$('paletteNameInput');
+   nameSizer.textContent=ni.value||'';
+   if(!nameSizer.getBoundingClientRect) return;
+-  ni.style.width=Math.max(48,Math.min(260,Math.ceil(nameSizer.getBoundingClientRect().width)+20))+'px';
++  nameSizer.style.fontSize=getComputedStyle(ni).fontSize; /* 13.5 desktop / 16 mobile */
++  const cap=(globalThis.matchMedia&&matchMedia('(max-width:720px)').matches)?320:260; /* row-1 fits ~180; longer wraps centered */
++  ni.style.width=Math.max(48,Math.min(cap,Math.ceil(nameSizer.getBoundingClientRect().width)+20))+'px';
+ }
+ $('paletteNameInput').addEventListener('input',e=>{ const v=e.target.value.trim().slice(0,40); if(v) setName(v); else fitNameInput(); });
+ $('paletteNameInput').addEventListener('blur',()=>{ $('paletteNameInput').value=paletteName; fitNameInput(); });
+diff --git a/dev/audit.js b/dev/audit.js
+index 15ae995..d7d5b40 100644
+--- a/dev/audit.js
++++ b/dev/audit.js
+@@ -179,6 +179,9 @@ t('toasts announced to screen readers', /id="toasts" role="status"/.test(html));
+ t('color names at full opacity', /\.cname\{[^}]*opacity:1;/.test(css));
+ t('mobile tabs centered but scroll-safe', /\.toolset::before,\.toolset::after\{content:'';margin:auto\}/.test(css));
+ t('dock buttons labeled everywhere', /'lockToggle','lock','Lock'/.test(html) && /#dock button \.lbl\{display:inline/.test(css) && !/#dock button \.lbl\{display:none\}/.test(css));
++t('name sizer tracks input font', /nameSizer\.style\.fontSize=getComputedStyle\(ni\)\.fontSize/.test(html));
++t('mobile title row left-anchored', /header\{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0\}/.test(css) && !/\.header-name\{margin-right:0\}/.test(css));
++t('mobile name cap fits wrapped row', /matches\)\?320:260/.test(html));
+ t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
+ t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
+ t('widening animates', /flex-grow \.3s ease/.test(html));
+diff --git a/README.md b/README.md
+index f0e9dff..1d1f525 100644
+--- a/README.md
++++ b/README.md
+@@ -42,7 +42,7 @@ Three node tools, each covering what the others cannot:
+ ```sh
+ node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
+ node dev/domtest.js   #  96 interaction steps      — real DOM (jsdom), golden snapshot
+-node dev/audit.js     #  84 contrast / a11y / heuristic checks
++node dev/audit.js     #  87 contrast / a11y / heuristic checks
+ ```
+ 
+ `harness.js` and `audit.js` need nothing but node. `domtest.js` needs jsdom

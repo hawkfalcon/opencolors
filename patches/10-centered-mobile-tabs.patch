@@ -1,0 +1,46 @@
+diff --git a/index.html b/index.html
+index e6fd704..8ec88ab 100644
+--- a/index.html
++++ b/index.html
+@@ -506,12 +506,13 @@
+     .hex{font-size:19px;padding:6px 8px}
+     /* labeled tab bar: scrollable icon-over-label tools, big Generate beneath */
+     .toolbar{flex:1 1 100%;flex-direction:column;align-items:stretch;flex-wrap:nowrap}
+-    .toolset{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;padding-bottom:2px;scrollbar-width:none}
++    .toolset{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:5px;padding-bottom:2px;scrollbar-width:none}
+     .toolset::-webkit-scrollbar{display:none}
+     .toolset .menu-anchor{flex:0 0 auto}
+-    .toolset .btn{flex:0 0 auto;min-width:62px;flex-direction:column;gap:3px;padding:7px 8px;position:relative}
+-    .toolset .btn .lbl{display:inline;font-size:11px}
++    .toolset .btn{flex:0 0 auto;min-width:56px;flex-direction:column;gap:3px;padding:8px 10px;position:relative}
++    .toolset .btn .lbl{display:inline;font-size:10px}
+     .toolset .btn .count{position:absolute;top:5px;right:8px;min-width:18px;height:18px;font-size:10px}
++    .toolset::before,.toolset::after{content:'';margin:auto}
+     .menu{max-height:70vh;overflow:auto}
+     /* 16px text inputs: iOS Safari auto-zooms anything smaller on focus */
+     #paletteNameInput,.word-row input,.exp-row input{font-size:16px}
+diff --git a/dev/audit.js b/dev/audit.js
+index 4a12c48..15ae995 100644
+--- a/dev/audit.js
++++ b/dev/audit.js
+@@ -177,6 +177,7 @@ t('mobile tabs show labels', /max-width:720px[\s\S]*?\.toolset \.btn \.lbl\{[^}]
+ t('mobile text inputs dodge iOS auto-zoom', /#paletteNameInput,\.word-row input,\.exp-row input\{font-size:16px\}/.test(css));
+ t('toasts announced to screen readers', /id="toasts" role="status"/.test(html));
+ t('color names at full opacity', /\.cname\{[^}]*opacity:1;/.test(css));
++t('mobile tabs centered but scroll-safe', /\.toolset::before,\.toolset::after\{content:'';margin:auto\}/.test(css));
+ t('dock buttons labeled everywhere', /'lockToggle','lock','Lock'/.test(html) && /#dock button \.lbl\{display:inline/.test(css) && !/#dock button \.lbl\{display:none\}/.test(css));
+ t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
+ t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
+diff --git a/README.md b/README.md
+index d16560a..f0e9dff 100644
+--- a/README.md
++++ b/README.md
+@@ -42,7 +42,7 @@ Three node tools, each covering what the others cannot:
+ ```sh
+ node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
+ node dev/domtest.js   #  96 interaction steps      — real DOM (jsdom), golden snapshot
+-node dev/audit.js     #  83 contrast / a11y / heuristic checks
++node dev/audit.js     #  84 contrast / a11y / heuristic checks
+ ```
+ 
+ `harness.js` and `audit.js` need nothing but node. `domtest.js` needs jsdom

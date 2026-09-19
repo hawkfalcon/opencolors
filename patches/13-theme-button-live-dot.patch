@@ -1,0 +1,46 @@
+diff --git a/index.html b/index.html
+index 12313e2..2aa8fa8 100644
+--- a/index.html
++++ b/index.html
+@@ -125,6 +125,7 @@
+   #dock button .lbl{display:inline;font-size:10px}
+   .dock-sep{width:1px;height:22px;background:var(--bc);margin:0 4px}
+   .menu button .tdot{flex:0 0 auto;width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
++  #themeBtn .theme-dot{display:inline-flex;border-radius:50%;overflow:hidden;flex-shrink:0}
+   .menu button .tick{margin-left:auto;font-weight:800;color:var(--muted);min-width:16px;text-align:right}
+ 
+   /* ---------- strips ---------- */
+@@ -1797,7 +1798,7 @@ const GEN_THEMES=[
+   {id:'mono',name:'Mono',dot:'linear-gradient(135deg,#111,#888,#fff)'}
+ ];
+ let genTheme='random';
+-function renderThemeBtn(){ $('themeBtn').innerHTML=icon('aperture',18)+'<span class="lbl">Theme: '+GEN_THEMES.find(t=>t.id===genTheme).name+'</span>'; }
++function renderThemeBtn(){ const t=GEN_THEMES.find(t=>t.id===genTheme); const b=$('themeBtn'); b.innerHTML='<span class="theme-dot" style="background:'+t.dot+'">'+icon('aperture',18)+'</span><span class="lbl">Theme</span>'; b.title='Generation theme: '+t.name; b.setAttribute('aria-label','Generation theme: '+t.name); }
+ $('themeMenu').innerHTML=GEN_THEMES.map(t=>
+   `<button data-gt="${t.id}"><span class="tdot" style="background:${t.dot}"></span><span>${t.name}</span><span class="tick"></span></button>`
+ ).join('');
+diff --git a/dev/audit.js b/dev/audit.js
+index 7b6c226..2cd6dac 100644
+--- a/dev/audit.js
++++ b/dev/audit.js
+@@ -178,6 +178,7 @@ t('mobile text inputs dodge iOS auto-zoom', /#paletteNameInput,\.word-row input,
+ t('toasts announced to screen readers', /id="toasts" role="status"/.test(html));
+ t('color names at full opacity', /\.cname\{[^}]*opacity:1;/.test(css));
+ t('mobile tabs centered but scroll-safe', /\.toolset::before,\.toolset::after\{content:'';margin:auto\}/.test(css));
++t('theme button: dot + plain Theme label', /class="theme-dot"/.test(html) && /<span class="lbl">Theme<\/span>/.test(html) && !/>Theme: </.test(html) && /Generation theme: '\+t\.name/.test(html));
+ t('dock buttons labeled everywhere', /'lockToggle','lock','Lock'/.test(html) && /#dock button \.lbl\{display:inline/.test(css) && !/#dock button \.lbl\{display:none\}/.test(css));
+ t('name sizer tracks input font', /nameSizer\.style\.fontSize=getComputedStyle\(ni\)\.fontSize/.test(html));
+ t('mobile title row left-anchored', /header\{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0\}/.test(css) && !/\.header-name\{margin-right:0\}/.test(css));
+diff --git a/README.md b/README.md
+index 74db693..ae9edc3 100644
+--- a/README.md
++++ b/README.md
+@@ -42,7 +42,7 @@ Three node tools, each covering what the others cannot:
+ ```sh
+ node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
+ node dev/domtest.js   #  96 interaction steps      — real DOM (jsdom), golden snapshot
+-node dev/audit.js     #  88 contrast / a11y / heuristic checks
++node dev/audit.js     #  89 contrast / a11y / heuristic checks
+ ```
+ 
+ `harness.js` and `audit.js` need nothing but node. `domtest.js` needs jsdom

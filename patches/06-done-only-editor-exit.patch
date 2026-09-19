@@ -1,0 +1,87 @@
+diff --git a/index.html b/index.html
+index f98bd27..db99d5d 100644
+--- a/index.html
++++ b/index.html
+@@ -240,7 +240,7 @@
+   /* edit mode: seam add/swap buttons rest while a color is being edited */
+   main.editing .adder,main.editing .swapper{pointer-events:none}
+   main.editing .adder button,main.editing .swapper button{opacity:0 !important}
+-  .edit-panel{width:100%;max-height:100%;overflow:auto;overscroll-behavior:contain;padding:46px 26px 18px;animation:panelIn .32s ease}
++  .edit-panel{width:100%;max-height:100%;overflow:auto;overscroll-behavior:contain;padding:18px 26px;animation:panelIn .32s ease}
+   @keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+   .edit-panel .field{margin-bottom:12px}
+   .edit-panel .field label{color:var(--on,#fff);text-shadow:0 1px 4px var(--sh,transparent)}
+@@ -257,16 +257,6 @@
+   .shade-row{display:flex;gap:6px;overflow-x:auto;padding:4px 0}
+   .shade-row .shade{flex:1 0 36px;height:46px}
+   .ep-done{width:100%;justify-content:center;margin-top:10px}
+-  .ep-x{
+-    position:absolute;top:12px;right:12px;z-index:7;
+-    width:32px;height:32px;border-radius:50%;cursor:pointer;
+-    display:flex;align-items:center;justify-content:center;
+-    background:rgba(128,128,128,.25);background:color-mix(in srgb,var(--on,#fff) 16%,transparent);
+-    border:1px solid rgba(128,128,128,.4);border:1px solid color-mix(in srgb,var(--on,#fff) 30%,transparent);
+-    color:var(--on,#fff);
+-    box-shadow:0 2px 8px rgba(17,20,24,.28), inset 0 1px 0 rgba(255,255,255,.7);
+-    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+-  }
+ 
+   /* ---------- modal ---------- */
+   .overlay{
+@@ -1443,7 +1433,7 @@ function anyModalOpen(){ return !!document.querySelector('.overlay.open'); }
+ 
+ stripsEl.addEventListener('click',e=>{
+   const pact=e.target.closest('[data-pact]');
+-  if(pact){ if(pact.dataset.pact==='done') inlineDone(); else inlineCancel(); return; }
++  if(pact){ inlineDone(); return; } // Done is the only panel exit; Esc still cancels
+   if(e.target.closest('.edit-panel')) return;
+   if(editIndex>=0) inlineDone();
+   const btn=e.target.closest('[data-action]');
+@@ -1600,10 +1590,9 @@ function animateHeight(el,from,to,ms){
+ }
+ /* remove the inline editor and restore the strip it was attached to */
+ function teardownEditPanel(i){
+-  const panel=document.querySelector('.edit-panel'), x=document.querySelector('.ep-x');
+-  if(x) x.remove();
+   const stripEl=document.querySelector('#strip-'+i);
+   const startH=stripEl?stripEl.offsetHeight:0;
++  const panel=document.querySelector('.edit-panel');
+   if(panel) panel.style.display='none'; // hide first so the row height can be measured…
+   if(stripEl) stripEl.classList.remove('editing');
+   stripsEl.classList.remove('editing');
+@@ -1642,8 +1631,7 @@ function editPanelHTML(){
+         <input type="range" id="lightSlider" min="0" max="100" value="0" aria-label="Lightness"></div>
+       <div class="field"><label>Shades</label><div class="shade-row" id="shadeGrid"></div></div>
+       <button class="btn primary ep-done" data-pact="done">Done</button>
+-    </div>
+-    <button class="ep-x" data-pact="cancel" aria-label="Cancel editing" title="Cancel (Esc)">${icon('x',16)}</button>`;
++    </div>`;
+ }
+ function syncEditFields(h,s,l,hex){
+   $('hexInput').value='#'+hex.toUpperCase();
+diff --git a/dev/audit.js b/dev/audit.js
+index ae7dfac..55ee18a 100644
+--- a/dev/audit.js
++++ b/dev/audit.js
+@@ -174,7 +174,7 @@ t('editing stretches column', /\.strip\.editing\{flex-grow:2\.6\}/.test(html));
+ t('inline edit keeps + cancels', /function inlineDone/.test(html) && /function inlineCancel/.test(html));
+ t('no duplicative copy button', !/title="Copy hex"/.test(html));
+ t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
+-t('edit panel is chromeless', !/ep-head/.test(html) && /class="ep-x"/.test(html));
++t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
+ t('widening animates', /flex-grow \.3s ease/.test(html));
+ t('strip moves animate', /function moveStrip/.test(html));
+ t('swap uses clones (no white flash)', /swap-clone/.test(html));
+diff --git a/dev/domtest.js b/dev/domtest.js
+index 92178e5..19e8fdc 100644
+--- a/dev/domtest.js
++++ b/dev/domtest.js
+@@ -144,7 +144,7 @@ const SESSION = [
+   ['edit-open-second', async (c) => c.click(c.q('.strip[data-index="1"] [data-action="edit"]'))],
+   ['edit-escape-cancels', async (c) => c.key('Escape')],
+   ['edit-open-third', async (c) => c.click(c.q('.strip[data-index="1"] [data-action="edit"]'))],
+-  ['edit-cancel-button', async (c) => c.click(c.q('[data-pact="cancel"]'))],
++  ['edit-commit-on-strip-click', async (c) => c.click(c.q('.strip[data-index="2"] .hex'))],
+   ['undo-after-edit', async (c) => c.key('z', { ctrlKey: true })],
+ 
+   /* dropdown menus */

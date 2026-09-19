@@ -1,0 +1,60 @@
+diff --git a/index.html b/index.html
+index 2751a84..5cd1de2 100644
+--- a/index.html
++++ b/index.html
+@@ -126,7 +126,8 @@
+   #dock button.primary{background:var(--accent);color:var(--accent-ink);border-radius:99px}
+   #dock button.primary:hover{background:var(--accent-hover)}
+   #generateBtn .key{display:none}
+-  .dock-sep{width:1px;height:22px;background:var(--bc);margin:0 4px}
++  /* divider uses dark ink, not var(--bc): white-on-white was invisible */
++  .dock-sep{width:1px;align-self:stretch;background:rgba(17,20,24,.14);background:color-mix(in srgb,var(--ink) 16%,transparent);margin:0 4px}
+   .menu button .tdot{flex:0 0 auto;width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
+   #themeBtn .theme-dot{display:inline-flex;border-radius:50%;overflow:hidden;flex-shrink:0}
+   .menu button .tick{margin-left:auto;font-weight:800;color:var(--muted);min-width:16px;text-align:right}
+@@ -568,8 +569,6 @@
+     </div>
+     <button class="btn" id="savedBtn" title="Your saved palettes"></button>
+ 
+-    <button class="btn" id="undoBtn" title="Undo (Ctrl+Z)"></button>
+-    <button class="btn" id="redoBtn" title="Redo (Ctrl+Shift+Z)"></button>
+     <button class="btn" id="exportBtn" title="Copy or download this palette"></button>
+    </div>
+   </div>
+@@ -585,6 +584,9 @@
+   <button data-dock="reverse" title="Reverse order" aria-label="Reverse order"></button>
+   <button data-dock="shuffle" title="Shuffle order" aria-label="Shuffle order"></button>
+   <span class="dock-sep" aria-hidden="true"></span>
++  <button class="btn" id="undoBtn" title="Undo (Ctrl+Z)"></button>
++  <button class="btn" id="redoBtn" title="Redo (Ctrl+Shift+Z)"></button>
++  <span class="dock-sep" aria-hidden="true"></span>
+   <button data-dock="lockToggle" title="Lock all" aria-label="Lock all"></button>
+ </nav>
+ 
+diff --git a/dev/audit.js b/dev/audit.js
+index 3d83e40..83f43b2 100644
+--- a/dev/audit.js
++++ b/dev/audit.js
+@@ -185,7 +185,9 @@ t('mobile title row left-anchored', /header\{position:sticky;top:0;left:0;right:
+ t('undo labeled everywhere', /id="undoBtn"/.test(html) && !/icon-only/.test(html));
+ t('generate leads the dock', /<nav id="dock"[^>]*>\s*<button[^>]*id="generateBtn"/.test(html) && /aria-label="Palette actions"/.test(html) && /#dock button\.primary\{background:var\(--accent\)/.test(css) && /#generateBtn \.key\{display:none\}/.test(css) && /#dock button\.primary\{[^}]*border-radius:99px/.test(css));
+ t('redo button mirrors undo', /id="redoBtn"/.test(html) && /redoBtn'\)\.disabled=!redoStack\.length/.test(html) && /icon\('redo',18\)/.test(html) && /redo:'</.test(html));
++t('history section sits between shuffle and lock', /data-dock="shuffle"[\s\S]*?id="undoBtn"[\s\S]*?id="redoBtn"[\s\S]*?dock-sep[\s\S]*?data-dock="lockToggle"/.test(html));
+ t('mobile name cap fits wrapped row', /matches\)\?320:260/.test(html));
++t('dock divider visible on white', /\.dock-sep\{[^}]*color-mix\(in srgb,var\(--ink\)/.test(css));
+ t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
+ t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
+ t('widening animates', /flex-grow \.3s ease/.test(html));
+diff --git a/README.md b/README.md
+index cc1fa11..64a14c2 100644
+--- a/README.md
++++ b/README.md
+@@ -42,7 +42,7 @@ Three node tools, each covering what the others cannot:
+ ```sh
+ node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
+ node dev/domtest.js   #  96 interaction steps      — real DOM (jsdom), golden snapshot
+-node dev/audit.js     #  91 contrast / a11y / heuristic checks
++node dev/audit.js     #  93 contrast / a11y / heuristic checks
+ ```
+ 
+ `harness.js` and `audit.js` need nothing but node. `domtest.js` needs jsdom

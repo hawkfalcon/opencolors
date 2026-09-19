@@ -1,0 +1,46 @@
+diff --git a/index.html b/index.html
+index 18b6543..12313e2 100644
+--- a/index.html
++++ b/index.html
+@@ -100,7 +100,6 @@
+   .btn:disabled{opacity:.45;cursor:default;transform:none;box-shadow:none}
+   .btn.primary{background:var(--accent);color:var(--accent-ink)}
+   .btn.primary:hover{background:var(--accent-hover)}
+-  .btn.icon-only .lbl{display:none}
+   .btn .count{
+     background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:800;
+     min-width:20px;height:20px;border-radius:99px;
+@@ -565,7 +564,7 @@
+     </div>
+     <button class="btn" id="savedBtn" title="Your saved palettes"></button>
+ 
+-    <button class="btn icon-only" id="undoBtn" title="Undo (Ctrl+Z)"></button>
++    <button class="btn" id="undoBtn" title="Undo (Ctrl+Z)"></button>
+     <button class="btn" id="exportBtn" title="Copy or download this palette"></button>
+    </div>
+     <button class="btn primary" id="generateBtn" title="Generate (Spacebar)"></button>
+diff --git a/dev/audit.js b/dev/audit.js
+index d7d5b40..7b6c226 100644
+--- a/dev/audit.js
++++ b/dev/audit.js
+@@ -181,6 +181,7 @@ t('mobile tabs centered but scroll-safe', /\.toolset::before,\.toolset::after\{c
+ t('dock buttons labeled everywhere', /'lockToggle','lock','Lock'/.test(html) && /#dock button \.lbl\{display:inline/.test(css) && !/#dock button \.lbl\{display:none\}/.test(css));
+ t('name sizer tracks input font', /nameSizer\.style\.fontSize=getComputedStyle\(ni\)\.fontSize/.test(html));
+ t('mobile title row left-anchored', /header\{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0\}/.test(css) && !/\.header-name\{margin-right:0\}/.test(css));
++t('undo labeled everywhere', /id="undoBtn"/.test(html) && !/icon-only/.test(html));
+ t('mobile name cap fits wrapped row', /matches\)\?320:260/.test(html));
+ t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
+ t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
+diff --git a/README.md b/README.md
+index 1d1f525..74db693 100644
+--- a/README.md
++++ b/README.md
+@@ -42,7 +42,7 @@ Three node tools, each covering what the others cannot:
+ ```sh
+ node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
+ node dev/domtest.js   #  96 interaction steps      — real DOM (jsdom), golden snapshot
+-node dev/audit.js     #  87 contrast / a11y / heuristic checks
++node dev/audit.js     #  88 contrast / a11y / heuristic checks
+ ```
+ 
+ `harness.js` and `audit.js` need nothing but node. `domtest.js` needs jsdom

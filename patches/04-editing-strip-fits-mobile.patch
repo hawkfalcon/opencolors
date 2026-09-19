@@ -1,0 +1,48 @@
+diff --git a/index.html b/index.html
+index d444119..993525f 100644
+--- a/index.html
++++ b/index.html
+@@ -517,6 +517,10 @@
+     .btn{padding:9px 11px}
+     .btn.primary .lbl{display:inline}
+     .btn .key{display:none}
++    /* editing: open strip sizes to content, siblings keep their size too */
++    .strip.editing{flex:none}
++    main.editing .strip:not(.editing){flex:none}
++    .edit-panel{max-height:none;overflow:visible}
+     .logo-badge{display:none}
+   }
+ </style>
+diff --git a/dev/audit.js b/dev/audit.js
+index df1bfcd..a65c19c 100644
+--- a/dev/audit.js
++++ b/dev/audit.js
+@@ -137,6 +137,7 @@ t('controls always visible on mobile (max-width)', /max-width:720px[\s\S]*?\.act
+ t('lang attribute', /<html lang=/.test(html));
+ t('viewport meta', /name="viewport"/.test(html));
+ t('swap icon rotates on mobile (vertical strips)', /max-width:720px[\s\S]*?\.swapper button svg\{[^}]*rotate\(90deg\)/.test(css));
++t('editing strip fits editor on mobile', /max-width:720px[\s\S]*?\.strip\.editing\{[^}]*flex:none/.test(css) && /max-width:720px[\s\S]*?\.edit-panel\{[^}]*max-height:none/.test(css));
+ t('hex bubble clamped to slice', /container-type:inline-size/.test(html) && /@container \(max-width:80px\)/.test(html));
+ 
+ /* accessibility */
+@@ -171,6 +172,7 @@ t('edit modal deleted', !/id="editOverlay"/.test(html));
+ t('editing stretches column', /\.strip\.editing\{flex-grow:2\.6\}/.test(html));
+ t('inline edit keeps + cancels', /function inlineDone/.test(html) && /function inlineCancel/.test(html));
+ t('no duplicative copy button', !/title="Copy hex"/.test(html));
++t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
+ t('edit panel is chromeless', !/ep-head/.test(html) && /class="ep-x"/.test(html));
+ t('widening animates', /flex-grow \.3s ease/.test(html));
+ t('strip moves animate', /function moveStrip/.test(html));
+diff --git a/README.md b/README.md
+index 150cff8..438757f 100644
+--- a/README.md
++++ b/README.md
+@@ -42,7 +42,7 @@ Three node tools, each covering what the others cannot:
+ ```sh
+ node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
+ node dev/domtest.js   #  96 interaction steps      — real DOM (jsdom), golden snapshot
+-node dev/audit.js     #  75 contrast / a11y / heuristic checks
++node dev/audit.js     #  77 contrast / a11y / heuristic checks
+ ```
+ 
+ `harness.js` and `audit.js` need nothing but node. `domtest.js` needs jsdom

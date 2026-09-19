@@ -1,0 +1,68 @@
+diff --git a/index.html b/index.html
+index 993525f..f98bd27 100644
+--- a/index.html
++++ b/index.html
+@@ -1578,21 +1578,37 @@ function openEdit(i){
+   editIndex=i; editBackup=colors[i].hex;
+   pushHistory(); editStackLen=undoStack.length;
+   const stripEl=document.querySelector('#strip-'+i);
++  const startH=stripEl?stripEl.offsetHeight:0;
+   if(stripEl){ stripEl.classList.add('editing'); stripEl.insertAdjacentHTML('beforeend',editPanelHTML()); }
+   stripsEl.classList.add('editing');
+   stripsEl.querySelectorAll('.adder.peek,.swapper.peek').forEach(el=>el.classList.remove('peek'));
+   syncEditUI(colors[i].hex); renderShades(); wireEditPanel();
++  if(stripEl) animateHeight(stripEl,startH,stripEl.offsetHeight,320);
+   const hi=$('hexInput');
+   if(hi&&(!globalThis.matchMedia||matchMedia('(hover:hover)').matches)){ hi.focus({preventScroll:true}); hi.select(); }
+ }
++/* smooth height glide for editor open/close. Unlike transforms, an animated
++   height participates in layout, so sibling strips slide along. Where WAAPI is
++   missing (jsdom) or motion is reduced, the DOM updates just apply instantly. */
++function animateHeight(el,from,to,ms){
++  if(!el.animate||from===to) return;
++  if(globalThis.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
++  el.style.overflow='hidden'; // clip the panel while its box grows/shrinks
++  const anim=el.animate([{height:from+'px'},{height:to+'px'}],{duration:ms,easing:'cubic-bezier(.32,.72,0,1)'});
++  const clean=()=>el.style.removeProperty('overflow');
++  anim.onfinish=clean; anim.oncancel=clean;
++}
+ /* remove the inline editor and restore the strip it was attached to */
+ function teardownEditPanel(i){
+   const panel=document.querySelector('.edit-panel'), x=document.querySelector('.ep-x');
+-  if(panel) panel.remove();
+   if(x) x.remove();
+   const stripEl=document.querySelector('#strip-'+i);
++  const startH=stripEl?stripEl.offsetHeight:0;
++  if(panel) panel.style.display='none'; // hide first so the row height can be measured…
+   if(stripEl) stripEl.classList.remove('editing');
+   stripsEl.classList.remove('editing');
++  if(stripEl) animateHeight(stripEl,startH,stripEl.offsetHeight,260); // …then glide shut
++  if(panel) panel.remove();
+   refreshStrip(i); syncHash();
+ }
+ function inlineDone(){
+diff --git a/dev/audit.js b/dev/audit.js
+index a65c19c..ae7dfac 100644
+--- a/dev/audit.js
++++ b/dev/audit.js
+@@ -138,6 +138,7 @@ t('lang attribute', /<html lang=/.test(html));
+ t('viewport meta', /name="viewport"/.test(html));
+ t('swap icon rotates on mobile (vertical strips)', /max-width:720px[\s\S]*?\.swapper button svg\{[^}]*rotate\(90deg\)/.test(css));
+ t('editing strip fits editor on mobile', /max-width:720px[\s\S]*?\.strip\.editing\{[^}]*flex:none/.test(css) && /max-width:720px[\s\S]*?\.edit-panel\{[^}]*max-height:none/.test(css));
++t('edit open/close glides height', /animateHeight\(stripEl,startH,stripEl\.offsetHeight,320\)/.test(js) && /animateHeight\(stripEl,startH,stripEl\.offsetHeight,260\)/.test(js));
+ t('hex bubble clamped to slice', /container-type:inline-size/.test(html) && /@container \(max-width:80px\)/.test(html));
+ 
+ /* accessibility */
+diff --git a/README.md b/README.md
+index 438757f..0f31f14 100644
+--- a/README.md
++++ b/README.md
+@@ -42,7 +42,7 @@ Three node tools, each covering what the others cannot:
+ ```sh
+ node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
+ node dev/domtest.js   #  96 interaction steps      — real DOM (jsdom), golden snapshot
+-node dev/audit.js     #  77 contrast / a11y / heuristic checks
++node dev/audit.js     #  78 contrast / a11y / heuristic checks
+ ```
+ 
+ `harness.js` and `audit.js` need nothing but node. `domtest.js` needs jsdom

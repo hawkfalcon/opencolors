@@ -1,0 +1,58 @@
+diff --git a/dev/domtest.js b/dev/domtest.js
+index 19e8fdc..5c0dbd0 100644
+--- a/dev/domtest.js
++++ b/dev/domtest.js
+@@ -16,10 +16,12 @@
+  * left behind, an icon key deleted from the map (which renders a blank <svg> rather
+  * than throwing, so nothing else would flag it).
+  *
+- * Math.random and Date.now are pinned, so a run is reproducible and a diff is always a
+- * real difference. The golden holds a hash of the whole <body> per step (minus the
+- * <script> source, HTML comments and whitespace, which are not behaviour) alongside
+- * enough readable fields to say what moved when one does.
++ * Math.random and Date.now are pinned, and the timer-volatile toast stack is masked
++ * from the hash (a toast's presence at snapshot time depends on machine speed, not
++ * app behaviour), so a run is reproducible and a diff is always a real difference.
++ * The golden holds a hash of the whole <body> per step (minus <script> source, HTML
++ * comments, whitespace and toasts, which are not behaviour) alongside enough
++ * readable fields to say what moved when one does.
+  *
+  * Known limit: this suite only sees what the UI can reach. Defensive guards behind a
+  * condition the renderer already prevents -- e.g. the `colors.length>=MAX_COLORS` bail
+@@ -100,7 +102,11 @@ const SESSION = [
+   ['swapper-button', async (c) => { c.click(c.q('.swapper[data-index="1"] button')); await c.wait(700); }],
+ 
+   /* remix dock */
+-  ['dock-sort-hue', async (c) => c.click(c.q('#dock [data-dock="sortHue"]'))],
++  ['dock-sort-hue', async (c) => {
++    c.click(c.q('#dock [data-dock="sortHue"]'));
++    const last = c.d.querySelector('#toasts .toast:last-child');
++    if (!last || !/sorted by hue/i.test(last.textContent)) throw new Error('sortHue fired no toast');
++  }],
+   ['dock-sort-light', async (c) => c.click(c.q('#dock [data-dock="sortLight"]'))],
+   ['dock-reverse', async (c) => c.click(c.q('#dock [data-dock="reverse"]'))],
+   ['dock-shuffle', async (c) => c.click(c.q('#dock [data-dock="shuffle"]'))],
+@@ -248,10 +254,19 @@ async function runSession() {
+   /* Hash of the rendered body. The app's own <script> source, HTML comments and
+    * whitespace are excluded: none of them are behaviour, and two of them are exactly
+    * what a cleanup refactor is allowed to churn. */
+-  const fingerprint = () => short(d.body.innerHTML
+-    .replace(/<script[\s\S]*?<\/script>/g, '')
+-    .replace(/<!--[\s\S]*?-->/g, '')
+-    .replace(/\s+/g, ' '));
++  /* Toasts are wall-clock volatile by design (1900ms life, 700ms first-run hint):
++   * whether one has expired at snapshot time depends on machine speed, not app
++   * behavior -- under load, runs flapped from step 27 on. Mask the region (on a
++   * clone; the live DOM is untouched) and assert firing deterministically below. */
++  const fingerprint = () => {
++    const bc = d.body.cloneNode(true);
++    const tz = bc.querySelector('#toasts');
++    if (tz) tz.innerHTML = '';
++    return short(bc.innerHTML
++      .replace(/<script[\s\S]*?<\/script>/g, '')
++      .replace(/<!--[\s\S]*?-->/g, '')
++      .replace(/\s+/g, ' '));
++  };
+ 
+   const c = {
+     w, d,

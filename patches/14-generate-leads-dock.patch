@@ -1,0 +1,56 @@
+diff --git a/index.html b/index.html
+index 2aa8fa8..dae25bf 100644
+--- a/index.html
++++ b/index.html
+@@ -123,6 +123,9 @@
+   #dock button:hover{background:var(--chrome-hover)}
+   #dock button:active{transform:scale(.92)}
+   #dock button .lbl{display:inline;font-size:10px}
++  #dock button.primary{background:var(--accent);color:var(--accent-ink);border-radius:99px}
++  #dock button.primary:hover{background:var(--accent-hover)}
++  #generateBtn .key{display:none}
+   .dock-sep{width:1px;height:22px;background:var(--bc);margin:0 4px}
+   .menu button .tdot{flex:0 0 auto;width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
+   #themeBtn .theme-dot{display:inline-flex;border-radius:50%;overflow:hidden;flex-shrink:0}
+@@ -568,14 +571,14 @@
+     <button class="btn" id="undoBtn" title="Undo (Ctrl+Z)"></button>
+     <button class="btn" id="exportBtn" title="Copy or download this palette"></button>
+    </div>
+-    <button class="btn primary" id="generateBtn" title="Generate (Spacebar)"></button>
+   </div>
+ </header>
+ 
+ <main id="strips" aria-label="Color palette"></main>
+ 
+ <!-- remix dock -->
+-<nav id="dock" aria-label="Remix tools">
++<nav id="dock" aria-label="Palette actions">
++  <button class="btn primary" id="generateBtn" title="Generate (Spacebar)"></button>
+   <button data-dock="sortHue" title="Sort by hue" aria-label="Sort by hue"></button>
+   <button data-dock="sortLight" title="Sort by lightness" aria-label="Sort by lightness"></button>
+   <button data-dock="reverse" title="Reverse order" aria-label="Reverse order"></button>
+diff --git a/dev/audit.js b/dev/audit.js
+index 2cd6dac..138119a 100644
+--- a/dev/audit.js
++++ b/dev/audit.js
+@@ -183,6 +183,7 @@ t('dock buttons labeled everywhere', /'lockToggle','lock','Lock'/.test(html) &&
+ t('name sizer tracks input font', /nameSizer\.style\.fontSize=getComputedStyle\(ni\)\.fontSize/.test(html));
+ t('mobile title row left-anchored', /header\{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0\}/.test(css) && !/\.header-name\{margin-right:0\}/.test(css));
+ t('undo labeled everywhere', /id="undoBtn"/.test(html) && !/icon-only/.test(html));
++t('generate leads the dock', /<nav id="dock"[^>]*>\s*<button[^>]*id="generateBtn"/.test(html) && /aria-label="Palette actions"/.test(html) && /#dock button\.primary\{background:var\(--accent\)/.test(css) && /#generateBtn \.key\{display:none\}/.test(css) && /#dock button\.primary\{[^}]*border-radius:99px/.test(css));
+ t('mobile name cap fits wrapped row', /matches\)\?320:260/.test(html));
+ t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
+ t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
+diff --git a/README.md b/README.md
+index ae9edc3..ba66f34 100644
+--- a/README.md
++++ b/README.md
+@@ -42,7 +42,7 @@ Three node tools, each covering what the others cannot:
+ ```sh
+ node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
+ node dev/domtest.js   #  96 interaction steps      — real DOM (jsdom), golden snapshot
+-node dev/audit.js     #  89 contrast / a11y / heuristic checks
++node dev/audit.js     #  90 contrast / a11y / heuristic checks
+ ```
+ 
+ `harness.js` and `audit.js` need nothing but node. `domtest.js` needs jsdom
