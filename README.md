@@ -13,7 +13,7 @@ A free-forever palette maker in a **single HTML file**: no accounts, no paywall,
 - Contrast checker (WCAG), color-vision simulator, full edit panel with shades
 - Save palettes locally, export link / CSS / Tailwind / SCSS / JSON / SVG / gradient / PNG
 - Keyboard-first: `Space` generate · `L` lock · `←` `→` reorder · `Ctrl Z` undo
-- Mobile-friendly with collapsible toolbar
+- Mobile-friendly stacked layout with always-visible controls
 
 ## Quick start
 
@@ -41,8 +41,8 @@ Three node tools, each covering what the others cannot:
 
 ```sh
 node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
-node dev/domtest.js   #  98 interaction steps      — real DOM (jsdom), golden snapshot
-node dev/audit.js     #  74 contrast / a11y / heuristic checks
+node dev/domtest.js   #  96 interaction steps      — real DOM (jsdom), golden snapshot
+node dev/audit.js     #  93 contrast / a11y / heuristic checks
 ```
 
 `harness.js` and `audit.js` need nothing but node. `domtest.js` needs jsdom
