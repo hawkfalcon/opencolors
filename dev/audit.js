@@ -187,6 +187,8 @@ t('generate leads the dock', /<nav id="dock"[^>]*>\s*<button[^>]*id="generateBtn
 t('redo button mirrors undo', /id="redoBtn"/.test(html) && /redoBtn'\)\.disabled=!redoStack\.length/.test(html) && /icon\('redo',18\)/.test(html) && /redo:'</.test(html));
 t('history section sits between shuffle and lock', /data-dock="shuffle"[\s\S]*?id="undoBtn"[\s\S]*?id="redoBtn"[\s\S]*?dock-sep[\s\S]*?data-dock="lockToggle"/.test(html));
 t('mobile name cap fits wrapped row', /matches\)\?320:260/.test(html));
+t('desktop name centers between logo and tools', /min-width:721px\)\{[\s\S]*?\.header-name\{margin-inline:auto\}/.test(css));
+t('header name has no split margin', !/margin-right:auto/.test(css));
 t('dock divider visible on white', /\.dock-sep\{[^}]*color-mix\(in srgb,var\(--ink\)/.test(css));
 t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
 t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
