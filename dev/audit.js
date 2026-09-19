@@ -184,6 +184,7 @@ t('name sizer tracks input font', /nameSizer\.style\.fontSize=getComputedStyle\(
 t('mobile title row left-anchored', /header\{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0\}/.test(css) && !/\.header-name\{margin-right:0\}/.test(css));
 t('undo labeled everywhere', /id="undoBtn"/.test(html) && !/icon-only/.test(html));
 t('generate leads the dock', /<nav id="dock"[^>]*>\s*<button[^>]*id="generateBtn"/.test(html) && /aria-label="Palette actions"/.test(html) && /#dock button\.primary\{background:var\(--accent\)/.test(css) && /#generateBtn \.key\{display:none\}/.test(css) && /#dock button\.primary\{[^}]*border-radius:99px/.test(css));
+t('redo button mirrors undo', /id="redoBtn"/.test(html) && /redoBtn'\)\.disabled=!redoStack\.length/.test(html) && /icon\('redo',18\)/.test(html) && /redo:'</.test(html));
 t('mobile name cap fits wrapped row', /matches\)\?320:260/.test(html));
 t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
 t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
