@@ -63,7 +63,7 @@
     flex-wrap:wrap;
   }
   .logo{display:flex;align-items:center;gap:9px;margin-right:16px;user-select:none;flex-shrink:0}
-  .header-name{display:flex;align-items:center;gap:7px;min-width:0}
+  .header-name{display:flex;align-items:center;gap:7px;margin-right:auto;min-width:0}
   #paletteNameInput{font-family:var(--font-display);font-weight:700;font-size:13.5px;letter-spacing:.2px;color:var(--ink);background:transparent;border:1px solid transparent;border-radius:12px;padding:4px 8px;width:190px;max-width:100%;min-width:48px;flex-shrink:1;text-overflow:ellipsis;outline:none;transition:background .15s,border-color .15s,box-shadow .15s}
   #paletteNameInput:hover{background:var(--input-bg);border-color:var(--input-bc)}
   #paletteNameInput:focus{background:var(--input-bg);border-color:var(--input-bc);box-shadow:var(--focus-sh)}
@@ -488,15 +488,11 @@
   .keys-table kbd{background:rgba(17,20,24,.08);border-radius:5px;padding:1px 7px;font-family:inherit;font-size:12.5px;white-space:nowrap}
   .about-points a,.dialog .sub a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 
-  /* desktop: the palette name centers between logo and tools */
-  @media (min-width:721px){
-    .header-name{margin-inline:auto}
-  }
-
   /* responsive: stack vertically */
   @media (max-width:720px){
     header{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0;justify-content:center}
     .logo{margin-right:0}
+    .header-name{margin-right:0}
     main#strips{flex-direction:column;overflow-y:auto;padding-bottom:92px}
     .strip{padding:14px 16px;min-height:0}
     .strip-inner{flex-direction:row;width:100%;gap:10px;animation:none}
