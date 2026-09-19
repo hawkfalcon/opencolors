@@ -63,7 +63,7 @@
     flex-wrap:wrap;
   }
   .logo{display:flex;align-items:center;gap:9px;margin-right:16px;user-select:none;flex-shrink:0}
-  .header-name{display:flex;align-items:center;gap:7px;margin-right:auto;min-width:0}
+  .header-name{display:flex;align-items:center;gap:7px;min-width:0}
   #paletteNameInput{font-family:var(--font-display);font-weight:700;font-size:13.5px;letter-spacing:.2px;color:var(--ink);background:transparent;border:1px solid transparent;border-radius:12px;padding:4px 8px;width:190px;max-width:100%;min-width:48px;flex-shrink:1;text-overflow:ellipsis;outline:none;transition:background .15s,border-color .15s,box-shadow .15s}
   #paletteNameInput:hover{background:var(--input-bg);border-color:var(--input-bc)}
   #paletteNameInput:focus{background:var(--input-bg);border-color:var(--input-bc);box-shadow:var(--focus-sh)}
@@ -100,7 +100,6 @@
   .btn:disabled{opacity:.45;cursor:default;transform:none;box-shadow:none}
   .btn.primary{background:var(--accent);color:var(--accent-ink)}
   .btn.primary:hover{background:var(--accent-hover)}
-  .btn.icon-only{padding:9px}
   .btn .count{
     background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:800;
     min-width:20px;height:20px;border-radius:99px;
@@ -110,21 +109,27 @@
   /* ---------- remix dock ---------- */
   #dock{
     position:fixed;bottom:calc(16px + env(safe-area-inset-bottom, 0px));left:50%;transform:translateX(-50%);
-    display:flex;align-items:center;gap:2px;padding:6px;
+    display:flex;align-items:center;gap:4px;padding:6px 10px;
     border:var(--bw) solid var(--bc);border-radius:99px;
     background:var(--chrome);-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);
     box-shadow:0 12px 40px rgba(17,20,24,.16), inset 0 1px 0 rgba(255,255,255,.75);
     z-index:60;
   }
   #dock button{
-    width:38px;height:38px;border-radius:99px;border:0;background:transparent;color:var(--ink);
-    display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+    flex:0 0 auto;min-width:56px;border-radius:14px;border:0;background:transparent;color:var(--ink);
+    display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 10px;cursor:pointer;
     transition:background .15s,transform .12s;
   }
   #dock button:hover{background:var(--chrome-hover)}
   #dock button:active{transform:scale(.92)}
-  .dock-sep{width:1px;height:22px;background:var(--bc);margin:0 4px}
+  #dock button .lbl{display:inline;font-size:10px}
+  #dock button.primary{background:var(--accent);color:var(--accent-ink);border-radius:99px}
+  #dock button.primary:hover{background:var(--accent-hover)}
+  #generateBtn .key{display:none}
+  /* divider uses dark ink, not var(--bc): white-on-white was invisible */
+  .dock-sep{width:1px;align-self:stretch;background:rgba(17,20,24,.14);background:color-mix(in srgb,var(--ink) 16%,transparent);margin:0 4px}
   .menu button .tdot{flex:0 0 auto;width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
+  #themeBtn .theme-dot{display:inline-flex;border-radius:50%;overflow:hidden;flex-shrink:0}
   .menu button .tick{margin-left:auto;font-weight:800;color:var(--muted);min-width:16px;text-align:right}
 
   /* ---------- strips ---------- */
@@ -195,7 +200,7 @@
   .hex:active{transform:scale(.95)}
   .strip,.strip button{-webkit-user-select:none;user-select:none}
   .cname{
-    color:var(--on,#fff);opacity:.85;font-size:12.5px;font-weight:600;text-shadow:0 1px 4px var(--sh,transparent);
+    color:var(--on,#fff);opacity:1;font-size:12.5px;font-weight:600;text-shadow:0 1px 4px var(--sh,transparent);
     letter-spacing:.2px;max-width:100%;text-align:center;line-height:1.35;
     white-space:normal;
   }
@@ -240,7 +245,7 @@
   /* edit mode: seam add/swap buttons rest while a color is being edited */
   main.editing .adder,main.editing .swapper{pointer-events:none}
   main.editing .adder button,main.editing .swapper button{opacity:0 !important}
-  .edit-panel{width:100%;max-height:100%;overflow:auto;overscroll-behavior:contain;padding:46px 26px 18px;animation:panelIn .32s ease}
+  .edit-panel{width:100%;max-height:100%;overflow:auto;overscroll-behavior:contain;padding:18px 26px;animation:panelIn .32s ease}
   @keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   .edit-panel .field{margin-bottom:12px}
   .edit-panel .field label{color:var(--on,#fff);text-shadow:0 1px 4px var(--sh,transparent)}
@@ -257,16 +262,6 @@
   .shade-row{display:flex;gap:6px;overflow-x:auto;padding:4px 0}
   .shade-row .shade{flex:1 0 36px;height:46px}
   .ep-done{width:100%;justify-content:center;margin-top:10px}
-  .ep-x{
-    position:absolute;top:12px;right:12px;z-index:7;
-    width:32px;height:32px;border-radius:50%;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    background:rgba(128,128,128,.25);background:color-mix(in srgb,var(--on,#fff) 16%,transparent);
-    border:1px solid rgba(128,128,128,.4);border:1px solid color-mix(in srgb,var(--on,#fff) 30%,transparent);
-    color:var(--on,#fff);
-    box-shadow:0 2px 8px rgba(17,20,24,.28), inset 0 1px 0 rgba(255,255,255,.7);
-    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-  }
 
   /* ---------- modal ---------- */
   .overlay{
@@ -484,10 +479,8 @@
   @keyframes toastin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
   .toast .dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--toast-fg)}
-  .toolset{display:contents}
   .btn .key{font-family:inherit;font-size:10.5px;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:2px 7px;margin-left:7px;vertical-align:1px;white-space:nowrap}
-  #toolsToggle{display:none}
-  #toolsToggle svg{transition:transform .2s}
+  .toolset{display:contents}
   .about-points kbd{background:rgba(17,20,24,.08);border-radius:5px;padding:1px 7px;font-family:inherit;font-size:12.5px;white-space:nowrap}
   .keys-table{display:flex;flex-direction:column;margin-top:2px}
   .keys-table .krow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 2px;border-bottom:1px solid rgba(17,20,24,.08)}
@@ -495,28 +488,56 @@
   .keys-table kbd{background:rgba(17,20,24,.08);border-radius:5px;padding:1px 7px;font-family:inherit;font-size:12.5px;white-space:nowrap}
   .about-points a,.dialog .sub a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 
+  /* desktop: the header is a centered island hugging its content */
+  @media (min-width:721px){
+    header{width:fit-content;margin-inline:auto;justify-content:center}
+  }
+
   /* responsive: stack vertically */
   @media (max-width:720px){
-    header{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0}
-    main#strips{flex-direction:column;overflow-y:auto;padding-bottom:76px}
+    header{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0;justify-content:center}
+    .logo{margin-right:0}
+    main#strips{flex-direction:column;overflow-y:auto;padding-bottom:92px}
     .strip{padding:14px 16px;min-height:0}
     .strip-inner{flex-direction:row;width:100%;gap:10px;animation:none}
     .actions{flex-direction:row;margin:0;order:2;margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
-    .actions button{width:34px;height:34px}
+    /* no hover on phones to reveal controls with, so everything stays visible —
+       keyed off width (not hover:none) so touch-laptops and narrow windows agree */
+    .actions button{width:40px;height:40px;opacity:.95}
     .txt{text-align:left}
     .adder{width:auto;height:0}
-    .adder::before{left:0;right:0;top:-18px;bottom:-18px}
+    .adder::before{left:0;right:0;top:-20px;bottom:-20px}
+    .adder button{width:40px;height:40px;opacity:1;transform:translate(-50%,-50%) scale(1)}
+    main.many .actions button{width:40px;height:40px}
     .swapper{width:auto;height:0}
-    .swapper button{left:66%;top:50%}
+    .swapper button{left:66%;top:50%;width:40px;height:40px;opacity:1;transform:translate(-50%,-50%) scale(1)}
+    /* strips stack vertically on phones, so the swap glyph points up/down */
+    .swapper button svg{transform:rotate(90deg)}
     .hex{font-size:19px;padding:6px 8px}
+    /* labeled tab bar: scrollable icon-over-label tools, big Generate beneath */
+    .toolbar{flex:1 1 100%;flex-direction:column;align-items:stretch;flex-wrap:nowrap}
+    .toolset{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:5px;padding-bottom:2px;scrollbar-width:none}
+    .toolset::-webkit-scrollbar{display:none}
+    .toolset .menu-anchor{flex:0 0 auto}
+    .toolset .btn{flex:0 0 auto;min-width:56px;flex-direction:column;gap:3px;padding:8px 10px;position:relative}
+    .toolset .btn .lbl{display:inline;font-size:10px}
+    .toolset .btn .count{position:absolute;top:5px;right:8px;min-width:18px;height:18px;font-size:10px}
+    .toolset::before,.toolset::after{content:'';margin:auto}
+    .menu{max-height:70vh;overflow:auto}
+    /* 16px text inputs: iOS Safari auto-zooms anything smaller on focus */
+    #paletteNameInput,.word-row input,.exp-row input{font-size:16px}
+    /* narrow phones scroll the labeled bar instead of squeezing it */
+    #dock{max-width:calc(100vw - 24px);overflow-x:auto;scrollbar-width:none}
+    #dock::-webkit-scrollbar{display:none}
     .btn .lbl{display:none}
     .btn{padding:9px 11px}
     .btn.primary .lbl{display:inline}
     .btn .key{display:none}
+    /* editing: open strip sizes to content, siblings keep their size too */
+    .strip.editing{flex:none}
+    main.editing .strip:not(.editing){flex:none}
+    .edit-panel{max-height:none;overflow:visible}
     .logo-badge{display:none}
-    #toolsToggle{display:inline-flex;margin-left:auto}
-    header.tools-collapsed .toolset{display:none}
-    header.tools-collapsed #toolsToggle svg{transform:rotate(180deg)}
   }
 </style>
 </head>
@@ -527,8 +548,6 @@
     <div class="logo-name">opencolors</div>
     <button class="logo-badge" id="freePill" title="Why free?">free forever</button>
   </div>
-  <button class="btn icon-only" id="toolsToggle" title="Show or hide tools" aria-expanded="true"></button>
-
   <div class="header-name"><input id="paletteNameInput" type="text" maxlength="40" spellcheck="false" autocomplete="off" aria-label="Palette name" value="Untitled"></div>
   <div class="toolbar">
    <div class="toolset">
@@ -555,21 +574,23 @@
     </div>
     <button class="btn" id="savedBtn" title="Your saved palettes"></button>
 
-    <button class="btn icon-only" id="undoBtn" title="Undo (Ctrl+Z)"></button>
     <button class="btn" id="exportBtn" title="Copy or download this palette"></button>
    </div>
-    <button class="btn primary" id="generateBtn" title="Generate (Spacebar)"></button>
   </div>
 </header>
 
 <main id="strips" aria-label="Color palette"></main>
 
 <!-- remix dock -->
-<nav id="dock" aria-label="Remix tools">
+<nav id="dock" aria-label="Palette actions">
+  <button class="btn primary" id="generateBtn" title="Generate (Spacebar)"></button>
   <button data-dock="sortHue" title="Sort by hue" aria-label="Sort by hue"></button>
   <button data-dock="sortLight" title="Sort by lightness" aria-label="Sort by lightness"></button>
   <button data-dock="reverse" title="Reverse order" aria-label="Reverse order"></button>
   <button data-dock="shuffle" title="Shuffle order" aria-label="Shuffle order"></button>
+  <span class="dock-sep" aria-hidden="true"></span>
+  <button class="btn" id="undoBtn" title="Undo (Ctrl+Z)"></button>
+  <button class="btn" id="redoBtn" title="Redo (Ctrl+Shift+Z)"></button>
   <span class="dock-sep" aria-hidden="true"></span>
   <button data-dock="lockToggle" title="Lock all" aria-label="Lock all"></button>
 </nav>
@@ -747,7 +768,7 @@
   </div>
 </div>
 
-<div id="toasts"></div>
+<div id="toasts" role="status"></div>
 <noscript><p style="padding:20px">This app needs JavaScript enabled.</p></noscript>
 
 <script>
@@ -767,7 +788,7 @@ const ICONS = {
   sliders:'<line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line>',
   x:'<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>',
   plus:'<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>',
-  undo:'<polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>',
+  undo:'<polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>',redo:'<polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>',
   refresh:'<polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>',
   chevU:'<polyline points="18 15 12 9 6 15"></polyline>',
   bookmark:'<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>',
@@ -1310,19 +1331,11 @@ $('newBtn').innerHTML     = icon('zap',18)+'<span class="lbl">Create</span>';
 $('checkBtn').innerHTML   = icon('contrast',18)+'<span class="lbl">Check</span>';
 $('exportBtn').innerHTML  = icon('download',18)+'<span class="lbl">Export</span>';
 $('generateBtn').innerHTML= icon('refresh',18)+'<span class="lbl">Generate<kbd class="key">Space</kbd></span>';
-[['sortHue','droplet'],['sortLight','sun'],['reverse','repeat'],['shuffle','shuffle'],['lockToggle','lock']].forEach(([k,ic])=>{ const b=document.querySelector('#dock [data-dock="'+k+'"]'); if(b) b.innerHTML=icon(ic,18); });
-$('undoBtn').innerHTML    = icon('undo',18);
+[['sortHue','droplet','Hue'],['sortLight','sun','Light'],['reverse','repeat','Reverse'],['shuffle','shuffle','Shuffle'],['lockToggle','lock','Lock']].forEach(([k,ic,lb])=>{ const b=document.querySelector('#dock [data-dock="'+k+'"]'); if(b) b.innerHTML=icon(ic,18)+'<span class="lbl">'+lb+'</span>'; });
+$('undoBtn').innerHTML    = icon('undo',18)+'<span class="lbl">Undo</span>';
+$('redoBtn').innerHTML    = icon('redo',18)+'<span class="lbl">Redo</span>';
 $('expDice').innerHTML    = icon('refresh',14);
-[['themeBtn','Generation theme'],['newBtn','Create palette'],['checkBtn','Accessibility checks'],['undoBtn','Undo'],['exportBtn','Export palette'],['generateBtn','Generate palette'],['expDice','Random name'],['toolsToggle','Show or hide toolbar']].forEach(([id,label])=>$(id).setAttribute('aria-label',label));
-/* collapsible toolbar (mobile) */
-$('toolsToggle').innerHTML=icon('chevU',16);
-function setToolsCollapsed(c){
-  $('topbar').classList.toggle('tools-collapsed',c);
-  $('toolsToggle').setAttribute('aria-expanded',String(!c));
-  store.set('ocToolsCollapsed',c?'1':'0');
-}
-setToolsCollapsed(store.get('ocToolsCollapsed')==='1');
-$('toolsToggle').addEventListener('click',()=>setToolsCollapsed(!$('topbar').classList.contains('tools-collapsed')));
+[['themeBtn','Generation theme'],['newBtn','Create palette'],['checkBtn','Accessibility checks'],['undoBtn','Undo'],['redoBtn','Redo'],['exportBtn','Export palette'],['generateBtn','Generate palette'],['expDice','Random name']].forEach(([id,label])=>$(id).setAttribute('aria-label',label));
 const MENU_ICONS={image:'image',mood:'sparkles',explore:'grid',random:'refresh',contrast:'sun',vision:'eye'};
 document.querySelectorAll('#newMenu [data-new],#checkMenu [data-check]').forEach(b=>{
   const k=b.dataset.new||b.dataset.check||b.dataset.more;
@@ -1333,6 +1346,20 @@ function placeMenu(btn){
   const anchor=btn.parentElement, menu=anchor.querySelector('.menu');
   if(!menu) return;
   menu.style.left=''; menu.style.right='';
+  if(globalThis.matchMedia&&matchMedia('(max-width:720px)').matches){
+    /* mobile tabs live in a scroll strip that would clip an absolutely
+       positioned menu, so pin it instead. (The header backdrop-filter
+       contains fixed positioning, making these coords header-relative -
+       and the sticky header hugs the viewport corner, so same thing.) */
+    const hb=$('topbar').getBoundingClientRect(), a=anchor.getBoundingClientRect();
+    const w=menu.getBoundingClientRect().width;
+    menu.style.position='fixed';
+    menu.style.top=(a.bottom-hb.top+8)+'px';
+    menu.style.left=(Math.max(8,Math.min(a.left,window.innerWidth-w-8))-hb.left)+'px';
+    menu.style.right='auto';
+    return;
+  }
+  menu.style.position='';
   const a=anchor.getBoundingClientRect(), r=menu.getBoundingClientRect(), w=r.width;
   let left=a.right-w;
   if(left<8) left=a.left;
@@ -1407,7 +1434,7 @@ function render(){
   fitNameInput();
   $('generateBtn').disabled=!colors.some(c=>!c.locked);
   const lt=document.querySelector('#dock [data-dock="lockToggle"]');
-  if(lt){ const allL=colors.every(c=>c.locked); lt.innerHTML=icon(allL?'unlock':'lock',18); const ll=allL?'Unlock all':'Lock all'; lt.title=ll; lt.setAttribute('aria-label',ll); }
+  if(lt){ const allL=colors.every(c=>c.locked); lt.innerHTML=icon(allL?'unlock':'lock',18)+'<span class="lbl">'+(allL?'Unlock':'Lock')+'</span>'; const ll=allL?'Unlock all':'Lock all'; lt.title=ll; lt.setAttribute('aria-label',ll); }
   if(editIndex>=0){ editIndex=-1; editBackup=null; stripsEl.classList.remove('editing'); } // full renders exit edit mode
   syncHash();
 }
@@ -1449,7 +1476,7 @@ function anyModalOpen(){ return !!document.querySelector('.overlay.open'); }
 
 stripsEl.addEventListener('click',e=>{
   const pact=e.target.closest('[data-pact]');
-  if(pact){ if(pact.dataset.pact==='done') inlineDone(); else inlineCancel(); return; }
+  if(pact){ inlineDone(); return; } // Done is the only panel exit; Esc still cancels
   if(e.target.closest('.edit-panel')) return;
   if(editIndex>=0) inlineDone();
   const btn=e.target.closest('[data-action]');
@@ -1474,6 +1501,7 @@ stripsEl.addEventListener('click',e=>{
 
 $('generateBtn').onclick=generate;
 $('undoBtn').onclick=undo;
+$('redoBtn').onclick=redo;
 /* rename the palette and keep the header chip in sync */
 function setName(nm){ paletteName=nm; const ni=$('paletteNameInput'); if(ni&&document.activeElement!==ni) ni.value=nm; document.title=`${paletteName} · opencolors`; fitNameInput(); }
 /* auto-size the name field to its content so long names aren't cut off */
@@ -1485,12 +1513,14 @@ function fitNameInput(){
   const ni=$('paletteNameInput');
   nameSizer.textContent=ni.value||'';
   if(!nameSizer.getBoundingClientRect) return;
-  ni.style.width=Math.max(48,Math.min(260,Math.ceil(nameSizer.getBoundingClientRect().width)+20))+'px';
+  nameSizer.style.fontSize=getComputedStyle(ni).fontSize; /* 13.5 desktop / 16 mobile */
+  const cap=(globalThis.matchMedia&&matchMedia('(max-width:720px)').matches)?140:260;
+  ni.style.width=Math.max(48,Math.min(cap,Math.ceil(nameSizer.getBoundingClientRect().width)+20))+'px';
 }
 $('paletteNameInput').addEventListener('input',e=>{ const v=e.target.value.trim().slice(0,40); if(v) setName(v); else fitNameInput(); });
 $('paletteNameInput').addEventListener('blur',()=>{ $('paletteNameInput').value=paletteName; fitNameInput(); });
 $('paletteNameInput').addEventListener('keydown',e=>{ if(e.key==='Enter') e.target.blur(); });
-function updateUndo(){ $('undoBtn').disabled=!undoStack.length; }
+function updateUndo(){ $('undoBtn').disabled=!undoStack.length; $('redoBtn').disabled=!redoStack.length; }
 
 /* keyboard */
 function stripIndexFromFocus(){
@@ -1584,21 +1614,36 @@ function openEdit(i){
   editIndex=i; editBackup=colors[i].hex;
   pushHistory(); editStackLen=undoStack.length;
   const stripEl=document.querySelector('#strip-'+i);
+  const startH=stripEl?stripEl.offsetHeight:0;
   if(stripEl){ stripEl.classList.add('editing'); stripEl.insertAdjacentHTML('beforeend',editPanelHTML()); }
   stripsEl.classList.add('editing');
   stripsEl.querySelectorAll('.adder.peek,.swapper.peek').forEach(el=>el.classList.remove('peek'));
   syncEditUI(colors[i].hex); renderShades(); wireEditPanel();
+  if(stripEl) animateHeight(stripEl,startH,stripEl.offsetHeight,320);
   const hi=$('hexInput');
   if(hi&&(!globalThis.matchMedia||matchMedia('(hover:hover)').matches)){ hi.focus({preventScroll:true}); hi.select(); }
 }
+/* smooth height glide for editor open/close. Unlike transforms, an animated
+   height participates in layout, so sibling strips slide along. Where WAAPI is
+   missing (jsdom) or motion is reduced, the DOM updates just apply instantly. */
+function animateHeight(el,from,to,ms){
+  if(!el.animate||from===to) return;
+  if(globalThis.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  el.style.overflow='hidden'; // clip the panel while its box grows/shrinks
+  const anim=el.animate([{height:from+'px'},{height:to+'px'}],{duration:ms,easing:'cubic-bezier(.32,.72,0,1)'});
+  const clean=()=>el.style.removeProperty('overflow');
+  anim.onfinish=clean; anim.oncancel=clean;
+}
 /* remove the inline editor and restore the strip it was attached to */
 function teardownEditPanel(i){
-  const panel=document.querySelector('.edit-panel'), x=document.querySelector('.ep-x');
-  if(panel) panel.remove();
-  if(x) x.remove();
   const stripEl=document.querySelector('#strip-'+i);
+  const startH=stripEl?stripEl.offsetHeight:0;
+  const panel=document.querySelector('.edit-panel');
+  if(panel) panel.style.display='none'; // hide first so the row height can be measured…
   if(stripEl) stripEl.classList.remove('editing');
   stripsEl.classList.remove('editing');
+  if(stripEl) animateHeight(stripEl,startH,stripEl.offsetHeight,260); // …then glide shut
+  if(panel) panel.remove();
   refreshStrip(i); syncHash();
 }
 function inlineDone(){
@@ -1632,8 +1677,7 @@ function editPanelHTML(){
         <input type="range" id="lightSlider" min="0" max="100" value="0" aria-label="Lightness"></div>
       <div class="field"><label>Shades</label><div class="shade-row" id="shadeGrid"></div></div>
       <button class="btn primary ep-done" data-pact="done">Done</button>
-    </div>
-    <button class="ep-x" data-pact="cancel" aria-label="Cancel editing" title="Cancel (Esc)">${icon('x',16)}</button>`;
+    </div>`;
 }
 function syncEditFields(h,s,l,hex){
   $('hexInput').value='#'+hex.toUpperCase();
@@ -1767,7 +1811,7 @@ const GEN_THEMES=[
   {id:'mono',name:'Mono',dot:'linear-gradient(135deg,#111,#888,#fff)'}
 ];
 let genTheme='random';
-function renderThemeBtn(){ $('themeBtn').innerHTML=icon('aperture',18)+'<span class="lbl">Theme: '+GEN_THEMES.find(t=>t.id===genTheme).name+'</span>'; }
+function renderThemeBtn(){ const t=GEN_THEMES.find(t=>t.id===genTheme); const b=$('themeBtn'); b.innerHTML='<span class="theme-dot" style="background:'+t.dot+'">'+icon('aperture',18)+'</span><span class="lbl">Theme</span>'; b.title='Generation theme: '+t.name; b.setAttribute('aria-label','Generation theme: '+t.name); }
 $('themeMenu').innerHTML=GEN_THEMES.map(t=>
   `<button data-gt="${t.id}"><span class="tdot" style="background:${t.dot}"></span><span>${t.name}</span><span class="tick"></span></button>`
 ).join('');
