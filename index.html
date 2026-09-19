@@ -517,6 +517,10 @@
     .btn{padding:9px 11px}
     .btn.primary .lbl{display:inline}
     .btn .key{display:none}
+    /* editing: open strip sizes to content, siblings keep their size too */
+    .strip.editing{flex:none}
+    main.editing .strip:not(.editing){flex:none}
+    .edit-panel{max-height:none;overflow:visible}
     .logo-badge{display:none}
   }
 </style>

@@ -137,6 +137,7 @@ t('controls always visible on mobile (max-width)', /max-width:720px[\s\S]*?\.act
 t('lang attribute', /<html lang=/.test(html));
 t('viewport meta', /name="viewport"/.test(html));
 t('swap icon rotates on mobile (vertical strips)', /max-width:720px[\s\S]*?\.swapper button svg\{[^}]*rotate\(90deg\)/.test(css));
+t('editing strip fits editor on mobile', /max-width:720px[\s\S]*?\.strip\.editing\{[^}]*flex:none/.test(css) && /max-width:720px[\s\S]*?\.edit-panel\{[^}]*max-height:none/.test(css));
 t('hex bubble clamped to slice', /container-type:inline-size/.test(html) && /@container \(max-width:80px\)/.test(html));
 
 /* accessibility */
@@ -171,6 +172,7 @@ t('edit modal deleted', !/id="editOverlay"/.test(html));
 t('editing stretches column', /\.strip\.editing\{flex-grow:2\.6\}/.test(html));
 t('inline edit keeps + cancels', /function inlineDone/.test(html) && /function inlineCancel/.test(html));
 t('no duplicative copy button', !/title="Copy hex"/.test(html));
+t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
 t('edit panel is chromeless', !/ep-head/.test(html) && /class="ep-x"/.test(html));
 t('widening animates', /flex-grow \.3s ease/.test(html));
 t('strip moves animate', /function moveStrip/.test(html));
