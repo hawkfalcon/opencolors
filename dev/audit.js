@@ -177,6 +177,7 @@ t('mobile tabs show labels', /max-width:720px[\s\S]*?\.toolset \.btn \.lbl\{[^}]
 t('mobile text inputs dodge iOS auto-zoom', /#paletteNameInput,\.word-row input,\.exp-row input\{font-size:16px\}/.test(css));
 t('toasts announced to screen readers', /id="toasts" role="status"/.test(html));
 t('color names at full opacity', /\.cname\{[^}]*opacity:1;/.test(css));
+t('mobile tabs centered but scroll-safe', /\.toolset::before,\.toolset::after\{content:'';margin:auto\}/.test(css));
 t('dock buttons labeled everywhere', /'lockToggle','lock','Lock'/.test(html) && /#dock button \.lbl\{display:inline/.test(css) && !/#dock button \.lbl\{display:none\}/.test(css));
 t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
 t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
