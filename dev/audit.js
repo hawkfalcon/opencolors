@@ -181,7 +181,7 @@ t('mobile tabs centered but scroll-safe', /\.toolset::before,\.toolset::after\{c
 t('theme button: dot + plain Theme label', /class="theme-dot"/.test(html) && /<span class="lbl">Theme<\/span>/.test(html) && !/>Theme: </.test(html) && /Generation theme: '\+t\.name/.test(html));
 t('dock buttons labeled everywhere', /'lockToggle','lock','Lock'/.test(html) && /#dock button \.lbl\{display:inline/.test(css) && !/#dock button \.lbl\{display:none\}/.test(css));
 t('name sizer tracks input font', /nameSizer\.style\.fontSize=getComputedStyle\(ni\)\.fontSize/.test(html));
-t('mobile title cluster centered', /header\{[^}]*justify-content:center/.test(css) && /\.logo\{margin-right:0\}/.test(css));
+t('mobile title row left-anchored', /header\{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0\}/.test(css) && !/\.header-name\{margin-right:0\}/.test(css));
 t('undo labeled everywhere', /id="undoBtn"/.test(html) && !/icon-only/.test(html));
 t('generate leads the dock', /<nav id="dock"[^>]*>\s*<button[^>]*id="generateBtn"/.test(html) && /aria-label="Palette actions"/.test(html) && /#dock button\.primary\{background:var\(--accent\)/.test(css) && /#generateBtn \.key\{display:none\}/.test(css) && /#dock button\.primary\{[^}]*border-radius:99px/.test(css));
 t('redo button mirrors undo', /id="redoBtn"/.test(html) && /redoBtn'\)\.disabled=!redoStack\.length/.test(html) && /icon\('redo',18\)/.test(html) && /redo:'</.test(html));
