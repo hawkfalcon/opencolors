@@ -138,6 +138,7 @@ t('lang attribute', /<html lang=/.test(html));
 t('viewport meta', /name="viewport"/.test(html));
 t('swap icon rotates on mobile (vertical strips)', /max-width:720px[\s\S]*?\.swapper button svg\{[^}]*rotate\(90deg\)/.test(css));
 t('editing strip fits editor on mobile', /max-width:720px[\s\S]*?\.strip\.editing\{[^}]*flex:none/.test(css) && /max-width:720px[\s\S]*?\.edit-panel\{[^}]*max-height:none/.test(css));
+t('edit open/close glides height', /animateHeight\(stripEl,startH,stripEl\.offsetHeight,320\)/.test(js) && /animateHeight\(stripEl,startH,stripEl\.offsetHeight,260\)/.test(js));
 t('hex bubble clamped to slice', /container-type:inline-size/.test(html) && /@container \(max-width:80px\)/.test(html));
 
 /* accessibility */
