@@ -208,8 +208,12 @@ const SESSION = [
   ['shortcuts-toggle-open', async (c) => c.key('?')],
   ['shortcuts-escape', async (c) => c.key('Escape')],
 
-  /* header chrome */
-  ['name-dice', async (c) => c.click(c.d.getElementById('nameDice'))],
+  /* header chrome: the palette name is an editable input now (the old
+   * #nameDice button is gone; rerolling lives in the export modal) */
+  ['header-rename', async (c) => {
+    const n = c.d.getElementById('paletteNameInput');
+    n.value = 'Header Typed Name'; n.dispatchEvent(new c.w.Event('input', { bubbles: true }));
+  }],
 ];
 
 /* ---------- runner ---------- */
@@ -306,7 +310,7 @@ async function runSession() {
       menus: d.querySelectorAll('.menu.open').length,
       undoDisabled: d.getElementById('undoBtn').disabled,
       generateDisabled: d.getElementById('generateBtn').disabled,
-      paletteName: d.getElementById('paletteNameLabel').textContent,
+      paletteName: d.getElementById('paletteNameInput').value,
       chrome: [
         d.getElementById('savedBtn').innerHTML,
         d.getElementById('themeBtn').innerHTML,
