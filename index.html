@@ -486,8 +486,6 @@
   .toast .dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--toast-fg)}
   .toolset{display:contents}
   .btn .key{font-family:inherit;font-size:10.5px;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:2px 7px;margin-left:7px;vertical-align:1px;white-space:nowrap}
-  #toolsToggle{display:none}
-  #toolsToggle svg{transition:transform .2s}
   .about-points kbd{background:rgba(17,20,24,.08);border-radius:5px;padding:1px 7px;font-family:inherit;font-size:12.5px;white-space:nowrap}
   .keys-table{display:flex;flex-direction:column;margin-top:2px}
   .keys-table .krow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 2px;border-bottom:1px solid rgba(17,20,24,.08)}
@@ -520,9 +518,6 @@
     .btn.primary .lbl{display:inline}
     .btn .key{display:none}
     .logo-badge{display:none}
-    #toolsToggle{display:inline-flex;margin-left:auto}
-    header.tools-collapsed .toolset{display:none}
-    header.tools-collapsed #toolsToggle svg{transform:rotate(180deg)}
   }
 </style>
 </head>
@@ -533,8 +528,6 @@
     <div class="logo-name">opencolors</div>
     <button class="logo-badge" id="freePill" title="Why free?">free forever</button>
   </div>
-  <button class="btn icon-only" id="toolsToggle" title="Show or hide tools" aria-expanded="true"></button>
-
   <div class="header-name"><input id="paletteNameInput" type="text" maxlength="40" spellcheck="false" autocomplete="off" aria-label="Palette name" value="Untitled"></div>
   <div class="toolbar">
    <div class="toolset">
@@ -1319,16 +1312,7 @@ $('generateBtn').innerHTML= icon('refresh',18)+'<span class="lbl">Generate<kbd c
 [['sortHue','droplet'],['sortLight','sun'],['reverse','repeat'],['shuffle','shuffle'],['lockToggle','lock']].forEach(([k,ic])=>{ const b=document.querySelector('#dock [data-dock="'+k+'"]'); if(b) b.innerHTML=icon(ic,18); });
 $('undoBtn').innerHTML    = icon('undo',18);
 $('expDice').innerHTML    = icon('refresh',14);
-[['themeBtn','Generation theme'],['newBtn','Create palette'],['checkBtn','Accessibility checks'],['undoBtn','Undo'],['exportBtn','Export palette'],['generateBtn','Generate palette'],['expDice','Random name'],['toolsToggle','Show or hide toolbar']].forEach(([id,label])=>$(id).setAttribute('aria-label',label));
-/* collapsible toolbar (mobile) */
-$('toolsToggle').innerHTML=icon('chevU',16);
-function setToolsCollapsed(c){
-  $('topbar').classList.toggle('tools-collapsed',c);
-  $('toolsToggle').setAttribute('aria-expanded',String(!c));
-  store.set('ocToolsCollapsed',c?'1':'0');
-}
-setToolsCollapsed(store.get('ocToolsCollapsed')==='1');
-$('toolsToggle').addEventListener('click',()=>setToolsCollapsed(!$('topbar').classList.contains('tools-collapsed')));
+[['themeBtn','Generation theme'],['newBtn','Create palette'],['checkBtn','Accessibility checks'],['undoBtn','Undo'],['exportBtn','Export palette'],['generateBtn','Generate palette'],['expDice','Random name']].forEach(([id,label])=>$(id).setAttribute('aria-label',label));
 const MENU_ICONS={image:'image',mood:'sparkles',explore:'grid',random:'refresh',contrast:'sun',vision:'eye'};
 document.querySelectorAll('#newMenu [data-new],#checkMenu [data-check]').forEach(b=>{
   const k=b.dataset.new||b.dataset.check||b.dataset.more;

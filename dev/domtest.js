@@ -210,8 +210,6 @@ const SESSION = [
 
   /* header chrome */
   ['name-dice', async (c) => c.click(c.d.getElementById('nameDice'))],
-  ['toolbar-collapse', async (c) => c.click(c.d.getElementById('toolsToggle'))],
-  ['toolbar-expand', async (c) => c.click(c.d.getElementById('toolsToggle'))],
 ];
 
 /* ---------- runner ---------- */
@@ -297,7 +295,7 @@ async function runSession() {
       /* The ink decision per strip. Storing the whole style attribute made the golden
        * ~880 bytes a step and drowned real diffs, so this keeps the part a human needs
        * (which --on won) plus a short hash of the rest: any change to --hover or --sh
-       * still shows up, without spelling it out 98 times. */
+       * still shows up, without spelling it out 96 times. */
       inks: [...d.querySelectorAll('.strip')].map((e) => {
         const st = e.getAttribute('style') || '';
         const on = (st.match(/--on:([^;]+)/) || [, '?'])[1];
