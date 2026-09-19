@@ -24,7 +24,18 @@ pass the remaining files explicitly:
 ```
 
 The script only stages the files each patch touches, so the `patches/`
-folder itself never leaks into your history.
+folder itself never leaks into your history. Untracked files are fine;
+only staged or unstaged changes to tracked files block the run.
+
+Starting from a new branch off `main` is the recommended flow:
+
+```sh
+git fetch origin
+git checkout -b mobile-ux-pass main
+git checkout origin/arena/01a0a313-opencolors -- patches/
+git reset -q   # leave the plucked folder untracked; the script never commits it
+./patches/apply.sh
+```
 
 Manual fallback (same result, more typing), one patch at a time:
 

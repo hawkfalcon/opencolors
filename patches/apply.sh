@@ -17,8 +17,8 @@ git rev-parse --show-toplevel >/dev/null 2>&1 || {
   echo "error: run this from inside your main checkout" >&2
   exit 1
 }
-if [ -n "$(git status --porcelain)" ]; then
-  echo "error: working tree is not clean; commit or stash first" >&2
+if [ -n "$(git status --porcelain | grep -v '^??')" ]; then
+  echo "error: working tree has staged or unstaged changes; commit or stash first" >&2
   exit 1
 fi
 case "$(git rev-parse HEAD)" in
