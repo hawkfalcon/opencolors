@@ -144,7 +144,7 @@ const SESSION = [
   ['edit-open-second', async (c) => c.click(c.q('.strip[data-index="1"] [data-action="edit"]'))],
   ['edit-escape-cancels', async (c) => c.key('Escape')],
   ['edit-open-third', async (c) => c.click(c.q('.strip[data-index="1"] [data-action="edit"]'))],
-  ['edit-cancel-button', async (c) => c.click(c.q('[data-pact="cancel"]'))],
+  ['edit-commit-on-strip-click', async (c) => c.click(c.q('.strip[data-index="2"] .hex'))],
   ['undo-after-edit', async (c) => c.key('z', { ctrlKey: true })],
 
   /* dropdown menus */

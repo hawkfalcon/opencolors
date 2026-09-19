@@ -174,7 +174,7 @@ t('editing stretches column', /\.strip\.editing\{flex-grow:2\.6\}/.test(html));
 t('inline edit keeps + cancels', /function inlineDone/.test(html) && /function inlineCancel/.test(html));
 t('no duplicative copy button', !/title="Copy hex"/.test(html));
 t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
-t('edit panel is chromeless', !/ep-head/.test(html) && /class="ep-x"/.test(html));
+t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
 t('widening animates', /flex-grow \.3s ease/.test(html));
 t('strip moves animate', /function moveStrip/.test(html));
 t('swap uses clones (no white flash)', /swap-clone/.test(html));
