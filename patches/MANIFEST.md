@@ -9,7 +9,24 @@ applied tree runs green: harness 64/64, audit 93/93, golden MATCH (96/8/0).
 
 ## How to merge
 
-From a clean checkout of `main`, one patch at a time:
+One command, from a clean checkout of `main` (series built against `0e95c66`):
+
+```sh
+./patches/apply.sh
+```
+
+That applies all 18 patches in order, one commit per patch, using the
+subjects in the table below, and stops at the first failure. To resume,
+pass the remaining files explicitly:
+
+```sh
+./patches/apply.sh 14-generate-leads-dock.patch 15-redo-button.patch 16-history-section-in-dock.patch 17-deterministic-domtest.patch 18-golden-snapshot-refresh.patch
+```
+
+The script only stages the files each patch touches, so the `patches/`
+folder itself never leaks into your history.
+
+Manual fallback (same result, more typing), one patch at a time:
 
 ```sh
 git apply 01-always-visible-mobile-controls.patch
@@ -17,13 +34,6 @@ git add -A && git commit -m "Keep strip controls visible on touch phones"
 git apply 02-remove-tools-toggle.patch
 git add -A && git commit -m "Remove the collapsible-toolbar toggle"
 # … and so on through 18 (filenames sort into the right order)
-```
-
-Or the whole series as a loop (still one commit per patch):
-
-```sh
-for p in *.patch; do git apply "$p" || break; git add -A; git commit -m "$p"; done
-# then `git rebase -i` to replace the filenames with the subjects below
 ```
 
 After the last patch, optionally confirm green:
