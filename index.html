@@ -502,12 +502,18 @@
     .strip{padding:14px 16px;min-height:0}
     .strip-inner{flex-direction:row;width:100%;gap:10px;animation:none}
     .actions{flex-direction:row;margin:0;order:2;margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
-    .actions button{width:34px;height:34px}
+    /* no hover on phones to reveal controls with, so everything stays visible —
+       keyed off width (not hover:none) so touch-laptops and narrow windows agree */
+    .actions button{width:40px;height:40px;opacity:.95}
     .txt{text-align:left}
     .adder{width:auto;height:0}
-    .adder::before{left:0;right:0;top:-18px;bottom:-18px}
+    .adder::before{left:0;right:0;top:-20px;bottom:-20px}
+    .adder button{width:40px;height:40px;opacity:1;transform:translate(-50%,-50%) scale(1)}
+    main.many .actions button{width:40px;height:40px}
     .swapper{width:auto;height:0}
-    .swapper button{left:66%;top:50%}
+    .swapper button{left:66%;top:50%;width:40px;height:40px;opacity:1;transform:translate(-50%,-50%) scale(1)}
+    /* strips stack vertically on phones, so the swap glyph points up/down */
+    .swapper button svg{transform:rotate(90deg)}
     .hex{font-size:19px;padding:6px 8px}
     .btn .lbl{display:none}
     .btn{padding:9px 11px}

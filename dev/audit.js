@@ -133,9 +133,11 @@ t('100dvh for mobile browser chrome', css.includes('100dvh'));
 t('touch-action set (no double-tap zoom)', css.includes('touch-action'));
 t('strips disable text selection', /strip[^{]*\{[^}]*user-select\s*:\s*none/.test(css));
 t('adder visible on touch (hover:none)', /hover\s*:\s*none[\s\S]{0,200}\.adder/.test(css));
+t('controls always visible on mobile (max-width)', /max-width:720px[\s\S]*?\.actions button\{[^}]*opacity:\.95/.test(css) && /max-width:720px[\s\S]*?\.adder button\{[^}]*opacity:1/.test(css) && /max-width:720px[\s\S]*?\.swapper button\{[^}]*opacity:1/.test(css));
 t('lang attribute', /<html lang=/.test(html));
 t('viewport meta', /name="viewport"/.test(html));
 t('mobile toolbar toggle exists', /id="toolsToggle"/.test(html));
+t('swap icon rotates on mobile (vertical strips)', /max-width:720px[\s\S]*?\.swapper button svg\{[^}]*rotate\(90deg\)/.test(css));
 t('hex bubble clamped to slice', /container-type:inline-size/.test(html) && /@container \(max-width:80px\)/.test(html));
 
 /* accessibility */
