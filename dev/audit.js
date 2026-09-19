@@ -178,6 +178,7 @@ t('mobile text inputs dodge iOS auto-zoom', /#paletteNameInput,\.word-row input,
 t('toasts announced to screen readers', /id="toasts" role="status"/.test(html));
 t('color names at full opacity', /\.cname\{[^}]*opacity:1;/.test(css));
 t('mobile tabs centered but scroll-safe', /\.toolset::before,\.toolset::after\{content:'';margin:auto\}/.test(css));
+t('theme button: dot + plain Theme label', /class="theme-dot"/.test(html) && /<span class="lbl">Theme<\/span>/.test(html) && !/>Theme: </.test(html) && /Generation theme: '\+t\.name/.test(html));
 t('dock buttons labeled everywhere', /'lockToggle','lock','Lock'/.test(html) && /#dock button \.lbl\{display:inline/.test(css) && !/#dock button \.lbl\{display:none\}/.test(css));
 t('name sizer tracks input font', /nameSizer\.style\.fontSize=getComputedStyle\(ni\)\.fontSize/.test(html));
 t('mobile title row left-anchored', /header\{position:sticky;top:0;left:0;right:0;margin:0;border-radius:0;border-width:0 0 1px 0\}/.test(css) && !/\.header-name\{margin-right:0\}/.test(css));
