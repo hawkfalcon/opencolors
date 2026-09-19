@@ -42,7 +42,7 @@ Three node tools, each covering what the others cannot:
 ```sh
 node dev/harness.js   #  64 functional smoke tests — app logic against a stub DOM
 node dev/domtest.js   #  96 interaction steps      — real DOM (jsdom), golden snapshot
-node dev/audit.js     #  91 contrast / a11y / heuristic checks
+node dev/audit.js     #  92 contrast / a11y / heuristic checks
 ```
 
 `harness.js` and `audit.js` need nothing but node. `domtest.js` needs jsdom

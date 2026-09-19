@@ -185,6 +185,7 @@ t('mobile title cluster centered', /header\{[^}]*justify-content:center/.test(cs
 t('undo labeled everywhere', /id="undoBtn"/.test(html) && !/icon-only/.test(html));
 t('generate leads the dock', /<nav id="dock"[^>]*>\s*<button[^>]*id="generateBtn"/.test(html) && /aria-label="Palette actions"/.test(html) && /#dock button\.primary\{background:var\(--accent\)/.test(css) && /#generateBtn \.key\{display:none\}/.test(css) && /#dock button\.primary\{[^}]*border-radius:99px/.test(css));
 t('redo button mirrors undo', /id="redoBtn"/.test(html) && /redoBtn'\)\.disabled=!redoStack\.length/.test(html) && /icon\('redo',18\)/.test(html) && /redo:'</.test(html));
+t('history section sits between shuffle and lock', /data-dock="shuffle"[\s\S]*?id="undoBtn"[\s\S]*?id="redoBtn"[\s\S]*?dock-sep[\s\S]*?data-dock="lockToggle"/.test(html));
 t('dock divider visible on white', /\.dock-sep\{[^}]*color-mix\(in srgb,var\(--ink\)/.test(css));
 t('editing siblings keep size on mobile', /max-width:720px[\s\S]*?main\.editing \.strip:not\(\.editing\)\{[^}]*flex:none/.test(css));
 t('edit panel exits via Done only', !/ep-head/.test(html) && !/ep-x/.test(html) && /data-pact="done"/.test(html));
