@@ -123,6 +123,9 @@
   #dock button:hover{background:var(--chrome-hover)}
   #dock button:active{transform:scale(.92)}
   #dock button .lbl{display:inline;font-size:10px}
+  #dock button.primary{background:var(--accent);color:var(--accent-ink);border-radius:99px}
+  #dock button.primary:hover{background:var(--accent-hover)}
+  #generateBtn .key{display:none}
   .dock-sep{width:1px;height:22px;background:var(--bc);margin:0 4px}
   .menu button .tdot{flex:0 0 auto;width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
   #themeBtn .theme-dot{display:inline-flex;border-radius:50%;overflow:hidden;flex-shrink:0}
@@ -568,14 +571,14 @@
     <button class="btn" id="undoBtn" title="Undo (Ctrl+Z)"></button>
     <button class="btn" id="exportBtn" title="Copy or download this palette"></button>
    </div>
-    <button class="btn primary" id="generateBtn" title="Generate (Spacebar)"></button>
   </div>
 </header>
 
 <main id="strips" aria-label="Color palette"></main>
 
 <!-- remix dock -->
-<nav id="dock" aria-label="Remix tools">
+<nav id="dock" aria-label="Palette actions">
+  <button class="btn primary" id="generateBtn" title="Generate (Spacebar)"></button>
   <button data-dock="sortHue" title="Sort by hue" aria-label="Sort by hue"></button>
   <button data-dock="sortLight" title="Sort by lightness" aria-label="Sort by lightness"></button>
   <button data-dock="reverse" title="Reverse order" aria-label="Reverse order"></button>
