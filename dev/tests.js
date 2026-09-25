@@ -65,7 +65,9 @@ t('redo restores', hexSeq() === afterGenerate);
 /* ---------- remix: sorting and locking ---------- */
 pushHistory();
 moreAction('sortHue');
-t('sortHue sorted', ascending(hues()));
+/* the strip is an ascending spectrum (from generate), so the tap flips to the
+   other way: it reverses instead of re-sorting */
+t('sortHue sorted', descending(hues()));
 
 moreAction('reverse'); moreAction('shuffle'); moreAction('sortLight');
 t('sortLight lightest-first', descending(lights()));
@@ -83,7 +85,8 @@ t('lock-all unlocks all', colors.every((c) => !c.locked));
 
 colors[2].locked = false;
 moreAction('sortHue');
-t('sortHue toggles back', ascending(hues()));
+/* taps alternate desc/asc/desc, so this third tap runs the first tap's way again */
+t('sortHue toggles back', descending(hues()));
 /* repeating a sort reverses it, so this one runs the other way round */
 moreAction('sortLight');
 t('sortLight toggles', ascending(lights()));
@@ -176,6 +179,61 @@ t('vision goldens', simulateVision('ff0000', 'protan') === '5e5e0c'
   && simulateVision('ff0000', 'deutan') === '939300' && simulateVision('0000ff', 'tritan') === '006288');
 t('achroma luminance', simulateAchroma('ffffff') === 'ffffff' && simulateAchroma('808080') === '808080'
   && simulateAchroma('00ff00') === 'dbdbdb');
+
+/* ---------- generation coordination ---------- */
+/* fresh draws keep their hues apart from each other, and from locked neighbors */
+let gapFails = 0;
+for (let i = 0; i < 200; i++) {
+  const hues = genFresh('random', rnd(0, 360), [], 5).map((h) => hexToHsl(h).h);
+  for (let a = 0; a < 5; a++) for (let b = a + 1; b < 5; b++) if (hueDist(hues[a], hues[b]) < 12) gapFails++;
+}
+t('genFresh separates hues', gapFails === 0);
+t('genFresh keeps hue off locked neighbors',
+  genFresh('random', 200, [100], 5).every((h) => hueDist(hexToHsl(h).h, 100) >= 12));
+/* tonal floor is a construction guarantee: the flat tail always gets a far note */
+let flatFails = 0;
+for (let i = 0; i < 300; i++) {
+  const ls = genFresh('pastel', 200, [], 5).map((h) => hexToHsl(h).l);
+  if (Math.max.apply(null, ls) - Math.min.apply(null, ls) < 4) flatFails++;
+}
+t('genFresh keeps tonal spread', flatFails === 0);
+t('genFresh mono is plain draws', isHex(genFresh('mono', 200, [], 3)[0]));
+
+/* ---------- name stability ---------- */
+/* a newly added (or reordered) strip must not steal the name of an existing color.
+   (Earlier tests left the palette at its 2-colour minimum — that's all we need.) */
+const stripNames = () => [...stripsEl.innerHTML.matchAll(/class="cname">([^<]*)</g)].map((m) => m[1]);
+colors[0].hex = 'aaace7';
+colors[1].hex = '22cc22';
+render();
+const wisteria = stripNames()[0];
+pushHistory();
+colors.splice(0, 0, { hex: 'aaa9e7', locked: false }); /* near-twin inserted before it */
+render();
+const namesAfter = stripNames();
+t('added twin does not steal name', namesAfter[1] === wisteria && namesAfter[0] !== wisteria);
+t('names stay unique after add', new Set(namesAfter).size === namesAfter.length);
+undo();
+t('undo restores old name', stripNames()[0] === wisteria);
+redo();
+t('redo keeps stable names', stripNames()[1] === wisteria && stripNames()[0] === namesAfter[0]);
+
+/* ---------- dock hue toggle never dead-clicks a sorted strip ---------- */
+/* the toggle must not tap an already-sorted strip the same way: on a fresh load
+   (the default strip is a curated hue spectrum) and right after a generate, the
+   first tap reverses; taps then alternate. A stale phase from earlier taps must
+   not matter — the strip's actual order wins. */
+setPalette(DEFAULTS);
+moreAction('sortHue');
+t('first hue tap on a fresh load reverses the spectrum', descending(colors.map((c) => hexToHsl(c.hex).h)));
+moreAction('sortHue');
+t('next hue tap restores the spectrum', ascending(colors.map((c) => hexToHsl(c.hex).h)));
+sortDir.sortHue = 1; /* a stale phase, as left by earlier taps in this session */
+setPalette(DEFAULTS);
+generate();
+t('generate sorts fresh colors by hue', ascending(colors.map((c) => hexToHsl(c.hex).h)));
+moreAction('sortHue');
+t('first hue tap after generate reverses it', descending(colors.map((c) => hexToHsl(c.hex).h)));
 
 console.log('---');
 console.log(process.exitCode ? 'SMOKE FAILED' : `ALL ${__n} SMOKE TESTS PASSED`);
