@@ -77,7 +77,24 @@ function makeDom() {
 function run(epilogue = '', dom = makeDom()) {
   const body = readJs() + '\n' + epilogue;
   const fn = new Function('window', 'document', 'location', 'navigator', 'localStorage', body);
-  return fn(dom.window, dom.document, dom.location, dom.navigator, dom.localStorage);
+  /* pin Math.random: the app draws generations and shuffles from it, and one test
+     asserts on a shuffled order — unpinned, a run could theoretically flake. The
+     seed is part of the harness contract; change it and re-read the test output.
+     (domtest pins its own copy for jsdom; this covers the node-side suites.) */
+  let s = 987654321;
+  const seeded = function () {
+    s = (s + 0x6D2B79F5) | 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const realRandom = Math.random;
+  Math.random = seeded;
+  try {
+    return fn(dom.window, dom.document, dom.location, dom.navigator, dom.localStorage);
+  } finally {
+    Math.random = realRandom;
+  }
 }
 
 module.exports = { ROOT, readHtml, readCss, readJs, makeElement, makeDom, run };

@@ -2207,6 +2207,50 @@ function genHex(mode, baseHue){
   }
 }
 
+/* palette-level coordination for one generation pass. Every color is still a
+   plain random sample from its theme box — only the draws that would visibly
+   fail get rejected: a hue that twins with a color already on the strip (locked
+   or freshly drawn), and a finished set with no tonal range (the flattest color
+   is pushed one note toward the far end of the lightness box). */
+const HUE_GAP={random:12,pastel:12,vivid:12,light:12,dark:12,warm:6,cool:7}; /* mono: exempt, its character is one hue */
+const L_SPREAD={pastel:[76,88,4],vivid:[46,60,4],warm:[45,64,6],cool:[40,66,8],light:[72,90,6],dark:[16,36,6],random:[30,76,14]};
+function hueDist(a,b){ const d=Math.abs(a-b)%360; return Math.min(d,360-d); }
+function genFresh(mode,baseHue,occupied,n){
+  const gap=HUE_GAP[mode]||0;
+  const taken=occupied.slice();
+  const out=[];
+  for(let i=0;i<n;i++){
+    let hex=genHex(mode,baseHue);
+    if(gap){
+      let tries=0;
+      while(tries<40&&taken.some(t=>hueDist(hexToHsl(hex).h,t)<gap)){ hex=genHex(mode,baseHue); tries++; }
+    }
+    taken.push(hexToHsl(hex).h);
+    out.push(hex);
+  }
+  const box=L_SPREAD[mode];
+  if(box&&n>1){
+    const ls=out.map(x=>hexToHsl(x).l);
+    const lo=Math.min.apply(null,ls), hi=Math.max.apply(null,ls);
+    if(hi-lo<box[2]){
+      /* floor ~30% of the box width: fires only on the flat tail, so most
+         palettes come out exactly as the raw draws made them */
+      const F=box[2];
+      const upOK=lo+F<=box[1], downOK=hi-F>=box[0];
+      const mid=(lo+hi)/2;
+      let fi=0;
+      for(let i=1;i<ls.length;i++) if(Math.abs(ls[i]-mid)<Math.abs(ls[fi]-mid)) fi=i;
+      let up=ls[fi]-lo>hi-ls[fi]; /* aim the flattest color at the farther end */
+      if(up&&!upOK) up=false;
+      if(!up&&!downOK) up=true;
+      const l=up?rnd(Math.max(box[1]-4,lo+F),box[1]):rnd(box[0],Math.min(box[0]+4,hi-F));
+      const c=hexToHsl(out[fi]);
+      out[fi]=hslToHex(c.h,c.s,l);
+    }
+  }
+  return out;
+}
+
 /* ---------- starter / explore presets ---------- */
 const PRESETS=[
   {name:'Solar Thunder',colors:["69d2e7", "a7dbd8", "e0e4cc", "f38630", "fa6900"]},
@@ -2472,7 +2516,14 @@ function generate(){
     const locked=colors.find(c=>c.locked);
     baseHue=locked?hexToHsl(locked.hex).h:rnd(0,360);
   }
-  colors.forEach(c=>{ if(!c.locked) c.hex=genHex(mode,baseHue); });
+  const freeIdx=colors.map((c,i)=>c.locked?-1:i).filter(i=>i>=0);
+  /* locked hues count as occupied, so a fresh draw can't twin with a neighbor */
+  const freshHexes=genFresh(mode,baseHue,colors.filter(c=>c.locked).map(c=>hexToHsl(c.hex).h),freeIdx.length);
+  freeIdx.forEach((ci,vi)=>colors[ci].hex=freshHexes[vi]);
+  /* generation reads as a spectrum: sort the fresh colors by hue, leaving locked
+     strips in place (same rule as the dock's sortHue) */
+  const fresh=freeIdx.map(i=>colors[i].hex).sort((a,b)=>hexToHsl(a).h-hexToHsl(b).h);
+  freeIdx.forEach((ci,vi)=>colors[ci].hex=fresh[vi]);
   paletteName=randName();
   render();
 }
