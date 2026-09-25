@@ -219,7 +219,7 @@ t('brettel-vienot vision', /BRETTEL_TRITAN_SEP/.test(html) && /VIENOT_DEUTAN/.te
 /* attribution */
 t('Feather icons attributed', /Feather Icons/.test(html));
 t('preset source linked', /github\.com\/Jam3\/nice-color-palettes/.test(html));
-t('open sources credited', /xkcd color survey/.test(html));
+t('open sources credited', /github\.com\/meodai\/color-names/.test(html));
 
 /* ---------- touch targets (informational) ---------- */
 console.log('--- touch targets (WCAG ≥24px, Apple HIG ≥44px) ---');

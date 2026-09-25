@@ -9,7 +9,7 @@ A free-forever palette maker in a **single HTML file**: no accounts, no paywall,
 - Fast palette generator (8 themes: random, pastel, vivid, warm, cool, light, dark, mono)
 - Lock, copy, adjust, swap, sort
 - Create from an image, from a word ("ocean", "matcha", …), or from open source presets
-- 1,030 color names (from public-domain xkcd survey)
+- 5,030 color names (original dictionary + curated "Best of" set from [meodai/color-names](https://github.com/meodai/color-names), MIT)
 - Contrast checker (WCAG), color-vision simulator, full edit panel with shades
 - Save palettes locally, export link / CSS / Tailwind / SCSS / JSON / SVG / gradient / PNG
 - Keyboard-first: `Space` generate · `L` lock · `←` `→` reorder · `Ctrl Z` undo
@@ -81,7 +81,7 @@ dev/
 
 ## Credits
 
-Icons are [Feather Icons](https://feathericons.com) (MIT). Starter presets are the top 20 sets from [nice-color-palettes](https://github.com/Jam3/nice-color-palettes) (MIT). Color names blend an original dictionary with the public-domain xkcd color survey (CC0). Vision simulation uses [libDaltonLens](https://github.com/DaltonLens/libDaltonLens) matrices (public domain). Everything else is original.
+Icons are [Feather Icons](https://feathericons.com) (MIT). Starter presets are the top 20 sets from [nice-color-palettes](https://github.com/Jam3/nice-color-palettes) (MIT). Color names blend an original dictionary with the community-curated "Best of" names from [meodai/color-names](https://github.com/meodai/color-names) (MIT). Vision simulation uses [libDaltonLens](https://github.com/DaltonLens/libDaltonLens) matrices (public domain). Everything else is original.
 
 ## License
 
