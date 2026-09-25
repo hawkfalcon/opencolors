@@ -2946,12 +2946,25 @@ function moreAction(k){
   const idx=colors.map((c,i)=>c.locked?-1:i).filter(i=>i>=0);
   if(idx.length<2){ toast('Unlock at least 2 colors to remix'); return; }
   pushHistory();
-  const vals=idx.map(i=>colors[i].hex);
+  let vals=idx.map(i=>colors[i].hex);
   const labels={reverse:'Reversed',shuffle:'Shuffled'};
   let msg=labels[k]||'Remixed';
   if(k==='sortHue'||k==='sortLight'){
-    const d=sortDir[k], key=k==='sortHue'?'h':'l';
-    vals.sort((a,b)=>d*(hexToHsl(a)[key]-hexToHsl(b)[key]));
+    let d=sortDir[k];
+    const key=k==='sortHue'?'h':'l';
+    /* a fresh load or a just-generated spectrum is already sorted: tapping it
+       the same way would move nothing, so flip to the other way and keep the
+       button from dead-clicking. (An all-equal set, e.g. mono hues, is left
+       alone — either way is a no-op there.) */
+    const kv=vals.map(x=>[x,hexToHsl(x)[key]]);
+    const vs=kv.map(p=>p[1]);
+    if(vs.some((x,i)=>i>0&&Math.abs(vs[i-1]-x)>1e-9)){
+      const isAsc=vs.every((x,i)=>i===0||vs[i-1]<=x+1e-9);
+      const isDesc=vs.every((x,i)=>i===0||vs[i-1]>=x-1e-9);
+      if((d>0&&isAsc)||(d<0&&isDesc)) d=-d;
+    }
+    kv.sort((a,b)=>d*(a[1]-b[1]));
+    vals=kv.map(p=>p[0]);
     sortDir[k]=-d;
     msg=k==='sortHue'?(d>0?'Sorted by hue':'Sorted by hue \u00B7 reversed'):(d>0?'Darkest first':'Lightest first');
   }
