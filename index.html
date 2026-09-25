@@ -2278,6 +2278,7 @@ const PRESETS=[
 /* ---------- state ---------- */
 const DEFAULTS=['ff6b4a','ffc93c','2ec4b6','3b82f6','7c5cf6'];
 let colors=[];            // [{hex, locked}]
+let nextColorId=0;        // creation-order ids: keep name claims stable across add/reorder
 let undoStack=[], redoStack=[], editStackLen=0;           // snapshots for undo
 let saved=[];             // saved palettes
 let editIndex=-1, editBackup=null;
@@ -2459,7 +2460,14 @@ async function copyText(text, msg){
 function render(){
   const n=colors.length;
   let html='';
+  /* names are claimed in creation order, not strip order: a newly added or
+     reordered strip must not steal the name of a color that already had it.
+     Objects get a stable id on first sight; snapshot() copies it, so
+     undo/redo keep the same claimants. */
+  colors.forEach(c=>{ if(c.id===undefined) c.id=nextColorId++; });
   const usedNames=new Set();
+  const nameFor=new Map();
+  colors.slice().sort((a,b)=>a.id-b.id).forEach(c=>nameFor.set(c,colorName(c.hex,usedNames)));
   colors.forEach((c,i)=>{
     const on=onColor(c.hex), hov=hoverBg(c.hex);
     html+=`
@@ -2468,7 +2476,7 @@ function render(){
       <div class="strip-inner">
         <div class="txt" style="display:flex;flex-direction:column;align-items:center;gap:6px">
           <button class="hex" data-action="copy" data-index="${i}" aria-label="Copy #${c.hex.toUpperCase()}">#${c.hex.toUpperCase()}</button>
-          <span class="cname">${colorName(c.hex,usedNames)}</span>
+          <span class="cname">${nameFor.get(c)}</span>
         </div>
         <div class="actions">
           <button data-action="lock" data-index="${i}" title="${c.locked?'Unlock':'Lock'}" aria-label="${c.locked?'Unlock color':'Lock color'}" class="${c.locked?'active':''}">${icon(c.locked?'lock':'unlock',18)}</button>
