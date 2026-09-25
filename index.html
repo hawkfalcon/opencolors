@@ -2719,7 +2719,10 @@ function wireEditPanel(){
     });
   });
   $('hexInput').addEventListener('input',e=>{
-    if(validHex(e.target.value)){ syncEditUI(normHex(e.target.value)); editLive(e.target.value); }
+    /* Full 6-digit hex only. A 3-digit prefix (e.g. mid-deletion) must not be
+       doubled into another color or rewritten back into the field — that made
+       the editor look like it was auto-completing the value. */
+    if(/^#?[0-9a-f]{6}$/i.test(e.target.value.trim())){ syncEditUI(normHex(e.target.value)); editLive(e.target.value); }
   });
   $('nativePicker').addEventListener('input',e=>{ syncEditUI(e.target.value); editLive(e.target.value); });
   $('shadeGrid').addEventListener('click',e=>{
