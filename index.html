@@ -72,6 +72,20 @@
   @supports ((-webkit-background-clip:text) or (background-clip:text)){
     .logo-name{background:linear-gradient(92deg,#FF5D3B,#E8930C 28%,#1FA796 50%,#3B82F6 74%,#8B5CF6);-webkit-background-clip:text;background-clip:text;color:transparent}
   }
+  /* optical centering: the header centers each item's line box, but the
+     wordmark is all lowercase, so its visual mass is the x-height band - which
+     sits well below the line box's middle (the pill and the palette name read
+     by cap height, which already lands near the middle). Trim the wordmark's
+     box to exactly that band so the flex centering lines it up with its
+     neighbours, then pad it back out symmetrically (so the l and p, which
+     overhang the band, still get the gradient painted behind them) and cancel
+     the padding with margin so the header height doesn't change. */
+  @supports (text-box:trim-both ex alphabetic){
+    .logo-name{text-box:trim-both ex alphabetic;padding-block:.42em;margin-block:-.42em}
+  }
+  @supports not (text-box:trim-both ex alphabetic){
+    .logo-name{position:relative;top:-.1em}
+  }
 
   .logo-badge{
     font-family:var(--font-display);font-size:9.5px;font-weight:700;color:var(--muted);
